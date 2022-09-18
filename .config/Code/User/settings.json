@@ -1,0 +1,20 @@
+{
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "FSharp.dotnetRoot": "/bin/dotnet",
+    "telemetry.telemetryLevel": "off",
+    "dotnetAcquisitionExtension.enableTelemetry": false,
+    "vim.vimrc.enable": true,
+    "vim.vimrc.path": "$HOME/.vimrc",
+    "vim.useSystemClipboard": true,
+    "window.zoomLevel": 1,
+    "notebook.lineNumbers": "on",
+    "workbench.activityBar.visible": false,
+    "editor.fontLigatures": true,
+    "workbench.colorTheme": "Visual Studio 2019 Dark"
+}

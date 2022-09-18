@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/vb/RiderProjects/Sandbox'
+let g:netrw_dirhist_6='/home/vb/RiderProjects/Sandbox/Cli'
+let g:netrw_dirhist_5='/home/vb/RiderProjects/Sandbox/Cli/obj'
+let g:netrw_dirhist_4='/home/vb/RiderProjects/Sandbox/Cli'
+let g:netrw_dirhist_3='/usr/share/themes/Arc/gnome-shell'
+let g:netrw_dirhist_2='/usr/share/themes/Arc'
+let g:netrw_dirhist_1='/home/vb/RiderProjects/Sandbox/Cli'

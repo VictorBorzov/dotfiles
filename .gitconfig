@@ -1,0 +1,20 @@
+[core]
+	excludeFiles = ~/.gitignore
+	editor = vim
+[user]
+	name = Victor Borzov
+	email = test@test.com
+[merge]
+	tool = vimdiff
+	conflict = style
+[mergetool]
+	prompt = false
+
+[includeIf "gitdir:/home/vb/src/personal/"]
+    path = /home/vb/.gitconfig-personal
+
+[includeIf "gitdir:/home/vb/src/ap/"]
+    path = /home/vb/.gitconfig-ap
+
+[includeIf "gitdir:/home/vb/src/simbyot/"]
+    path = /home/vb/.gitconfig-simbyot
