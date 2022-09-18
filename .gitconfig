@@ -15,6 +15,3 @@
 
 [includeIf "gitdir:/home/vb/src/ap/"]
     path = /home/vb/.gitconfig-ap
-
-[includeIf "gitdir:/home/vb/src/simbyot/"]
-    path = /home/vb/.gitconfig-simbyot
