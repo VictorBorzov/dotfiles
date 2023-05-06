@@ -142,6 +142,7 @@ export PS1="$SOLARIZED_LIGHT$SOLARIZED_BASE1\u@\h$SOLARIZED_BASE03:\w\\$ $SOLARI
 # alias ohmybash="mate ~/.oh-my-bash"
 alias ls='ls --color=none'
 alias bat=batcat
+alias info='info --vi-keys'
 
 alias in='task add +in'
 

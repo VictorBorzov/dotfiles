@@ -1,0 +1,32 @@
+[editor]
+line-number = "relative"
+mouse = false
+shell = ["bash", "-c"]
+color-modes = true
+
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name"]
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.whitespace.render]
+space = "all"
+tab = "all"
+nbsp = "all"
+newline = "none"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+tab = "→"
+newline = "⏎"
+tabpad = "·" # Tabs will look like "→···" (depending on tab width)
+
+[editor.indent-guides]
+render = true
+character = "┊" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
