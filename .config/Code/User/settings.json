@@ -12,9 +12,12 @@
     "vim.vimrc.enable": true,
     "vim.vimrc.path": "$HOME/.vimrc",
     "vim.useSystemClipboard": true,
-    "window.zoomLevel": 1,
     "notebook.lineNumbers": "on",
     "workbench.activityBar.visible": false,
     "editor.fontLigatures": true,
-    "workbench.colorTheme": "Visual Studio 2019 Dark"
+    "workbench.colorTheme": "Quiet Light",
+    "security.workspace.trust.untrustedFiles": "open",
+    "polyglot-notebook.suppressPromptToSaveDefaults": true,
+    "haskell.manageHLS": "GHCup",
+    "code-runner.runInTerminal": true
 }

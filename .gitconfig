@@ -7,11 +7,13 @@
 [merge]
 	tool = vimdiff
 	conflict = style
+[commit]
+  template = /home/vb/.gitmessage
 [mergetool]
 	prompt = false
 
-[includeIf "gitdir:/home/vb/src/personal/"]
+[includeIf "gitdir:/home/vb/RiderProjects/personal/"]
     path = /home/vb/.gitconfig-personal
 
-[includeIf "gitdir:/home/vb/src/ap/"]
+[includeIf "gitdir:/home/vb/RiderProjects/ap/"]
     path = /home/vb/.gitconfig-ap
