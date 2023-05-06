@@ -1,6 +1,6 @@
 set runtimepath^=~/.config/nvim/plugged/wiki.vim
 
-let g:wiki_root = '~/wiki'
+let g:wiki_root = '~/Sync/wiki'
 
 let g:wiki_filetypes = ['md', 'wiki']
 let g:wiki_link_extension = '.md'
