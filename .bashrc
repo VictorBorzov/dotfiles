@@ -143,9 +143,12 @@ export PS1="$SOLARIZED_LIGHT$SOLARIZED_BASE1\u@\h$SOLARIZED_BASE03:\w\\$ $SOLARI
 alias ls='ls --color=none'
 alias bat=batcat
 
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
 alias in='task add +in'
+
+
+config() {
+  /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME "$@"
+}
 
 # tickle () {
 #     deadline=$1
