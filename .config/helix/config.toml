@@ -1,8 +1,12 @@
+theme = "gruvbox"
+
 [editor]
 line-number = "relative"
 mouse = false
 shell = ["bash", "-c"]
 color-modes = true
+bufferline = "multiple"
+auto-save = true
 
 [editor.statusline]
 left = ["mode", "spinner"]
@@ -12,6 +16,11 @@ separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
 
 [editor.whitespace.render]
 space = "all"
@@ -30,3 +39,20 @@ tabpad = "·" # Tabs will look like "→···" (depending on tab width)
 render = true
 character = "┊" # Some characters that work well: "▏", "┆", "┊", "⸽"
 skip-levels = 1
+
+[editor.lsp]
+display-signature-help-docs = false
+#display-inlay-hints = true
+
+[keys.normal]
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+
+[keys.normal.space]
+#w = ":write"
+#q = ":quit"
+f = ["file_picker_in_current_buffer_directory"]
+F = ["file_picker"]
+
+[editor.file-picker]
+hidden = false

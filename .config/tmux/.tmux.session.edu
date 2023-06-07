@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+SESSIONNAME="edu"
+
+if tmux has-session -t $SESSIONNAME &> /dev/null; then
+  tmux attach -t $SESSIONNAME
+  exit
+fi
+
+tmux new-session -d -s $SESSIONNAME -n home -x $(tput cols) -y $(tput lines)
+
+# setup nvim page
+tmux new-window -t $SESSIONNAME -n wiki
+tmux send-keys -t $SESSIONNAME:wiki "hx ~/Sync/wiki/index.md" Enter
+
+# setup ghci page
+tmux new-window -t $SESSIONNAME -n λ
+tmux send-keys -t $SESSIONNAME:λ "cd haskell" Enter
+
+tmux attach -t $SESSIONNAME:home

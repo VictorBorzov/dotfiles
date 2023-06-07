@@ -1,0 +1,10 @@
+#import:
+ #- /home/vb/dotfiles/.config/alacritty/themes/rose-pine-down.yaml
+
+#shell:
+  #program: /bin/bash
+  #args:
+    #- --login
+#
+key_bindings:
+  - { key: F11, action: ToggleFullscreen }
