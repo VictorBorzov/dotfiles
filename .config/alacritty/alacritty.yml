@@ -1,5 +1,5 @@
-#import:
- #- /home/vb/dotfiles/.config/alacritty/themes/rose-pine-down.yaml
+import:
+  - /home/vb/dotfiles/.config/alacritty/themes/rose-pine-dawn.yaml
 
 #shell:
   #program: /bin/bash
