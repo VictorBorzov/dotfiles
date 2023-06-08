@@ -3,7 +3,7 @@
     email = borzov.vk@protonmail.com
 
 [core]
-    excludeFiles = ~/.gitignore
+    excludeFiles = ~/.config/git/ignore
     editor = hx
     pager = delta
 
@@ -12,7 +12,7 @@
 
 [delta]
     navigate = true    # use n and N to move between diff sections
-    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    light = true       # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
     features = decorations
     line-numbers = true
     side-by-side = true
@@ -42,10 +42,7 @@
     prompt = false
 
 [commit]
-  template = /home/vb/.gitmessage
-
-[includeIf "gitdir:/home/vb/RiderProjects/personal/"]
-    path = /home/vb/.gitconfig-personal
+  template = /home/vb/.config/git/message
 
 [includeIf "gitdir:/home/vb/RiderProjects/ap/"]
-    path = /home/vb/.gitconfig-ap
+    path = /home/vb/.config/git/config-ap

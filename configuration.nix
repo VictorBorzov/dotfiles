@@ -84,6 +84,9 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # !Doesn't work(( Set NIX_PATH pointing to this config
+  #nix.nixPath = [ "nixos-config=/home/vb/dotfiles/configuration.nix" ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [

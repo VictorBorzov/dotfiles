@@ -38,9 +38,11 @@ in
         syncthing
      ];
 
-     home.file.".config/git/config".source = /home/vb/dotfiles/.config/git/config;
-     home.file.".config/git/config-ap".source = /home/vb/dotfiles/.config/git/config-ap;
-     home.file.".config/git/config-personal".source = /home/vb/dotfiles/.config/git/config-personal;
+     home.sessionVariables = {
+       EDITOR = "hx";
+     };
+
+     home.file.".config/git".source = /home/vb/dotfiles/.config/git;
      home.file.".config/alacritty/alacritty.yml".source = /home/vb/dotfiles/.config/alacritty/alacritty.yml;
      home.file.".config/helix/config.toml".source = /home/vb/dotfiles/.config/helix/config.toml;
      home.file.".config/helix/languages.toml".source = /home/vb/dotfiles/.config/helix/languages.toml;
