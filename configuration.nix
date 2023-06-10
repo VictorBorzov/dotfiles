@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./wm/gnome.nix
       ./home-manager.nix
     ];
 
@@ -62,39 +63,8 @@
     #];
   };
 
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbVariant = "";
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  #services.xserver.libinput.enable = true;
-
-    
-  # systray icons
-  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # !Doesn't work(( Set NIX_PATH pointing to this config
-  #nix.nixPath = [ "nixos-config=/home/vb/dotfiles/configuration.nix" ];
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-    gnomeExtensions.appindicator
-    gnomeExtensions.material-shell
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
