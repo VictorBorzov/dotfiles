@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
       ./wm/gnome.nix
       ./home-manager.nix
     ];
@@ -15,6 +15,15 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Setup keyfile
+  boot.initrd.secrets = {
+    "/crypto_keyfile.bin" = null;
+  };
+
+  # Enable swap on luks
+  boot.initrd.luks.devices."luks-6831d591-ca24-46d4-9359-aa5c6bf9e2eb".device = "/dev/disk/by-uuid/6831d591-ca24-46d4-9359-aa5c6bf9e2eb";
+  boot.initrd.luks.devices."luks-6831d591-ca24-46d4-9359-aa5c6bf9e2eb".keyFile = "/crypto_keyfile.bin";
 
   networking.hostName = "marshmallow"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -32,8 +41,17 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "us";
+    xkbVariant = "";
+  };
+
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -52,22 +70,25 @@
     #media-session.enable = true;
   };
 
-  # Docker
-  #virtualisation.docker.enable = true;
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.vb = {
     isNormalUser = true;
     description = "vb";
-    extraGroups = [ "networkmanager" "wheel" /*"docker"*/ ];
-    #packages = with pkgs; [
-    #   firefox
-    #  thunderbird
-    #];
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  wget
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -79,9 +100,7 @@
 
   # List services that you want to enable:
 
-  services.ntp.enable = true;
-
-  # Allow vpn
+  # Mullvad vpn
   services.mullvad-vpn.enable = true;
 
   # Enable the OpenSSH daemon.
@@ -100,4 +119,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
+
 }
