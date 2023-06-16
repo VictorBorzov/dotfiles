@@ -16,6 +16,7 @@ in
      home.packages = with pkgs; [
         git
         delta
+        pv
         tmux
         helix
         gcc
@@ -38,6 +39,9 @@ in
         syncthing
         (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
         btop
+        libreoffice
+        nodePackages.vscode-langservers-extracted
+         wofi
      ];
 
      # Enable nerdfonts
@@ -55,6 +59,7 @@ in
      home.file.".config/helix/themes".source = /home/vb/dotfiles/config/helix/themes;
      home.file.".config/tmux".source = /home/vb/dotfiles/config/tmux;
      home.file.".config/btop".source = /home/vb/dotfiles/config/btop;
+     home.file.".config/wofi".source = /home/vb/dotfiles/config/wofi;
      home.file.".config/ghc/ghci.conf".source = /home/vb/dotfiles/config/ghci/ghci.conf;
 
      programs.home-manager.enable = true;

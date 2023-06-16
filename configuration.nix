@@ -52,11 +52,14 @@
     #media-session.enable = true;
   };
 
+  # Docker
+  #virtualisation.docker.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.vb = {
     isNormalUser = true;
     description = "vb";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" /*"docker"*/ ];
     #packages = with pkgs; [
     #   firefox
     #  thunderbird
