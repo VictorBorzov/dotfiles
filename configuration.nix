@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
       ./wm/gnome.nix
-      ./home-manager.nix
+      ./home.nix
     ];
 
   # Bootloader.
@@ -41,13 +41,11 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
+    layout = "us,ru";
     xkbVariant = "";
+    xkbOptions = "grp:win_space_toggle";
   };
 
   # Enable CUPS to print documents.
@@ -69,9 +67,6 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.vb = {
@@ -98,10 +93,23 @@
   #   enableSSHSupport = true;
   # };
 
+  # Network manager icon n configuration in systray
+  programs.nm-applet.enable = true;
+
   # List services that you want to enable:
 
   # Mullvad vpn
   services.mullvad-vpn.enable = true;
+
+  # Openvpn for i3
+  #services.openvpn.servers = {
+    #officeVPN  = {
+      #config = '' config /home/vb/.secrets/pfSense-TCP4-443-borzov-config.ovpn '';
+      #up = "echo nameserver $nameserver | ${pkgs.openresolv}/sbin/resolvconf -m 0 -a $dev";
+      #down = "${pkgs.openresolv}/sbin/resolvconf -d $dev";
+      #autoStart = false;
+    #};
+   #};
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

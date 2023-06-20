@@ -24,6 +24,7 @@ in
         ghc
         haskell-language-server
         bat
+        bc
         tldr
         alacritty
         bitwarden
@@ -36,10 +37,9 @@ in
         telegram-desktop
         syncthing
         (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-        btop
+        #btop
         libreoffice
         nodePackages.vscode-langservers-extracted
-         wofi
      ];
 
      # Enable nerdfonts
@@ -56,9 +56,13 @@ in
      home.file.".config/helix/languages.toml".source = /home/vb/dotfiles/config/helix/languages.toml;
      home.file.".config/helix/themes".source = /home/vb/dotfiles/config/helix/themes;
      home.file.".config/tmux".source = /home/vb/dotfiles/config/tmux;
-     home.file.".config/btop".source = /home/vb/dotfiles/config/btop;
+     # home.file.".config/btop".source = /home/vb/dotfiles/config/btop;
      home.file.".config/wofi".source = /home/vb/dotfiles/config/wofi;
      home.file.".config/ghc/ghci.conf".source = /home/vb/dotfiles/config/ghci/ghci.conf;
+     home.file.".config/rofi".source = /home/vb/dotfiles/config/rofi;
+     # i3 config
+     #home.file.".config/i3status-rust".source = /home/vb/dotfiles/config/i3status-rust;
+     #home.file.".config/i3".source = /home/vb/dotfiles/config/i3;
 
      programs.home-manager.enable = true;
 
@@ -73,6 +77,5 @@ in
        enable = true;
        config.theme = "gruvbox-light";
      };
-
   };
 }
