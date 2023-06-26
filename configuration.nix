@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
-      ./wm/gnome.nix
+      ./wm/kde.nix
       ./home.nix
     ];
 
@@ -72,18 +72,23 @@
   users.users.vb = {
     isNormalUser = true;
     description = "vb";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-  ];
+  ## For mount.cifs, required unless domain name resolution is not needed.
+  #environment.systemPackages = [ pkgs.cifs-utils ];
+  #fileSystems."/mnt/ap-storage-algs" = {
+      #device = "//ap-team.ru/storage/Development/Teams/ALGS";
+      #fsType = "cifs";
+      #options = let
+        ## this line prevents hanging on network split
+        #automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+#
+      #in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
+  #};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -94,7 +99,7 @@
   # };
 
   # Network manager icon n configuration in systray
-  programs.nm-applet.enable = true;
+  #programs.nm-applet.enable = true;
 
   # List services that you want to enable:
 
@@ -119,6 +124,7 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  virtualisation.docker.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

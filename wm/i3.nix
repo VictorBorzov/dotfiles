@@ -14,12 +14,24 @@
       desktopManager = {
         xterm.enable = false;
       };
-   
+
       displayManager = {
-          defaultSession = "none+i3";
+        # "none+i3" to turn off xfce
+        defaultSession = "none+i3";
       };
 
-      # Enable touchpad support (enabled default in most desktopManager).
+      windowManager.i3 = {
+        enable = true;
+
+        extraPackages = with pkgs; [
+          xkblayout-state
+          rofi # application launcher
+          i3status-rust # gives you the default i3 status bar
+          i3lock #default i3 screen locker
+          i3blocks #if you are planning on using i3blocks over i3status
+       ];
+      };
+
       libinput = {
         enable = true;
 
@@ -35,19 +47,9 @@
         };
       };
 
-      windowManager.i3 = {
-        enable = true;
-
-        extraPackages = with pkgs; [
-          xkblayout-state
-          rofi # application launcher
-          i3status-rust # gives you the default i3 status bar
-          i3lock #default i3 screen locker
-          i3blocks #if you are planning on using i3blocks over i3status
-       ];
-      };
     };
 
+      # Enable touchpad support (enabled default in most desktopManager).
     logind = {
       # Specifies what to be done when the laptop lid is closed.
       lidSwitch = "hibernate";
@@ -56,6 +58,5 @@
       '';
     };
   };
-
 }
 

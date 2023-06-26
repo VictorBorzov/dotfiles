@@ -1,0 +1,3 @@
+// ~/.config/zellij/config.kdl
+
+theme "rose-pine-dawn" // or "rose-pine-moon" or "rose-pine-dawn"

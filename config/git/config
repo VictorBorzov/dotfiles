@@ -44,5 +44,10 @@
 [commit]
   template = /home/vb/.config/git/message
 
-[includeIf "gitdir:/home/vb/RiderProjects/ap/"]
+; include only if a remote with the given URL exists (note
+; that such a URL may be provided later in a file or in a
+; file read after this file is read, as seen in this example)
+;[includeIf "gitdir:*/ap/*"]
+[includeIf "hasconfig:remote.*.url:ssh://git@bitbucket.ap-team.ru*/**"]
     path = /home/vb/.config/git/config-ap
+

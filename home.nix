@@ -1,81 +1,25 @@
-{ config, pkgs, ... }:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 in
 {
   imports = [ <home-manager/nixos> ];
 
-  home-manager.users.vb = {
+  home-manager.users.vb = { config, pkgs, ... }: {
+     nixpkgs.config.allowUnfree = true;
 
      home.username = "vb";
      home.homeDirectory = "/home/vb";
      home.stateVersion = "23.05";
 
-     home.packages = with pkgs; [
-        git
-        delta
-        pv
-        tmux
-        helix
-        gcc
-        xclip
-        marksman
-        nil
-        ghc
-        haskell-language-server
-        bat
-        bc
-        tldr
-        alacritty
-        bitwarden
-        librewolf
-        mullvad-vpn
-        jetbrains.rider
-        dotnet-sdk_7
-        remmina
-        slack
-        telegram-desktop
-        syncthing
-        (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-        #btop
-        libreoffice
-        nodePackages.vscode-langservers-extracted
-     ];
+     imports = [
+      ./home.apps.cli.nix
+      ./home.apps.gui.nix 
+    ];
 
-     # Enable nerdfonts
-     fonts.fontconfig.enable = true;
+     home.packages = with pkgs; [];
 
-     home.sessionVariables = {
-       EDITOR = "hx";
-     };
-
-
-     home.file.".config/git".source = /home/vb/dotfiles/config/git;
-     home.file.".config/alacritty/alacritty.yml".source = /home/vb/dotfiles/config/alacritty/alacritty.yml;
-     home.file.".config/helix/config.toml".source = /home/vb/dotfiles/config/helix/config.toml;
-     home.file.".config/helix/languages.toml".source = /home/vb/dotfiles/config/helix/languages.toml;
-     home.file.".config/helix/themes".source = /home/vb/dotfiles/config/helix/themes;
-     home.file.".config/tmux".source = /home/vb/dotfiles/config/tmux;
-     # home.file.".config/btop".source = /home/vb/dotfiles/config/btop;
-     home.file.".config/wofi".source = /home/vb/dotfiles/config/wofi;
-     home.file.".config/ghc/ghci.conf".source = /home/vb/dotfiles/config/ghci/ghci.conf;
-     home.file.".config/rofi".source = /home/vb/dotfiles/config/rofi;
-     # i3 config
-     #home.file.".config/i3status-rust".source = /home/vb/dotfiles/config/i3status-rust;
-     #home.file.".config/i3".source = /home/vb/dotfiles/config/i3;
-
-     programs.home-manager.enable = true;
-
-     programs.bash = {
-       enable = true;
-       bashrcExtra = ''
-       PS1='🐶\[\033[1;37m\]:\w\[\033[1;35m\]$([ -d .git ] && echo " ($(git branch 2>/dev/null | grep -e "^*" | sed "s/^* //"))")\[\033[1;37m\]|> \[\033[0;37m\]'
-       '';
-    };
-
-     programs.bat = {
-       enable = true;
-       config.theme = "gruvbox-light";
-     };
+     # Add config.lib.file.mkOutOfStoreSymlink to make config file just symlink to the origin
+     # Folder reference also allows to mutate files
+     # home.file.".config/git".source = /home/vb/dotfiles/config/git;
   };
 }
