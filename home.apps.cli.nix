@@ -46,7 +46,7 @@
   programs.bash = {
    enable = true;
    bashrcExtra = ''
-   PS1='\[\033[1;33m\]λ🐶\[\033[1;32m\].λ(\w)\[\033[1;35m\]$([ -n "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ] && echo ".λ($(git rev-parse --abbrev-ref HEAD 2>/dev/null))")\[\033[0;37m\].λ \[\033[0;37m\]'
+   PS1='\[\033[1;35m\]λ(\u@\h)\[\033[1;32m\].λ(\w)\[\033[1;33m\]$([ -n "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ] && echo ".λ($(git rev-parse --abbrev-ref HEAD 2>/dev/null))")\[\033[0;37m\].λ \[\033[0;37m\]'
    '';
   };
 
