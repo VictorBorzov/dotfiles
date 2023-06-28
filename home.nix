@@ -20,6 +20,6 @@ in
 
      # Add config.lib.file.mkOutOfStoreSymlink to make config file just symlink to the origin
      # Folder reference also allows to mutate files
-     # home.file.".config/git".source = /home/vb/dotfiles/config/git;
+     home.file.".config/nixpkgs".source = ./config/nixpkgs;
   };
 }

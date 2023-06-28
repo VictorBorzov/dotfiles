@@ -6,7 +6,7 @@
     bitwarden
     librewolf
     mullvad-vpn
-    jetbrains.rider
+    # jetbrains.rider
     remmina
     slack
     telegram-desktop
@@ -15,5 +15,5 @@
   ];
 
 
-  home.file.".config/alacritty/alacritty.yml".source = /home/vb/dotfiles/config/alacritty/alacritty.yml;
+  home.file.".config/alacritty/alacritty.yml".source = config.lib.file.mkOutOfStoreSymlink ./config/alacritty/alacritty.yml;
 }

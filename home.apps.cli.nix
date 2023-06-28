@@ -17,7 +17,6 @@
     bat
     bc
     tldr
-    dotnet-sdk_7
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     btop
     nodePackages.vscode-langservers-extracted
@@ -36,9 +35,9 @@
   # Folder reference also allows to mutate files
   home.file.".config/git".source = ./config/git;
   home.file.".config/helix".source = config.lib.file.mkOutOfStoreSymlink ./config/helix;
-  home.file.".config/zellij".source = ./config/zellij;
+  home.file.".config/zellij".source = config.lib.file.mkOutOfStoreSymlink ./config/zellij;
   home.file.".config/btop".source = ./config/btop;
-  home.file.".config/ghc".source = /home/vb/dotfiles/config/ghc;
+  home.file.".config/ghc".source = ./config/ghc;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
