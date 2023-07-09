@@ -12,8 +12,8 @@ in
      home.stateVersion = "23.05";
 
      imports = [
-      ./home.apps.cli.nix
-      ./home.apps.gui.nix 
+      ./home.tools.nix
+      ./home.apps.nix 
     ];
 
      home.packages = with pkgs; [];

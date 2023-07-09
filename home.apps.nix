@@ -12,6 +12,7 @@
     telegram-desktop
     syncthing
     libreoffice
+    mypaint
   ];
 
   # Add config.lib.file.mkOutOfStoreSymlink before reference to make it mutable by symlink
