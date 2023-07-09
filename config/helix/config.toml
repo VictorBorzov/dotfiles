@@ -7,6 +7,7 @@ shell = ["bash", "-c"]
 color-modes = true
 bufferline = "multiple"
 auto-save = true
+soft-wrap.enable = true
 
 [editor.statusline]
 left = ["mode", "spinner"]
