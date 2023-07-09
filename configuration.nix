@@ -10,6 +10,8 @@
       /etc/nixos/hardware-configuration.nix
       ./wm/kde.nix
       ./home.nix
+      ./vpn.ap.nix
+      ./vpn.mullvad.nix
     ];
 
   # Bootloader.
@@ -102,19 +104,6 @@
   #programs.nm-applet.enable = true;
 
   # List services that you want to enable:
-
-  # Mullvad vpn
-  services.mullvad-vpn.enable = true;
-
-  # Openvpn for i3
-  #services.openvpn.servers = {
-    #officeVPN  = {
-      #config = '' config /home/vb/.secrets/pfSense-TCP4-443-borzov-config.ovpn '';
-      #up = "echo nameserver $nameserver | ${pkgs.openresolv}/sbin/resolvconf -m 0 -a $dev";
-      #down = "${pkgs.openresolv}/sbin/resolvconf -d $dev";
-      #autoStart = false;
-    #};
-   #};
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
