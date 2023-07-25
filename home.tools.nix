@@ -7,13 +7,17 @@
     exa # instead of ls
     git
     delta
+    ripgrep
+    fd
+    entr
+    fzf
     trashy # instead of rm
     imgcat # terminal image viewer
     pv
     zellij
     restic # backups
     helix
-    xclip
+    # xclip todo: add tools.x11 and tools.wayland
     marksman
     nil
     ghc
@@ -27,6 +31,7 @@
     bottom # btop alternative, call btm
     nodePackages.vscode-langservers-extracted
     cifs-utils
+    zoxide
   ];
 
   # Enable nerdfonts
@@ -63,7 +68,10 @@
    alias ll='ls -alF'
    alias lt='ls --tree'
    alias cat=bat
+   alias cd=z
+   alias zz='z -'
    eval "$(direnv hook bash)"
+   eval "$(zoxide init bash)"
    '';
   };
 
