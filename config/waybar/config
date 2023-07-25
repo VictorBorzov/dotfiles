@@ -136,8 +136,7 @@
     "max-length": 50
   },
   "temperature": {
-    // "hwmon-path": "${env:HWMON_PATH}",
-    "critical-threshold": 90,
+    "critical-threshold": 95,
     "tooltip": false,
     "format": " {temperatureC}°C",
   },
