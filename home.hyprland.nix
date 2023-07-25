@@ -38,7 +38,9 @@
   # Add config.lib.file.mkOutOfStoreSymlink before reference to make it mutable by symlink
   home.file.".config/rofi".source = ./config/rofi;
   home.file.".config/swaylock".source = ./config/swaylock;
-  home.file.".config/hypr".source = ./config/hypr;
+  home.file.".config/hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/hyprland.conf;
+  home.file.".config/hypr/rose-pine-dawn.conf".source = ./config/hypr/rose-pine-dawn.conf;
+  home.file.".config/hypr/ecomode.sh".source = ./config/hypr/ecomode.sh;
   home.file.".config/dunst".source = ./config/dunst;
   home.file.".config/waybar/config".source = ./config/waybar/config;
   home.file.".config/waybar/style.css".source = ./config/waybar/style.css;
