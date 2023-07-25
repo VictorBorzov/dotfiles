@@ -39,6 +39,7 @@
   home.file.".config/rofi".source = ./config/rofi;
   home.file.".config/swaylock".source = ./config/swaylock;
   home.file.".config/hypr".source = ./config/hypr;
+  home.file.".config/dunst".source = ./config/dunst;
   home.file.".config/waybar/config".source = ./config/waybar/config;
   home.file.".config/waybar/style.css".source = ./config/waybar/style.css;
 }
