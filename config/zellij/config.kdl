@@ -1,6 +1,6 @@
 // ~/.config/zellij/config.kdl
 
-theme "rose-pine-dawn" // or "rose-pine-moon" or "rose-pine-dawn"
+theme "rose-pine-dawn"
 
 default_layout "compact"
 pane_frames false

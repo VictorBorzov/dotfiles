@@ -33,15 +33,27 @@
   #     in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
   # };
 
+  # For mount.cifs, required unless domain name resolution is not needed.
   fileSystems."/mnt/tmp" = {
-    device = "//ap-team.ru/storage";
-    fsType = "cifs";
-    options = [
-     "x-systemd.requires=openvpn-officeVPN.service"
-     "credentials=/etc/nixos/smb-secrets"
-     "x-systemd.automount"
-     "noauto"
-   ];
+    device = "//ap-team.ru/storage/Exchange/Exchange/Algs/India/unicodeIndiaForOCR";
+      fsType = "cifs";
+      options = let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,x-systemd.requires=openvpn-officeVPN.service";
+
+      in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
   };
+
+  # fileSystems."/mnt/tmp" = {
+  #   device = "//ap-team.ru/storage";
+  #   fsType = "cifs";
+  #   options = [
+  #    "x-systemd.requires=openvpn-officeVPN.service"
+  #    "credentials=/etc/nixos/smb-secrets"
+  #    "x-systemd.automount"
+  #    "noauto"
+
+  #  ];
+  # };
 
 }

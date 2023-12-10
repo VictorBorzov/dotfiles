@@ -3,6 +3,16 @@
 {
   environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
 
+  environment.variables = {
+    QT_AUTO_SCREEN_SCALE_FACTOR = "2";
+    QT_SCALE_FACTOR = "1";
+    GDK_SCALE = "2";
+    GDK_DPI_SCALE = "0.5";
+    _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+  };
+
+  programs.nm-applet.enable = true;
+
   services = {
 
     xserver = {
@@ -41,6 +51,7 @@
 
     };
 
+    blueman.enable = true;
       # Enable touchpad support (enabled default in most desktopManager).
     logind = {
       # Specifies what to be done when the laptop lid is closed.

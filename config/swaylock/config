@@ -1,15 +1,15 @@
-ignore-empty-password
-font=Ubuntu Mono Nerd Font
+# ignore-empty-password
+font=Iosevka Nerd Font
 
 clock
 timestr=%R
-scaling=stretch
+scaling=center
 
-image=~/.config/background
+image=~/.config/background.jpg
 # screenshots
 fade-in=0
 
-effect-blur=15x5
+#effect-blur=15x5
 #effect-greyscale
 #effect-scale=0.1
 

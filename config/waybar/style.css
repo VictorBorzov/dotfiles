@@ -89,9 +89,19 @@ tooltip label {
 #battery,
 #language,
 #custom-powermenu,
+#custom-remmina,
+#custom-chat,
 #idle_inhibitor {
   padding-left: 2px;
   padding-right: 10px;
+}
+
+#custom-remmina {
+  color: rgb(255, 255, 255);
+}
+
+#custom-chat {
+  color: rgb(255, 255, 255);
 }
 
 /* #mode { */

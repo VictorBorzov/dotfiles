@@ -48,7 +48,7 @@ cmd = "pavucontrol"
 
 [[block]]
 block = "backlight"
-device = "amdgpu_bl1"
+device = "amdgpu_bl0"
 
 [[block]]
 block = "time"

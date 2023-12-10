@@ -12,7 +12,9 @@ if wezterm.config_builder then
 end
 
 -- This is where you actually apply your config choices
-config.font = wezterm.font 'JetBrains Mono'
+config.font = wezterm.font 'IosevkaTerm Nerd Font'
+config.font_size = 16.0
+--config.font = wezterm.font 'JetBrains Mono'
 -- For example, changing the color scheme:
 config.color_scheme = 'rose-pine-dawn'
 

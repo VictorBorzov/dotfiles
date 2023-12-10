@@ -7,6 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      # "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/asus/zephyrus/ga401"
       /etc/nixos/hardware-configuration.nix
       ./wm/hyprland.nix
       ./home.nix
@@ -17,7 +18,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  boot.loader.systemd-boot.configurationLimit = 42;
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
@@ -45,6 +46,8 @@
 
   # Configure keymap in X11
   services.xserver = {
+    enable = true;
+    videoDrivers = [ "amdgpu" ];
     layout = "us,ru";
     xkbVariant = "";
     xkbOptions = "grp:win_space_toggle";
@@ -85,6 +88,7 @@
     keep-outputs = true
     keep-derivations = true
   '';
+  nix.gc.automatic = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -107,7 +111,18 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
+
+  services.postgresql = {
+    enable = false;
+    ensureDatabases = [ "postgres" ];
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+      host  all       all     127.0.0.1/32            trust
+      host  all       all     ::1/128                 trust
+    '';
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -117,4 +132,8 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
+  # Hack for protobuf to work
+  systemd.tmpfiles.rules = [
+    "L+ /lib64/ld-linux-x86-64.so.2 - - - - ${pkgs.glibc}/lib64/ld-linux-x86-64.so.2"
+  ];
 }

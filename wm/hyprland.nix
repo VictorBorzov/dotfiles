@@ -5,11 +5,11 @@
       # Enable the X11 windowing system.
       enable = true;
       videoDrivers = ["nvidia"];
-      displayManager.gdm = {
-          enable = true;
-          wayland = true;
-      };
-      # desktopManager.plasma5.enable = true;
+      displayManager.sddm.enable = true;
+      #displayManager.gdm = {
+      #    enable = true;
+      #    wayland = true;
+      #};
 
       libinput = {
         enable = true;
@@ -38,10 +38,18 @@
       enable = true;
       xwayland = {
           enable = true;
-          hidpi = true;
       };
-      nvidiaPatches = true;
+      enableNvidiaPatches = true;
   };
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+  };
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
 
   services.blueman.enable = true;
 
@@ -50,17 +58,20 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     # Hint electron apps to use wayland
     NIXOS_OZONE_WL = "1";
+    # Scale java sdk apps like JetBrains IDE
+    JAVA_TOOL_OPTIONS = "-Dsun.java2d.uiScale=2.0";
   };
 
   # from sway nixos https://nixos.wiki/wiki/Sway
   security.polkit.enable = true;
 
   # for swaylock to work
-  security.pam.services.swaylock.text = ''
-    # PAM configuration file for the swaylock screen locker. By default, it includes
-    # the 'login' configuration file (see /etc/pam.d/login)
-    auth include login
-  '';
+  security.pam.services.swaylock = {};
+  # security.pam.services.swaylock.text = ''
+    # # PAM configuration file for the swaylock screen locker. By default, it includes
+    # # the 'login' configuration file (see /etc/pam.d/login)
+    # auth include login
+  # '';
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
   # (org.freedesktop.portal.Desktop) and object path
@@ -68,10 +79,14 @@
   # The portal interfaces include APIs for file access, opening URIs,
   # printing and others.
   services.dbus.enable = true;
-  xdg.portal = {
-    enable = true;
-    # gtk portal needed to make gtk apps happy
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg = {
+    portal = {
+      enable = true;
+      # gtk portal needed to make gtk apps happy
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+#      wlr = {
+#        enable = true;
+#      };
+    };
   };
-
 }

@@ -4,9 +4,11 @@
   "position": "top",
   "modules-left": [
     "custom/launcher",
-    "wlr/workspaces",
+    "hyprland/workspaces",
     "temperature",
-    "idle_inhibitor"
+    "idle_inhibitor",
+    "custom/remmina",
+    "custom/chat"
   ],
   "modules-center": [
     "clock"
@@ -25,11 +27,11 @@
   ],
   "custom/launcher": {
     "format": " ",
-    "on-click": "sh -c '(sleep 0.2s; sh ~/.config/rofi/launcher.sh)' & disown",
+    "on-click": "sh -c '(sleep 0.2s; sh ~/.config/rofi/application-launcher-wayland.sh)' & disown",
     "tooltip": false
   },
-  "wlr/workspaces": {
-    "format": "{icon}",
+  "hyprland/workspaces": {
+    "format": "{id}",
     "on-click": "activate",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
@@ -56,9 +58,9 @@
   "pulseaudio": {
     "scroll-step": 1,
     "format": "{icon} {volume}% {format_source}",
-    "format-muted": "󰖁 Muted",
-    "format-source": "   {volume}%",
-    "format-source-muted": "  ",
+    "format-muted": "󰖁 Muted {format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
     "format-icons": {
       "default": [
         "",
@@ -95,18 +97,21 @@
   "clock": {
     "interval": 1,
     "format": "{:%I:%M %p  %A %b %d}",
-    "tooltip": false,
+    "tooltip": true,
     "tooltip-format": "{:%A, %d %B %Y}\n<tt>{calendar}</tt>"
+    // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   },
   "memory": {
     "interval": 1,
     "format": "󰍛 {percentage}%",
+    "on-click": "wezterm -e btm",
     "states": {
       "warning": 85,
     }
   },
   "cpu": {
     "interval": 1,
+    "on-click": "wezterm -e btm",
     "format": "󰻠 {usage}%"
   },
   "mpd": {
@@ -140,9 +145,20 @@
     "tooltip": false,
     "format": " {temperatureC}°C",
   },
+  "custom/remmina": {
+    "format": "󰢹",
+    "on-click": "sh -c 'env GDK_BACKEND=x11 GDK_SCALE=1 GDK_DPI_SCALE=1 CLUTTER_SCALE=1 XCURSOR_SIZE=6 remmina
+' & disown",
+    "tooltip": true,
+  },
+  "custom/chat": {
+    "format": "󰭹",
+    "on-click": "brave --app=https://chat.openai.com",
+    "tooltip": true,
+  },
   "custom/powermenu": {
     "format": "",
-    "on-click": "sh -c '(sleep 0.2s; sh ~/.config/rofi/powermenu.sh)' & disown",
+    "on-click": "sh -c '(sleep 0.2s; sh ~/.config/rofi/powermenu-wayland.sh)' & disown",
     "tooltip": false,
   },
   "tray": {

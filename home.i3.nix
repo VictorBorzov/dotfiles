@@ -8,12 +8,15 @@
     i3lock #default i3 screen locker
     i3blocks #if you are planning on using i3blocks over i3status
     brightnessctl
+    pavucontrol
+    pipewire # do I need it?
+    xclip
   ];
   home.pointerCursor = {
     gtk.enable = true;
     package = pkgs.quintom-cursor-theme;
     name = "Quintom_Snow";
-    size = 22;
+    size = 48;
   };
 
   # Add config.lib.file.mkOutOfStoreSymlink before reference to make it mutable by symlink

@@ -41,8 +41,8 @@ set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%-
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 5%+
-bindsym XF86MonBrightnessUp exec --no-startup-id /home/vb/dotfiles/i3_helpers/increase_brightness.sh
-bindsym XF86MonBrightnessDown exec --no-startup-id /home/vb/dotfiles/i3_helpers/reduce_brightness.sh 
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%- 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -52,13 +52,15 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec wezterm
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start rofi/dmenu (a program launcher)
-bindsym $mod+d exec "rofi -modi drun,run -show drun -show-icons"
+bindsym $mod+d exec "bash ~/.config/rofi/launcher.sh"
+bindsym $mod+p exec "bash ~/.config/rofi/powermenu.sh"
+# bindsym $mod+d exec "rofi -modi drun,run -show drun -show-icons"
 #bindsym $mod+d exec --no-startup-id dmenu_run
 
 # There also is i3-dmenu-desktop which only displays applications shipping a
