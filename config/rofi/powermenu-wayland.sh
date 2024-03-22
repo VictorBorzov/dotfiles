@@ -17,7 +17,7 @@ $shutdown" | rofi -dmenu -i -p "" \
 
 if [ "$selected_option" == "$lock" ]
 then
-  swaylock
+  hyprlock
 elif [ "$selected_option" == "$logout" ]
 then
   hyprctl dispatch exit
@@ -29,12 +29,12 @@ then
   reboot
 elif [ "$selected_option" == "$sleep" ]
 then
-  swaylock -f &  # Lock the screen
+  hyprlock &  # Lock the screen
   sleep 1        # Wait a bit to ensure the lock screen is active
   systemctl suspend  # Suspend the machine
 elif [ "$selected_option" == "$hibernate" ]
 then
-  swaylock -f &  # Lock the screen
+  hyprlock &  # Lock the screen
   sleep 1        # Wait a bit to ensure the lock screen is active
   systemctl hibernate
 else

@@ -2,9 +2,16 @@
 {
  home.packages = with pkgs; [
     # zoom-us
+    simplex-chat-desktop
+    xournal # to sign pdfs
+    mullvad-browser
+    # libyubikey
+    yubikey-manager # For managing YubiKey settings
+    yubikey-personalization-gui #
+    yubioath-flutter
     bitwarden
     wezterm
-    webcord
+    # webcord
     librewolf
     remmina
     slack
@@ -13,44 +20,45 @@
     libreoffice
     mypaint
     krita
-    fluidsynth
     jetbrains.rider
     # jetbrains.datagrip
     brave # for app mode
     vlc
     docker-compose
     jetbrains.dataspell
-    # jetbrains.goland
-    # postgresql
+    postgresql
   ];
 
   # Add config.lib.file.mkOutOfStoreSymlink before reference to make it mutable by symlink
   home.file.".config/alacritty/alacritty.yml".source = ./config/alacritty/alacritty.yml;
   home.file.".config/wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink ./config/wezterm/wezterm.lua;
+  # home.file.".config/kitty/kitty.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/kitty/kitty.conf;
+  home.file.".config/kitty/dark.conf".source = ./config/kitty/dark.conf;
+  home.file.".config/kitty/light.conf".source = ./config/kitty/light.conf;
 
   xdg = {
     enable = true;
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "application/pdf" = [ "librewolf.desktop" ];
-        "application/x-extension-htm" = [ "librewolf.desktop" ];
-        "application/x-extension-html" = [ "librewolf.desktop" ];
-        "application/x-extension-shtml" = [ "librewolf.desktop" ];
-        "application/x-extension-xht" = [ "librewolf.desktop" ];
-        "application/x-extension-xhtml" = [ "librewolf.desktop" ];
-        "application/x-extension-xhtml+xml" = [ "librewolf.desktop" ];
-        "text/html" = [ "librewolf.desktop" ];
-        "text/markdown" = [ "librewolf.desktop;" ];
+        "application/pdf" = [ "mullvad-browser.desktop" ];
+        "application/x-extension-htm" = [ "mullvad-browser.desktop" ];
+        "application/x-extension-html" = [ "mullvad-browser.desktop" ];
+        "application/x-extension-shtml" = [ "mullvad-browser.desktop" ];
+        "application/x-extension-xht" = [ "mullvad-browser.desktop" ];
+        "application/x-extension-xhtml" = [ "mullvad-browser.desktop" ];
+        "application/x-extension-xhtml+xml" = [ "mullvad-browser.desktop" ];
+        "text/html" = [ "mullvad-browser.desktop" ];
+        "text/markdown" = [ "mullvad-browser.desktop;" ];
         "text/plain" = [ "emacs.desktop" ];
         "video/*" = [ "vlc.desktop" ];
         "video/mp4" = [ "vlc.desktop" ];
         "video/x-matroska" = [ "vlc.desktop" ];
         "audio/*" = [ "vlc.desktop" ];
-        "x-scheme-handler/chrome" = [ "librewolf.desktop" ];
-        "x-scheme-handler/ftp" = [ "librewolf.desktop" ];
-        "x-scheme-handler/http" = [ "librewolf.desktop" ];
-        "x-scheme-handler/https" = [ "librewolf.desktop" ];
+        "x-scheme-handler/chrome" = [ "mullvad-browser.desktop" ];
+        "x-scheme-handler/ftp" = [ "mullvad-browser.desktop" ];
+        "x-scheme-handler/http" = [ "mullvad-browser.desktop" ];
+        "x-scheme-handler/https" = [ "mullvad-browser.desktop" ];
         "x-scheme-handler/slack" = [ "slack.desktop" ];
         "x-scheme-handler/rdp" = [ "org.remmina.Remmina.desktop" ];
         "x-scheme-handler/spice" = [ "org.remmina.Remmina.desktop" ];

@@ -1,15 +1,20 @@
 { pkgs, ... }:
 
+let
+  sddm-sugar-dark = pkgs.libsForQt5.callPackage ./sddm-themes/sugar-dark.nix { };
+in
 {
+  environment.systemPackages = with pkgs; [ sddm-sugar-dark ];
+
   services.xserver = {
       # Enable the X11 windowing system.
       enable = true;
       videoDrivers = ["nvidia"];
-      displayManager.sddm.enable = true;
-      #displayManager.gdm = {
-      #    enable = true;
-      #    wayland = true;
-      #};
+      displayManager.sddm = {
+          enable = true;
+          theme = "sddm-sugar-dark";
+          wayland.enable = true;
+      };
 
       libinput = {
         enable = true;
@@ -39,7 +44,6 @@
       xwayland = {
           enable = true;
       };
-      enableNvidiaPatches = true;
   };
   programs.thunar = {
     enable = true;
@@ -66,7 +70,7 @@
   security.polkit.enable = true;
 
   # for swaylock to work
-  security.pam.services.swaylock = {};
+  # security.pam.services.swaylock = {};
   # security.pam.services.swaylock.text = ''
     # # PAM configuration file for the swaylock screen locker. By default, it includes
     # # the 'login' configuration file (see /etc/pam.d/login)
@@ -83,7 +87,7 @@
     portal = {
       enable = true;
       # gtk portal needed to make gtk apps happy
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
 #      wlr = {
 #        enable = true;
 #      };

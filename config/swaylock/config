@@ -5,7 +5,7 @@ clock
 timestr=%R
 scaling=center
 
-image=~/.config/background.jpg
+image=~/.config/background-dark.jpg
 # screenshots
 fade-in=0
 

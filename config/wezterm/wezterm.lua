@@ -16,7 +16,7 @@ config.font = wezterm.font 'IosevkaTerm Nerd Font'
 config.font_size = 16.0
 --config.font = wezterm.font 'JetBrains Mono'
 -- For example, changing the color scheme:
-config.color_scheme = 'rose-pine-dawn'
+config.color_scheme = 'rose-pine-moon'
 
 config.hide_tab_bar_if_only_one_tab = true
 config.disable_default_key_bindings = false

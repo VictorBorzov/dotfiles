@@ -17,6 +17,14 @@ Put =(org-babel-load-file (expand-file-name "~/dotfiles/config/emacs/init.org"))
       (sort-regexp-fields reverse "\\w+" "\\&" beg end))  
 #+end_src
 
+** Make filename:line clickable in ehsell
+#+begin_src emacs-lisp
+  (add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
+#+end_src
+
+#+RESULTS:
+| compilation-shell-minor-mode |
+
 ** AUCTex settings
 #+begin_src emacs-lisp
   (setq TeX-auto-save t)
@@ -60,6 +68,7 @@ Put =(org-babel-load-file (expand-file-name "~/dotfiles/config/emacs/init.org"))
 #+end_src
 
 #+RESULTS:
+| org-display-inline-images |
 
 ** Org-babel jupyter
 #+begin_src emacs-lisp
@@ -89,6 +98,14 @@ Put =(org-babel-load-file (expand-file-name "~/dotfiles/config/emacs/init.org"))
   ;;   (add-to-list 'org-babel-load-languages '(fsharp . t)))
 #+end_src
 
+** Doc view resolution
+#+begin_src emacs-lisp
+  (setq doc-view-resolution 400)
+#+end_src
+
+#+RESULTS:
+: 400
+
 ** Org tempo
 #+begin_src emacs-lisp
   (require 'org-tempo)
@@ -96,40 +113,50 @@ Put =(org-babel-load-file (expand-file-name "~/dotfiles/config/emacs/init.org"))
  
 ** Orgmode directory
 #+begin_src emacs-lisp
-      (custom-set-variables
-        '(org-directory "~/Sync/orgmode")
-        '(org-agenda-files '("~/Sync/orgmode/gtd/inbox.org"
+        (custom-set-variables
+          '(org-directory "~/Sync/orgmode")
+          '(org-agenda-files '("~/Sync/orgmode/gtd/inbox.org"
+                               "~/Sync/orgmode/gtd/next.org"
+                               "~/Sync/orgmode/gtd/planned.org"
+                               "~/Sync/orgmode/gtd/projects/")))
+
+    (setq org-agenda-files '("~/Sync/orgmode/gtd/inbox.org"
                              "~/Sync/orgmode/gtd/next.org"
-                             "~/Sync/orgmode/gtd/tickler.org"
-                             "~/Sync/orgmode/gtd/projects/")))
+                             "~/Sync/orgmode/gtd/planned.org"
+                             "~/Sync/orgmode/gtd/projects/"))
 
-  (setq org-agenda-files '("~/Sync/orgmode/gtd/inbox.org"
-                           "~/Sync/orgmode/gtd/next.org"
-                           "~/Sync/orgmode/gtd/tickler.org"
-                           "~/Sync/orgmode/gtd/projects/"))
+    (setq org-refile-targets '(("~/Sync/orgmode/gtd/next.org" :maxlevel . 3)
+                               ("~/Sync/orgmode/gtd/someday.org" :level . 1)
+                               ("~/Sync/orgmode/gtd/inbox.org" :level . 1)
+                               ("~/Sync/orgmode/gtd/archive.org" :level . 1)
+                               ("~/Sync/orgmode/gtd/planned.org" :maxlevel . 1)
+                               ("~/Sync/orgmode/gtd/projects/" :maxlevel . 2)))
 
-  (setq org-refile-targets '(("~/Sync/orgmode/gtd/next.org" :maxlevel . 3)
-                             ("~/Sync/orgmode/gtd/someday.org" :level . 1)
-                             ("~/Sync/orgmode/gtd/inbox.org" :level . 1)
-                             ("~/Sync/orgmode/gtd/archive.org" :level . 1)
-                             ("~/Sync/orgmode/gtd/tickler.org" :maxlevel . 2)
-                             ("~/Sync/orgmode/gtd/projects/" :maxlevel . 2)))
+    (setq org-capture-templates '(("t" "Todo [inbox]" entry
+                                   (file+headline "~/Sync/orgmode/gtd/inbox.org" "Inbox")
+                                   "* %i%?\n")
+                                  ("n" "Todo [next]" entry
+                                   (file+headline "~/Sync/orgmode/gtd/next.org" "Next")
+                                   "\n* TODO %i%?\n")
+                                  ("p" "Planned" entry
+                                   (file+headline "~/Sync/orgmode/gtd/planned.org" "Planned")
+                                   "* %i%? \n %U")))
 
-  (setq org-capture-templates '(("t" "Todo [inbox]" entry
-                                 (file+headline "~/Sync/orgmode/gtd/inbox.org" "Inbox")
-                                 "* %i%?\n")
-                                ("T" "Tickler" entry
-                                 (file+headline "~/Sync/orgmode/gtd/tickler.org" "Tickler")
-                                 "* %i%? \n %U")))
+    (global-set-key (kbd "C-c a") #'org-agenda)
+    (global-set-key (kbd "C-c c") #'org-capture)
+    (setq org-todo-keywords
+          '((sequence "TODO(t)" "IN-PROGRESS(i)" "SUSPENDED(s)" "|" "DONE(d)" "IN-REVIEW(r)" "CANCELED(c)")))
+    (setq org-enforce-todo-dependencies t)
 
-  (global-set-key (kbd "C-c a") #'org-agenda)
-  (global-set-key (kbd "C-c c") #'org-capture)
-  (setq org-todo-keywords
-        '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
+  (setq org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t%-6e% s")
+                                  (todo . " %i %-12:c %-6e")
+                                  (tags . " %i %-12:c")
+                                  (search . " %i %-12:c")))
+  (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
   #+end_src
 
   #+RESULTS:
-  | sequence | TODO(t) | IN-PROGRESS(i) | WAITING(w) |   |   | DONE(d) | CANCELED(c) |
+  : t
  
 ** Orgmode persistent clocking work time
 #+begin_src emacs-lisp
@@ -223,7 +250,7 @@ To call latex preview, press /C-c C-x C-l/.
 ** Setup font and its size
 Allows to scale text
   #+BEGIN_SRC emacs-lisp
-    (set-face-attribute 'default nil :font "Iosevka Nerd Font-34")
+    (set-face-attribute 'default nil :font "Iosevka Nerd Font-9")
     
 ;;    (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font-22")
 ;;    (set-face-attribute 'default nil :font "DejaVu Sans Mono-28")
@@ -234,9 +261,12 @@ Allows to scale text
      (use-package doom-themes
        :ensure t
        :config
-       (load-theme 'doom-earl-grey t)
+       (load-theme 'doom-one t)
        (doom-themes-visual-bell-config))
   #+END_SRC
+
+  #+RESULTS:
+  : t
 
 ** Modeline
   #+BEGIN_SRC emacs-lisp
@@ -319,7 +349,7 @@ Which key package pops up options in mini-buffer after button is pressed
     :init
     (setq org-roam-v2-ack t)
     :custom
-    (org-roam-directory "~/Sync/orgmode/notes")
+    (org-roam-directory "~/Sync/orgmode/library")
     (setq org-roam-dailies-directory "journal/")
     (org-roam-completion-everywhere t)
     :bind (("C-c n l" . org-roam-buffer-toggle)
@@ -336,6 +366,23 @@ Which key package pops up options in mini-buffer after button is pressed
     (require 'org-roam-dailies) ;; Ensure the keymap is available
     (org-roam-db-autosync-mode))
 #+end_src
+
+#+RESULTS:
+: org-roam-dailies-capture-tomorrow
+
+** Org-roam-ui
+#+begin_src emacs-lisp
+(use-package org-roam-ui
+  :ensure t
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+#+end_src
+
+#+RESULTS:
+: t
 
 ** Protobuf-mode
 #+begin_src emacs-lisp

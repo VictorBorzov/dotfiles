@@ -22,7 +22,7 @@ in
      # Folder reference also allows to mutate files
      home.file.".config/nixpkgs".source = ./config/nixpkgs;
      home.file.".config/background.jpg".source = ./pictures/roses.jpg;
-     home.file.".config/background-dark.jpg".source = ./pictures/dark-universe-2880x1800.jpg
+     home.file.".config/background-dark.jpg".source = ./pictures/dark-universe-2880x1800.jpg;
   };
 
 }

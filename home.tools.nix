@@ -29,26 +29,30 @@
     # xclip todo: add tools.x11 and tools.wayland
     # marksman
     nil
+    haskellPackages.cabal-install
+    # haskellPackages.stack
     ghc
-    haskell-language-server
+# haskell.compiler.ghc96
+    # cabal-install
+    # haskell-language-server
     bat
     bc
     tldr
     gping
-    # (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    nerdfonts
+    (nerdfonts.override { fonts = [ "Iosevka" "IosevkaTerm" "JetBrainsMono" ]; })
+    # nerdfonts
     bottom # btop alternative, call btm
     # nodePackages.vscode-langservers-extracted
     cifs-utils
     zoxide
     coreutils
-    emacs29
-    ghostscript
-    pandoc
+    emacs29-pgtk
+    # ghostscript
+    # pandoc
     dotnet-sdk_7
-    omnisharp-roslyn
+    # omnisharp-roslyn
     gnuplot
-    netcoredbg
+    # netcoredbg
     (python3.withPackages (ps: with ps; [
       jupyter
       ipython
@@ -66,10 +70,11 @@
     # gopls
     texlive.combined.scheme-full
     graphviz
-    elmPackages.elm
-    elmPackages.nodejs
-    elmPackages.elm-format
-    elmPackages.elm-language-server
+    yubikey-personalization
+  #   elmPackages.elm
+  #   elmPackages.nodejs
+  #   elmPackages.elm-format
+  #   elmPackages.elm-language-server
   ];
 
   # Enable nerdfonts
@@ -123,5 +128,8 @@
    config.theme = "base16";# "OneHalfDark";
   };
 
-  services.emacs.enable = true;
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs29-pgtk;
+  };
 }

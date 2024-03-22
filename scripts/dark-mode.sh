@@ -17,6 +17,9 @@ sed -i 's/dawn/moon/' ~/dotfiles/config/hypr/hyprland.conf
 # Wezterm
 sed -i 's/dawn/moon/' ~/dotfiles/config/wezterm/wezterm.lua
 
+# Kitty
+sed -i 's/light/dark/' ~/dotfiles/config/kitty/kitty.conf
+
 # Zellij
 sed -i 's/dawn/moon/' ~/dotfiles/config/zellij/config.kdl 
 
@@ -30,7 +33,7 @@ sed -i 's/background/background-dark/' ~/dotfiles/config/swaylock/config
 #sed -i 's/background/background-dark/g' ~/dotfiles/config/hypr/hyprpaper.conf 
 
 # emacs
-sed -i 's/doom-earl-grey/doom-one/' ~/.emacs.d/my-init.org
+sed -i 's/doom-earl-grey/doom-one/' ~/dotfiles/config/emacs/init.org
 
 # gtk 3.0
 sed -i 's/gtk-application-prefer-dark-theme=false/gtk-application-prefer-dark-theme=true/' ~/dotfiles/config/gtk-3.0/settings.ini

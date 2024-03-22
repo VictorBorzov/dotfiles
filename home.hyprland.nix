@@ -36,10 +36,14 @@
     (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true "]; }))
     gnome.file-roller
     rofi-wayland
-    swaylock-effects
-    swayidle
-    swww
-    kitty
+    # swaylock-effects
+    # swayidle
+    hyprlock
+    hypridle
+    hyprcursor
+    # swww
+    hyprpaper
+    # kitty
     dunst
     libnotify
     networkmanagerapplet
@@ -50,6 +54,7 @@
     pipewire
     wireplumber
     hyprpicker
+    # hyprshade
     brightnessctl
     alsa-utils
     grim
@@ -59,6 +64,7 @@
     wl-clipboard
     swappy
     breeze-gtk
+    # kitty-themes
     # todo mpv
   ];
 
@@ -66,6 +72,8 @@
   home.file.".config/rofi".source = ./config/rofi;
   home.file.".config/swaylock".source = config.lib.file.mkOutOfStoreSymlink ./config/swaylock;
   home.file.".config/hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/hyprland.conf;
+  home.file.".config/hypr/hyprlock.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/hyprlock.conf;
+  home.file.".config/hypr/hypridle.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/hypridle.conf;
   home.file.".config/hypr/hyprpaper.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/hyprpaper.conf;
   home.file.".config/hypr/rose-pine-dawn.conf".source = ./config/hypr/rose-pine-dawn.conf;
   home.file.".config/hypr/ecomode.sh".source = ./config/hypr/ecomode.sh;
