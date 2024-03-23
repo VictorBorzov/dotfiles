@@ -89,6 +89,7 @@
   # Add config.lib.file.mkOutOfStoreSymlink to make config file just symlink to the origin
   # Folder reference also allows to mutate files
   home.file.".config/git".source = ./config/git;
+  home.file."/home/vb/.emacs.d/init.el".source = config.lib.file.mkOutOfStoreSymlink ./config/emacs/init.el;
   home.file.".config/helix".source = config.lib.file.mkOutOfStoreSymlink ./config/helix;
   home.file.".config/zellij".source = config.lib.file.mkOutOfStoreSymlink ./config/zellij;
   home.file.".config/ghc".source = ./config/ghc;
