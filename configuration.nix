@@ -8,18 +8,23 @@
   imports =
     [ # Include the results of the hardware scan.
       # "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/asus/zephyrus/ga401"
-      /etc/nixos/hardware-configuration.nix
+      # /etc/nixos/hardware-configuration.nix
       ./wm/hyprland.nix
-      ./home.nix
+      # ./home.nix
       ./vpn.ap.nix
       ./vpn.mullvad.nix
+      ./nix
+      # ./k3s.nix
     ];
+  
+  # nix.nixPath = [  "nixpkgs=${inputs.nixpkgs}" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 42;
-  # Setup keyfile
+
+# Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
   };
@@ -45,16 +50,22 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    videoDrivers = [ "amdgpu" ];
-    layout = "us,ru";
-    xkbVariant = "";
-    xkbOptions = "grp:win_space_toggle";
-  };
+
+  # services.xserver = {
+  #   enable = true;
+  #   videoDrivers = [ "amdgpu" ];
+  #   xkb = {
+  #     layout = "us,ru";
+  #     variant = "";
+  #     options = "grp:win_space_toggle";
+  #   };
+  # };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # services.printing.enable = true;
+
+  # Wacom tablet support
+  # hardware.opentabletdriver.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -89,6 +100,9 @@
     keep-derivations = true
   '';
   nix.gc.automatic = true;
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+ 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -110,7 +124,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   virtualisation.docker.enable = true;
 

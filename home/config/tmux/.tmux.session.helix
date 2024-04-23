@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -e
+
+SESSIONNAME="hx"
+
+if tmux has-session -t $SESSIONNAME &> /dev/null; then
+  tmux attach -t $SESSIONNAME
+  exit
+fi
+
+# setup new session with nnn window
+tmux new-session -d -s $SESSIONNAME -n nnn -x $(tput cols) -y $(tput lines)
+tmux send-keys -t $SESSIONNAME:nnn "nnn ~" Enter
+
+# add new home window
+tmux new-window -t $SESSIONNAME -n home
+
+# add new haskell window
+tmux new-window -t $SESSIONNAME -n haskell
+
+# Set the top pane to run "hx ~/haskell"
+tmux send-keys -t $SESSIONNAME:haskell "nnn ~/haskell" Enter
+
+# Split the "haskell" window horizontally and wait for the pane to be ready
+tmux split-window -v -t $SESSIONNAME:haskell
+
+# Set the bottom pane to run "ghci"
+tmux send-keys -t $SESSIONNAME:haskell "ghci" Enter
+
+tmux attach -t $SESSIONNAME:home

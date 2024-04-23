@@ -1,36 +1,11 @@
 { pkgs, ... }:
 
-let
-  sddm-sugar-dark = pkgs.libsForQt5.callPackage ./sddm-themes/sugar-dark.nix { };
-in
 {
-  environment.systemPackages = with pkgs; [ sddm-sugar-dark ];
-
-  services.xserver = {
-      # Enable the X11 windowing system.
+  services = {
+    displayManager.sddm = {
       enable = true;
-      videoDrivers = ["nvidia"];
-      displayManager.sddm = {
-          enable = true;
-          theme = "sddm-sugar-dark";
-          wayland.enable = true;
+      wayland.enable = true;
       };
-
-      libinput = {
-        enable = true;
-
-        touchpad = {
-          # Global natural scrolling
-          naturalScrolling = true;
-
-          # Tap to press
-          tapping = true;
-
-          # Sensitivity
-          accelSpeed = "0.8";
-        };
-      };
-
   };
 
   hardware = {
@@ -63,7 +38,7 @@ in
     # Hint electron apps to use wayland
     NIXOS_OZONE_WL = "1";
     # Scale java sdk apps like JetBrains IDE
-    JAVA_TOOL_OPTIONS = "-Dsun.java2d.uiScale=2.0";
+    # JAVA_TOOL_OPTIONS = "-Dsun.java2d.uiScale=2.0";
   };
 
   # from sway nixos https://nixos.wiki/wiki/Sway
