@@ -9,11 +9,9 @@
     [ # Include the results of the hardware scan.
       # "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/asus/zephyrus/ga401"
       # /etc/nixos/hardware-configuration.nix
-      ./wm/hyprland.nix
-      # ./home.nix
+      ./hyprland.nix
       ./vpn.ap.nix
       ./vpn.mullvad.nix
-      ./nix
       # ./k3s.nix
     ];
   
@@ -90,18 +88,6 @@
     description = "vb";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # nix-direnv
-  nix.extraOptions = ''
-    keep-outputs = true
-    keep-derivations = true
-  '';
-  nix.gc.automatic = true;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

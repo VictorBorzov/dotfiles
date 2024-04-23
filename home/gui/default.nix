@@ -1,6 +1,6 @@
 { lib, config, pkgs, ... }:
 {
- home.packages = with pkgs; [
+  home.packages = with pkgs; [
     # zoom-us
 
     # simplex-chat-desktop

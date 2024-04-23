@@ -17,7 +17,8 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./configuration.nix
+          ./nix
+          ./nixos
           ./hosts/asus-vivobook-m3401q
           home-manager.nixosModules.home-manager
           {
