@@ -1,0 +1,6 @@
+* Dotfiles
+
+For remote run use:
+#+begin_src shell
+  nixos-rebuild build --flake git+ssh://git@gitlab.com/victorborzov/dotfiles.git?ref=nixos
+#+end_src
