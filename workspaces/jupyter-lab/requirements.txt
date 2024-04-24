@@ -1,6 +1,0 @@
-ipython
-numpy
-pandas
-matplotlib
-matplotlib-backend-wezterm
-wikipedia
