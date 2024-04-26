@@ -1,6 +1,25 @@
-{ config, pkgs, ... }:
-
+{ inputs, config, pkgs, ... }:
 {
+
+  imports = [
+    # inputs.hyprland.homeManagerModules.default
+    ./binds.nix
+    ./rules.nix
+    ./settings.nix
+  ];
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+
+    # systemd = {
+    #   variables = [ "--all"];
+    #   extraCommands = [
+    #     "systemctl --user stop graphical-session.target"
+    #     "systemctl --user start hyprland-session.target"
+    #   ];
+    # };
+  };
+
   # enable gtk
   # gtk.enable = true;
 
@@ -24,7 +43,7 @@
   qt.enable = true;
 
   # platform theme "gtk" or "gnome"
-  qt.platformTheme = "gtk";
+  qt.platformTheme.name = "gtk";
 
   # name of the qt theme
   qt.style.name = "adwaita-light";
@@ -34,6 +53,7 @@
 
   home.packages = with pkgs; [
     (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true "]; }))
+    inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     gnome.file-roller
     rofi-wayland
     # swaylock-effects
@@ -70,12 +90,14 @@
 
   # Add config.lib.file.mkOutOfStoreSymlink before reference to make it mutable by symlink
   home.file.".config/rofi".source = ./config/rofi;
-  home.file.".config/swaylock".source = config.lib.file.mkOutOfStoreSymlink ./config/swaylock;
-  home.file.".config/hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/hyprland.conf;
+
+  # home.file.".config/hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/hyprland.conf;
+
   home.file.".config/hypr/hyprlock.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/hyprlock.conf;
   home.file.".config/hypr/hypridle.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/hypridle.conf;
   home.file.".config/hypr/hyprpaper.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/hyprpaper.conf;
   home.file.".config/hypr/rose-pine-dawn.conf".source = ./config/hypr/rose-pine-dawn.conf;
+  home.file.".config/hypr/rose-pine-moon.conf".source = ./config/hypr/rose-pine-moon.conf;
   home.file.".config/hypr/ecomode.sh".source = ./config/hypr/ecomode.sh;
   home.file.".config/hypr/screenshot.sh".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/screenshot.sh;
   home.file.".config/dunst".source = ./config/dunst;

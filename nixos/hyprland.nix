@@ -1,13 +1,6 @@
 { pkgs, ... }:
 
 {
-  services = {
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-      };
-  };
-
   hardware = {
       opengl.enable = true;
       nvidia.modesetting.enable = true;

@@ -131,6 +131,8 @@ See `sort-regexp-fields'."
 
 (toggle-scroll-bar -1)
 
+(scroll-bar-mode -1)
+
 (tool-bar-mode -1)
 
 (menu-bar-mode -1)
@@ -318,3 +320,6 @@ See `sort-regexp-fields'."
                (set-face-attribute 'default nil :font "Iosevka Nerd Font-9")))
     
 #+end_src
+
+#+RESULTS:
+| (lambda (frame) (select-frame frame) (set-face-attribute 'default nil :font Iosevka Nerd Font-9)) | pgtk-dnd-init-frame |

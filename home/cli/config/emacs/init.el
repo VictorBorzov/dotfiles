@@ -1,1 +1,1 @@
-(org-babel-load-file (expand-file-name "~/dotfiles/config/emacs/literate-config.org"))
+(org-babel-load-file (expand-file-name "~/dotfiles/home/cli/config/emacs/literate-config.org"))

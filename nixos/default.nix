@@ -10,6 +10,7 @@
       # "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/asus/zephyrus/ga401"
       # /etc/nixos/hardware-configuration.nix
       ./hyprland.nix
+      ./greetd.nix
       ./vpn.ap.nix
       ./vpn.mullvad.nix
       # ./k3s.nix
