@@ -51,8 +51,8 @@ in
     general = {
       gaps_out = 20;
       border_size = 3;
-      "col.active_border" = "rgba(ffffffee)";#$muted; # rgba(ffffffee)
-      "col.inactive_border" = "rgba(ffffffee)";#$overlay; # rgba(ffffffee)     
+      "col.active_border" = "rgb(${config.colorScheme.colors.base03})";#$muted; # rgba(ffffffee)
+      "col.inactive_border" = "rgb(${config.colorScheme.colors.base02})";#$overlay; # rgba(ffffffee)     
       layout = "dwindle";
     };
     

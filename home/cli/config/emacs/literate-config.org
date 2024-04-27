@@ -275,6 +275,11 @@ See `sort-regexp-fields'."
   :ensure t
 )
 
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown"))
+
 (use-package ledger-mode
   :ensure t
   :init
@@ -294,6 +299,9 @@ See `sort-regexp-fields'."
       ("account" "%(binary) -f %(ledger-file) --cost -X EUR reg %(account)")  
       ("account-rsd" "%(binary) -f %(ledger-file) --cost -X RSD reg %(account)")))  
   )
+
+
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

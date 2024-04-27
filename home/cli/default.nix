@@ -128,7 +128,7 @@
 
   programs.bat = {
    enable = true;
-   config.theme = "base16";# "OneHalfDark";
+   config.theme = "OneHalfDark";# "base16";
   };
 
   services.emacs = {
