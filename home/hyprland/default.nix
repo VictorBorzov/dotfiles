@@ -2,67 +2,58 @@
 {
 
   imports = [
-    # inputs.hyprland.homeManagerModules.default
+    inputs.hyprland.homeManagerModules.default
+    inputs.hyprlock.homeManagerModules.default
+    inputs.hypridle.homeManagerModules.default
     ./binds.nix
     ./rules.nix
     ./settings.nix
+    ./hyprlock.nix
+    ./hyprpaper.nix
+    ./hypridle.nix
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
 
-    # systemd = {
-    #   variables = [ "--all"];
-    #   extraCommands = [
-    #     "systemctl --user stop graphical-session.target"
-    #     "systemctl --user start hyprland-session.target"
-    #   ];
-    # };
+    systemd = {
+      variables = [ "--all"];
+      extraCommands = [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
+    };
   };
-
-  # enable gtk
-  # gtk.enable = true;
-
-  # gtk.cursorTheme.package = pkgs.bibata-cursors;
-  # gtk.cursorTheme.name = "Bibata-Modern-Ice";
-
-  # gtk.theme.package = pkgs.adw-gtk3;
-  # gtk.theme.name = "adw-gtk3";
-
-  # gtk.iconTheme.package = pkgs.gruvboxPlus;
-  # gtk.iconTheme.name = "GruvboxPlus";
 
   home.pointerCursor = {
     gtk.enable = true;
+    x11.enable = true;
     package = pkgs.quintom-cursor-theme;
     name = "Quintom_Snow";
     size = 22;
   };
 
+  # gtk = {
+  #   enable = true;
+  # };
+
   # enable qt
-  qt.enable = true;
-
-  # platform theme "gtk" or "gnome"
-  qt.platformTheme.name = "gtk";
-
-  # name of the qt theme
-  qt.style.name = "adwaita-light";
-
-  # package to use
-  qt.style.package = pkgs.adwaita-qt;
-
+  qt = {
+    enable = true;
+    # platform theme "gtk" or "gnome"
+    platformTheme.name = "gtk";
+    # name of the qt theme
+    style.name = "adwaita-light";
+    # package to use
+    style.package = pkgs.adwaita-qt;
+  };
+  
   home.packages = with pkgs; [
     (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true "]; }))
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     gnome.file-roller
     rofi-wayland
-    # swaylock-effects
-    # swayidle
-    hyprlock
-    hypridle
     hyprcursor
-    # swww
-    hyprpaper
     kitty
     dunst
     libnotify
@@ -82,20 +73,24 @@
     vvave
     wl-clip-persist
     wl-clipboard
+    wl-screenrec
+    wlr-randr
+    # self.packages.${pkgs.system}.wl-ocr
     swappy
     breeze-gtk
     kitty-themes
-    # todo mpv
   ];
+
+    # make stuff work on wayland
+  home.sessionVariables = {
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland";
+    XDG_SESSION_TYPE = "wayland";
+  };
 
   # Add config.lib.file.mkOutOfStoreSymlink before reference to make it mutable by symlink
   home.file.".config/rofi".source = ./config/rofi;
 
-  # home.file.".config/hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/hyprland.conf;
-
-  home.file.".config/hypr/hyprlock.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/hyprlock.conf;
-  home.file.".config/hypr/hypridle.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/hypridle.conf;
-  home.file.".config/hypr/hyprpaper.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/hyprpaper.conf;
   home.file.".config/hypr/rose-pine-dawn.conf".source = ./config/hypr/rose-pine-dawn.conf;
   home.file.".config/hypr/rose-pine-moon.conf".source = ./config/hypr/rose-pine-moon.conf;
   home.file.".config/hypr/ecomode.sh".source = ./config/hypr/ecomode.sh;

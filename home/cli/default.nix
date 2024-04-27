@@ -4,6 +4,8 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    nix-output-monitor
+    nvd
     p7zip
     eza # instead of ls
     git

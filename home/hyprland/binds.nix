@@ -20,13 +20,27 @@ in
   wayland.windowManager.hyprland.settings = {
  
     "$mod" = "SUPER";
+    # mouse movements
+    bindm = [
+      "$mod,mouse:272,movewindow"
+      "$mod SHIFT,mouse:272,resizewindow"
+    ];
+
+    bindle = [
+      # Volume and Brightness
+      ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 6%+"
+      ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 6%-"
+      ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+      ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+      ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
+    ];
+
     bind = [
         "$mod,Return,exec,kitty"
-        "$mod,t,exec,thunar"
-        
+        "$mod,t,exec,thunar"       
         "$mod,Tab,cyclenext"
         "$mod,Q,killactive,"
-        
         "$mod SHIFT, R, exec, ${screenshotarea}"
         "$mod, F1, exec, ~/.config/hypr/ecomode.sh"
         "$mod,F11,exec, bash ~/.config/hypr/screenshot.sh"
@@ -53,23 +67,11 @@ in
         "$mod, w, togglefloating"
         "$mod, y, togglesplit"
         
-        "$mod ALT, ,resizeactive,"
+        # "$mod ALT, ,resizeactive,"
         # "$mod,SHIFT,left,resizeactive,-40 0"
         # "$mod,SHIFT,down,resizeactive,0 40"
         # "$mod,SHIFT,up,resizeactive,0 -40"
         # "$mod,SHIFT,right,resizeactive,40 0"
-        
-        #move and resize with SUPER and mouse
-        "$mod,mouse:272,movewindow"
-        # "$mod,SHIFT,mouse:272,resizewindow"
-        
-        # Volume and Brightness
-        "$mod, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 6%+"
-        "$mod, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 6%-"
-        "$mod, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        "$mod, XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        "$mod, XF86MonBrightnessDown, exec, brightnessctl set 5%-"
-        "$mod, XF86MonBrightnessUp, exec, brightnessctl set 5%+"
     ]
     ++ workspaces;
   };

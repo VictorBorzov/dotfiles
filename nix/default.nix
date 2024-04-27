@@ -1,6 +1,10 @@
 { config, pkgs, inputs, ... }:
 
 {
+  imports = [
+    ./nh.nix
+  ];
+  
   nixpkgs.config.allowUnfree = true;
 
   nix = {
@@ -17,8 +21,6 @@
       keep-derivations = true
    '';
     
-    gc.automatic = true;
-
     settings.experimental-features = [ "nix-command" "flakes" ];
 
   };

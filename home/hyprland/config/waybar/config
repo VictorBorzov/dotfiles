@@ -7,7 +7,7 @@
 //    "custom/launcher",
     "hyprland/workspaces",
     "temperature",
-//    "idle_inhibitor",
+    "idle_inhibitor",
     "custom/remmina",
     "custom/chat"
   ],

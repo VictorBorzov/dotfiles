@@ -15,6 +15,12 @@
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprlock.url = "github:hyprwm/hyprlock";
+
+    hyprpaper.url = "github:hyprwm/hyprpaper";    
+
+    hypridle.url = "github:hyprwm/hypridle";
   };
   
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {

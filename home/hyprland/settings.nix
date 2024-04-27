@@ -13,40 +13,20 @@ in
     
    "$mod" = "SUPER";
     env = [
-      "WLR_NO_HARDWARE_CURSORS,1"
-      "WLR_RENDERER_ALLOW_SOFTWARE,1"
       "GDK_DPI_SCALE,0.5"
-      "QT_SCALE_FACTOR,1"
-      "GDK_SCALE,2"
-      "XCURSOR_SIZE,32"
-      "GDK_BACKEND,wayland,x11"
-      "QT_QPA_PLATFORM,wayland;xcb"
-      "SDL_VIDEODRIVER,wayland"
-      "CLUTTER_BACKEND,wayland"
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-      "XDG_CURRENT_DESKTOP,Hyprland"
-      "XDG_SESSION_TYPE,wayland"
-      "XDG_SESSION_DESKTOP,Hyprland"
-      "QT_AUTO_SCREEN_SCALE_FACTOR,2"
-      "GTK_THEME,Breeze"
-      "QT_STYLE_OVERRIDE,Breeze"
-      "XCURSOR_THEME,XCursor-Pro-Light"
     
-  # use primarly amd gpu, if it's not available then use nvidia card
+      # use primarly amd gpu, if it's not available then use nvidia card
       "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
       
-      "HYPRCURSOR_THEME,bibata"
-      "HYPRCURSOR_SIZE,24"
-        
-      "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+      # "HYPRCURSOR_THEME,bibata"
+      # "HYPRCURSOR_SIZE,24"        
     ];
 
     exec-once = [
-      "xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2"
-      "hyprpaper"
+      "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
       "dunst"
       
-      "hypridle"
       "waybar"
       "blueman-applet"
       "nm-applet"
@@ -120,19 +100,30 @@ in
         
     gestures = {
       workspace_swipe = true;
+      workspace_swipe_forever = true;      
       workspace_swipe_invert = true;
       workspace_swipe_min_speed_to_force = 10;
       workspace_swipe_cancel_ratio = 0.85;
     };
         
     misc = {
+      disable_autoreload = true;
+      force_default_wallpaper = 0;
+      # disable dragging animation
+      animate_mouse_windowdragging = false;
+
+      # enable variable refresh rate (effective depending on hardware)
+      vrr = 1;
+
+      # we do, in fact, want direct scanout
+      no_direct_scanout = false;
+
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
       mouse_move_enables_dpms = false;
     };
 
     xwayland = {
-      use_nearest_neighbor = true;
       force_zero_scaling = true;
     };
   };
