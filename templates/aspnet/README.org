@@ -7,9 +7,11 @@ Use nix run
 
 * Development
 
-Using nix shell:
+To update nuget packages:
 #+begin_src shell
-  nix shell 
+  dotnet restore --packages ./packages
+  nix run nixpkgs#nuget-to-nix
+  nuget-to-nix packages > deps.nix
 #+end_src
 
 * Template
