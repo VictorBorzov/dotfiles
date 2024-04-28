@@ -27,6 +27,7 @@
   };
   
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+
     nixosConfigurations = {
       marshmallow = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -42,9 +43,19 @@
             home-manager.users.vb = import ./home;
             home-manager.extraSpecialArgs = { inherit inputs self; };
           }
-
         ];
       };
     };
+    templates = {
+      aspnet = {
+        path = ./templates/aspnet;
+        description = "Dotnet web application template";
+      };
+      dotnet = {
+        path = ./templates/dotnet;
+        description = "Dotnet application template";
+      };
+    };
+    
   };
 }

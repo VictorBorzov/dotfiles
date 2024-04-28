@@ -1,0 +1,20 @@
+* Run
+
+Use nix run
+#+begin_src shell
+  nix run .
+#+end_src
+
+* Development
+
+Using nix shell:
+#+begin_src shell
+  nix shell 
+#+end_src
+
+* Template
+
+To get this template use:
+#+begin_src shell
+  nix flake init -t git+ssh://git@gitlab.com/victorborzov#aspnet
+#+end_src
