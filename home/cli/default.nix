@@ -49,7 +49,7 @@
     emacs29-pgtk
     # ghostscript
     # pandoc
-    dotnet-sdk_8
+    # dotnet-sdk_8
     # omnisharp-roslyn
     gnuplot
     # netcoredbg

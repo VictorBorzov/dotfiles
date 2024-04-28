@@ -26,36 +26,25 @@
     hypridle.url = "github:hyprwm/hypridle";
   };
   
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-
-    nixosConfigurations = {
-      marshmallow = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./nix
-          ./nixos
-          ./hosts/asus-vivobook-m3401q
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.vb = import ./home;
-            home-manager.extraSpecialArgs = { inherit inputs self; };
-          }
-        ];
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+    {
+      nixosConfigurations = {
+        marshmallow = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./nix
+            ./nixos
+            ./hosts/asus-vivobook-m3401q
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.vb = import ./home;
+              home-manager.extraSpecialArgs = { inherit inputs self; };
+            }
+          ];
+        };
       };
     };
-    templates = {
-      aspnet = {
-        path = ./templates/aspnet;
-        description = "Dotnet web application template";
-      };
-      dotnet = {
-        path = ./templates/dotnet;
-        description = "Dotnet application template";
-      };
-    };
-    
-  };
 }
