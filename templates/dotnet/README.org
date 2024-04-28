@@ -16,5 +16,5 @@ Using nix shell:
 
 To get this template use:
 #+begin_src shell
-  nix flake init -t git+ssh://git@gitlab.com/victorborzov#aspnet
+  nix flake init -t git+ssh://git@gitlab.com/victorborzov/dotfiles#dotnet
 #+end_src
