@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       # "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/asus/zephyrus/ga401"
       # /etc/nixos/hardware-configuration.nix
-      ./syncthing
+      ./syncthing.nix
       ./hyprland.nix
       ./greetd.nix
       ./vpn.ap.nix
