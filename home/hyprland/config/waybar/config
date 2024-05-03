@@ -29,7 +29,7 @@
 //    "custom/powermenu"
   ],
 "custom/emacs-org-timer": {
-    "exec": "~/dotfiles/config/emacs/get-org-clock-timer.sh",
+    "exec": "~/dotfiles/home/cli/config/emacs/get-org-clock-timer.sh",
     "interval": 5,
     "format": "{}",
     "tooltip": "Current Org Clock Task"

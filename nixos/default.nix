@@ -2,18 +2,19 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       # "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/asus/zephyrus/ga401"
       # /etc/nixos/hardware-configuration.nix
+      ./syncthing
       ./hyprland.nix
       ./greetd.nix
       ./vpn.ap.nix
       ./vpn.mullvad.nix
-      # ./k3s.nix
+      # ./k8s.nix
     ];
   
   # nix.nixPath = [  "nixpkgs=${inputs.nixpkgs}" ];
@@ -90,6 +91,7 @@
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
  
+  environment.systemPackages = [ inputs.agenix.packages.x86_64-linux.default ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

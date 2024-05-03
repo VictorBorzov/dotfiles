@@ -20,14 +20,10 @@
     syncthing
     libreoffice
     mypaint
-    # krita
-    jetbrains.rider
-    # jetbrains.datagrip
     brave # for app mode
     vlc
     docker-compose
-    # jetbrains.dataspell
-    # postgresql
+    jetbrains.rider
   ];
 
   # Add config.lib.file.mkOutOfStoreSymlink before reference to make it mutable by symlink

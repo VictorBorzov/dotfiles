@@ -68,7 +68,12 @@
     # protobuf
     # go
     # gopls
-    # texlive.combined.scheme-full
+    (with dotnetCorePackages; combinePackages [
+      sdk_7_0
+      sdk_8_0
+      jetbrains.rider
+    ])
+    texlive.combined.scheme-full
     # graphviz
   #   elmPackages.elm
   #   elmPackages.nodejs

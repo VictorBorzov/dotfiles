@@ -10,6 +10,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    agenix = {
+      url = "github:ryantm/agenix";
+      # optional, not necessary for the module
+      inputs.nixpkgs.follows = "nixpkgs";
+      # optionally choose not to download darwin deps (saves some resources on Linux)
+      inputs.darwin.follows = "";
+    };
+
     nix-colors.url = "github:misterio77/nix-colors";
 
     hyprland.url = "github:hyprwm/Hyprland";
@@ -26,7 +34,7 @@
     hypridle.url = "github:hyprwm/hypridle";
   };
   
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, agenix, ... }@inputs:
     {
       nixosConfigurations = {
         marshmallow = nixpkgs.lib.nixosSystem {
@@ -36,6 +44,7 @@
             ./nix
             ./nixos
             ./hosts/asus-vivobook-m3401q
+            agenix.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -44,6 +53,7 @@
               home-manager.extraSpecialArgs = { inherit inputs self; };
             }
           ];
+
         };
       };
     };
