@@ -18,9 +18,9 @@ in
     
       # use primarly amd gpu, if it's not available then use nvidia card
       "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
-      
       # "HYPRCURSOR_THEME,bibata"
       # "HYPRCURSOR_SIZE,24"        
+      "GRIMBLAST_EDITOR,swappy"
     ];
 
     exec-once = [
@@ -51,8 +51,8 @@ in
     general = {
       gaps_out = 20;
       border_size = 3;
-      "col.active_border" = "rgb(${config.colorScheme.colors.base03})";#$muted; # rgba(ffffffee)
-      "col.inactive_border" = "rgb(${config.colorScheme.colors.base02})";#$overlay; # rgba(ffffffee)     
+      "col.active_border" = "rgb(${config.colorScheme.palette.base03})";#$muted; # rgba(ffffffee)
+      "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";#$overlay; # rgba(ffffffee)     
       layout = "dwindle";
     };
     

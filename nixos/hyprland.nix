@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   hardware = {
@@ -18,14 +18,15 @@
     nvidia.modesetting.enable = true;
   };
 
-  qt = {
-    enable = true;
-    platformTheme = "gtk2";
-    style = "gtk2";
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme = "gtk2";
+  #   style = "gtk2";
+  # };
 
   # hyprland
   programs.hyprland = {
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       enable = true;
       xwayland = {
           enable = true;

@@ -33,18 +33,27 @@
     size = 22;
   };
 
-  # gtk = {
-  #   enable = true;
-  # };
+gtk = {
+  enable = true;
+  theme = {
+    package = if inputs.myConfig.theme.dark then pkgs.palenight-theme else pkgs.gruvterial-theme;
+    name = if inputs.myConfig.theme.dark then "palenight" else "gruvterial";
+  };
+  iconTheme = {
+    package = pkgs.gnome.adwaita-icon-theme;
+    name = "Adwaita";
+  };
+  font = {
+    name = "Sans";
+    size = 11;
+  };
+};
 
   # enable qt
   qt = {
     enable = true;
-    # platform theme "gtk" or "gnome"
     platformTheme.name = "gtk";
-    # name of the qt theme
-    style.name = "adwaita-light";
-    # package to use
+    style.name = if inputs.myConfig.theme.dark then "adwaita-dark" else "adwaita-light";
     style.package = pkgs.adwaita-qt;
   };
   
@@ -90,22 +99,10 @@
 
   # Add config.lib.file.mkOutOfStoreSymlink before reference to make it mutable by symlink
   home.file.".config/rofi".source = ./config/rofi;
-
-  home.file.".config/hypr/rose-pine-dawn.conf".source = ./config/hypr/rose-pine-dawn.conf;
-  home.file.".config/hypr/rose-pine-moon.conf".source = ./config/hypr/rose-pine-moon.conf;
   home.file.".config/hypr/ecomode.sh".source = ./config/hypr/ecomode.sh;
-  home.file.".config/hypr/screenshot.sh".source = config.lib.file.mkOutOfStoreSymlink ./config/hypr/screenshot.sh;
   home.file.".config/dunst".source = ./config/dunst;
-  home.file.".config/swappy/config".source = config.lib.file.mkOutOfStoreSymlink ./config/swappy/config;
   home.file.".config/waybar/config".source = config.lib.file.mkOutOfStoreSymlink ./config/waybar/config;
   home.file.".config/waybar/style.css".source = config.lib.file.mkOutOfStoreSymlink ./config/waybar/style.css;
   home.file.".config/waybar/rose-pine-moon.css".source = ./config/waybar/rose-pine-moon.css;
-  home.file.".config/waybar/rose-pine-dawn.css".source = ./config/waybar/rose-pine-dawn.css;
   home.file.".config/waybar/rose-pine.css".source = ./config/waybar/rose-pine.css;
-  home.file.".config/gtk-3.0/colors.css".source = config.lib.file.mkOutOfStoreSymlink ./config/gtk-3.0/colors.css;
-  home.file.".config/gtk-3.0/gtk.css".source = config.lib.file.mkOutOfStoreSymlink ./config/gtk-3.0/gtk.css;
-  home.file.".config/gtk-3.0/settings.ini".source = config.lib.file.mkOutOfStoreSymlink ./config/gtk-3.0/settings.ini;
-  home.file.".config/gtk-4.0/colors.css".source = config.lib.file.mkOutOfStoreSymlink ./config/gtk-4.0/colors.css;
-  home.file.".config/gtk-4.0/gtk.css".source = config.lib.file.mkOutOfStoreSymlink ./config/gtk-4.0/gtk.css;
-  home.file.".config/gtk-4.0/settings.ini".source = config.lib.file.mkOutOfStoreSymlink ./config/gtk-4.0/settings.ini;
 }

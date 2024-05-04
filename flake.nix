@@ -32,6 +32,9 @@
     hyprpaper.url = "github:hyprwm/hyprpaper";    
 
     hypridle.url = "github:hyprwm/hypridle";
+
+    myConfig.url = "./config";
+
   };
   
   outputs = { self, nixpkgs, home-manager, agenix, ... }@inputs:

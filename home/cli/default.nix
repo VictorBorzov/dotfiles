@@ -1,14 +1,17 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
+
+  imports = [
+    ./git.nix
+  ];
 
   home.packages = with pkgs; [
     nix-output-monitor
     nvd
     p7zip
     eza # instead of ls
-    git
     unzip
     delta
     wget
@@ -93,18 +96,14 @@
 
   # Add config.lib.file.mkOutOfStoreSymlink to make config file just symlink to the origin
   # Folder reference also allows to mutate files
-  home.file.".config/git".source = ./config/git;
   home.file."/home/vb/.emacs.d/init.el".source = config.lib.file.mkOutOfStoreSymlink ./config/emacs/init.el;
   home.file.".config/helix".source = config.lib.file.mkOutOfStoreSymlink ./config/helix;
   home.file.".config/zellij".source = config.lib.file.mkOutOfStoreSymlink ./config/zellij;
   home.file.".config/ghc".source = ./config/ghc;
 
-  # home.file.".doom.d/init.el".source = config.lib.file.mkOutOfStoreSymlink ./config/doom.d/init.el;
-  # home.file.".doom.d/packages.el".source = config.lib.file.mkOutOfStoreSymlink ./config/doom.d/packages.el;
-  # home.file.".doom.d/custom.el".source = config.lib.file.mkOutOfStoreSymlink ./config/doom.d/custom.el;
-  # home.file.".doom.d/config.el".source = config.lib.file.mkOutOfStoreSymlink ./config/doom.d/config.el;
-
-  home.file.".config/matplotlib/matplotlibrc".source = ./config/matplotlib/stylelib/rose-pine-dawn.mplstyle;
+  home.file.".config/matplotlib/matplotlibrc".source = if inputs.myConfig.theme.dark
+                                                       then ./config/matplotlib/stylelib/rose-pine-moon.mplstyle
+                                                       else  ./config/matplotlib/stylelib/rose-pine-dawn.mplstyle;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -133,7 +132,7 @@
 
   programs.bat = {
    enable = true;
-   config.theme = "OneHalfDark";# "base16";
+   config.theme = if inputs.myConfig.theme.dark then "OneHalfDark" else "base16";
   };
 
   services.emacs = {

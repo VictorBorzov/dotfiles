@@ -1,5 +1,4 @@
 { inputs, config, pkgs, ... }:
-
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -14,7 +13,11 @@
     ./hyprland
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.rose-pine-moon;
+
+  colorScheme = if inputs.myConfig.theme.dark
+                then inputs.nix-colors.colorSchemes.rose-pine-moon
+                else inputs.nix-colors.colorSchemes.rose-pine-dawn;
   
+
   home.file.".config/nixpkgs".source = ./config/nixpkgs;
 }

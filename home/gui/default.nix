@@ -1,5 +1,10 @@
 { lib, config, pkgs, ... }:
 {
+  imports = [
+    ./wezterm.nix
+    ./kitty.nix
+  ];
+
   home.packages = with pkgs; [
     # zoom-us
 
@@ -26,16 +31,18 @@
     jetbrains.rider
   ];
 
-  # Add config.lib.file.mkOutOfStoreSymlink before reference to make it mutable by symlink
-  home.file.".config/alacritty/alacritty.yml".source = ./config/alacritty/alacritty.yml;
-  home.file.".config/wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink ./config/wezterm/wezterm.lua;
-  home.file.".config/kitty/kitty.conf".source = config.lib.file.mkOutOfStoreSymlink ./config/kitty/kitty.conf;
-  home.file.".config/kitty/dark.conf".source = ./config/kitty/dark.conf;
-  home.file.".config/kitty/light.conf".source = ./config/kitty/light.conf;
-
-  home.file.".config/background.jpg".source = ./pictures/roses.jpg;
-  home.file.".config/background-dark.jpg".source = ./pictures/dark-universe-2880x1800.jpg;
-
+  home.file.".config/swappy/config".text = ''
+    [Default]
+    save_dir=$HOME/Pictures/Screenshots
+    save_filename_format=swappy-%Y%m%d-%H%M%S.png
+    show_panel=false
+    line_size=5
+    text_size=50
+    text_font=sans-serif
+    paint_mode=brush
+    early_exit=false
+    fill_shape=false
+  '';
 
   xdg = {
     enable = true;

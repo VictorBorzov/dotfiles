@@ -1,6 +1,12 @@
-{config, ...}:
+{ config, inputs, ... }:
 let
   font_family = "Iosevka Nerd Font";
+  w1 = if inputs.myConfig.theme.dark
+       then "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-2880x1800.png"
+       else "${config.home.homeDirectory}/dotfiles/home/gui/pictures/roses-2880x1800.png";
+  w2 = if inputs.myConfig.theme.dark
+       then "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-blue-1920x1080.png"
+       else "${config.home.homeDirectory}/dotfiles/home/gui/pictures/pointoverhead-1920x1080.png";
 in
 {
   programs.hyprlock = {
@@ -15,8 +21,7 @@ in
       {
         monitor = "eDP-1";
         # only png supported for now
-        path = "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-2880x1800.png";
-        # path = $HOME/dotfiles/pictures/roses.png
+        path = w1;
         color = "rgba(25, 20, 20, 1.0)";
         blur_passes = 4; # 0 disables blurring
         blur_size = 2;
@@ -30,8 +35,7 @@ in
       {
         monitor = "HDMI-A-1";
         # only png supported for now
-        path = "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-blue-1920x1080.png";
-        # path = $HOME/dotfiles/pictures/roses.png
+        path = w2;
         color = "rgba(25, 20, 20, 1.0)";
         blur_passes = 4; # 0 disables blurring
         blur_size = 2;

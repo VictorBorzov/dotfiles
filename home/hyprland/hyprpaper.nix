@@ -6,15 +6,20 @@
   ...
 }:
 let
-  w1 = "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-2880x1800.jpg";
-  w2 = "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-blue-1920x1080.jpg";
+  w1Dark = "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-2880x1800.jpg";
+  w1Light = "${config.home.homeDirectory}/dotfiles/home/gui/pictures/roses-2880x1800.jpg";
+  
+  w2Dark = "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-blue-1920x1080.jpg";
+  w2Light = "${config.home.homeDirectory}/dotfiles/home/gui/pictures/pointoverhead-1920x1080.jpg";
 in
 {
   xdg.configFile."hypr/hyprpaper.conf".text = ''
-    preload = ${w1}
-    preload = ${w2}
-    wallpaper = eDP-1,${w1}
-    wallpaper = HDMI-A-1,${w2}
+    preload = ${w1Dark}
+    preload = ${w1Light}
+    preload = ${w2Dark}
+    preload = ${w2Light}
+    wallpaper = eDP-1,${if inputs.myConfig.theme.dark then w1Dark else w1Light}
+    wallpaper = HDMI-A-1,${if inputs.myConfig.theme.dark then w2Dark else w2Light}
   '';
 
   systemd.user.services.hyprpaper = {
