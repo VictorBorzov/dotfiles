@@ -1,4 +1,4 @@
-{ self, config, inputs, ... }:
+{ self, config, pkgs, inputs, ... }:
 let
   screenshotarea = "hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copy area; hyprctl keyword animation 'fadeOut,1,4,default'";
 
@@ -11,7 +11,26 @@ let
     if self.theme.dark
     then "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-blue-1920x1080.jpg"
     else "${config.home.homeDirectory}/dotfiles/home/gui/pictures/pointoverhead-1920x1080.jpg"}\"";
-  
+
+  ecoMode = pkgs.writeShellScriptBin "ecoMode" ''
+      HYPRGAMEMODE=$(${pkgs.hyprland}/bin/hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
+      if [ "$HYPRGAMEMODE" = 1 ] ; then
+              ${pkgs.hyprland}/bin/hyprctl --batch "\
+              keyword animations:enabled 0;\
+              keyword decoration:drop_shadow 0;\
+              keyword decoration:blur:enabled 0;\
+              keyword decoration:active_opacity 1;\
+              keyword decoration:inactive_opacity 1;\
+              keyword general:gaps_in 0;\
+              keyword general:gaps_out 0;\
+              keyword general:border_size 1;\
+              keyword decoration:rounding 0"
+          exit
+      else
+          ${pkgs.hyprland}/bin/hyprctl reload
+      fi
+      '';
+
   # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
   workspaces = builtins.concatLists (builtins.genList (
       x: let
@@ -55,8 +74,7 @@ in
         "$mod SHIFT, R, exec, ${screenshotarea}"
         "$mod SHIFT, E, exec, ${swappyClipboard}"
         "$mod SHIFT, P, exec, ${updateHyprpaper}"
-        "$mod, F1, exec, ~/.config/hypr/ecomode.sh"
-        "$mod,F11,exec, bash ~/.config/hypr/screenshot.sh"
+        "$mod, F1, exec, ${ecoMode}/bin/ecoMode"
         "$mod,r,exec,bash ~/.config/rofi/application-launcher-wayland.sh"
         "$mod,p,exec,bash ~/.config/rofi/powermenu-wayland.sh"
         "$mod,f,fullscreen"
@@ -80,11 +98,11 @@ in
         "$mod, w, togglefloating"
         "$mod, y, togglesplit"
         
-        # "$mod ALT, ,resizeactive,"
-        # "$mod,SHIFT,left,resizeactive,-40 0"
-        # "$mod,SHIFT,down,resizeactive,0 40"
-        # "$mod,SHIFT,up,resizeactive,0 -40"
-        # "$mod,SHIFT,right,resizeactive,40 0"
+    #     "$mod ALT, ,resizeactive,"
+    #     "$mod,SHIFT,left,resizeactive,-40 0"
+    #     "$mod,SHIFT,down,resizeactive,0 40"
+    #     "$mod,SHIFT,up,resizeactive,0 -40"
+    #     "$mod,SHIFT,right,resizeactive,40 0"
     ]
     ++ workspaces;
   };
