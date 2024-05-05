@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ self, config, pkgs, inputs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -101,9 +101,10 @@
   home.file.".config/zellij".source = config.lib.file.mkOutOfStoreSymlink ./config/zellij;
   home.file.".config/ghc".source = ./config/ghc;
 
-  home.file.".config/matplotlib/matplotlibrc".source = if inputs.myConfig.theme.dark
-                                                       then ./config/matplotlib/stylelib/rose-pine-moon.mplstyle
-                                                       else  ./config/matplotlib/stylelib/rose-pine-dawn.mplstyle;
+  home.file.".config/matplotlib/matplotlibrc".source =
+    if self.theme.dark
+    then ./config/matplotlib/stylelib/rose-pine-moon.mplstyle
+    else  ./config/matplotlib/stylelib/rose-pine-dawn.mplstyle;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -132,7 +133,7 @@
 
   programs.bat = {
    enable = true;
-   config.theme = if inputs.myConfig.theme.dark then "OneHalfDark" else "base16";
+   config.theme = if self.theme.dark then "OneHalfDark" else "base16";
   };
 
   services.emacs = {

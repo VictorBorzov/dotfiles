@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, ... }:
 {
   programs.kitty = {
     enable = true;
@@ -24,8 +24,12 @@
 
       # colors
       background_opacity = "0.9";
+
+     # shell_integration = "no-cursor";
+      cursor_shape = "block";
+      cursor_blink_interval = 0;
     };
 
-    theme = if inputs.myConfig.theme.dark then "Rosé Pine Moon" else "Rosé Pine Dawn";
+    theme = if self.theme.dark then "Rosé Pine Moon" else "Rosé Pine Dawn";
   };
 }

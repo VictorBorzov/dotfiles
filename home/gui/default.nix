@@ -1,23 +1,16 @@
+
 { lib, config, pkgs, ... }:
 {
   imports = [
-    ./wezterm.nix
     ./kitty.nix
   ];
 
   home.packages = with pkgs; [
-    # zoom-us
-
-    # simplex-chat-desktop
     xournal # to sign pdfs
     mullvad-browser
-    # libyubikey
-    yubikey-manager # For managing YubiKey settings
-    yubikey-personalization-gui #
-    yubioath-flutter
-    # bitwarden
-    wezterm
-    # webcord
+    # yubikey-manager # For managing YubiKey settings
+    # yubikey-personalization-gui #
+    # yubioath-flutter
     librewolf
     remmina
     slack

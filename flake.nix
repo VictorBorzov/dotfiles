@@ -20,8 +20,6 @@
 
     nix-colors.url = "github:misterio77/nix-colors";
 
-    hyprland.url = "github:hyprwm/Hyprland";
-
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,15 +28,14 @@
     hyprlock.url = "github:hyprwm/hyprlock";
 
     hyprpaper.url = "github:hyprwm/hyprpaper";    
-
-    hypridle.url = "github:hyprwm/hypridle";
-
-    myConfig.url = "./config";
-
   };
   
   outputs = { self, nixpkgs, home-manager, agenix, ... }@inputs:
     {
+      theme = {
+        dark = false;
+      };
+      
       nixosConfigurations = {
         marshmallow = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";

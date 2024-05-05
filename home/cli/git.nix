@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 {
   programs.git = {
     enable = true;
@@ -13,7 +13,7 @@
       options = {
         # use n and N to move between
         navigate = true;
-        light = !inputs.myConfig.theme.dark;
+        light = !self.theme.dark;
         features = "decorations";
         line-numbers = true;
         side-by-side = true;

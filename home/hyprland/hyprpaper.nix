@@ -1,4 +1,5 @@
 {
+  self,
   pkgs,
   inputs,
   lib,
@@ -18,8 +19,8 @@ in
     preload = ${w1Light}
     preload = ${w2Dark}
     preload = ${w2Light}
-    wallpaper = eDP-1,${if inputs.myConfig.theme.dark then w1Dark else w1Light}
-    wallpaper = HDMI-A-1,${if inputs.myConfig.theme.dark then w2Dark else w2Light}
+    wallpaper = eDP-1,${if self.theme.dark then w1Dark else w1Light}
+    wallpaper = HDMI-A-1,${if self.theme.dark then w2Dark else w2Light}
   '';
 
   systemd.user.services.hyprpaper = {

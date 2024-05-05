@@ -1,14 +1,14 @@
-{ config, inputs, ... }:
+{ self, config, inputs, ... }:
 let
   screenshotarea = "hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copy area; hyprctl keyword animation 'fadeOut,1,4,default'";
 
   swappyClipboard = "wl-paste | swappy -f -";
 
   updateHyprpaper = "hyprctl hyprpaper wallpaper \"eDP-1,${
-    if inputs.myConfig.theme.dark
+    if self.theme.dark
     then "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-2880x1800.jpg"
     else "${config.home.homeDirectory}/dotfiles/home/gui/pictures/roses-2880x1800.jpg"}\" && hyprctl hyprpaper wallpaper \"HDMI-A-1,${
-    if inputs.myConfig.theme.dark
+    if self.theme.dark
     then "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-blue-1920x1080.jpg"
     else "${config.home.homeDirectory}/dotfiles/home/gui/pictures/pointoverhead-1920x1080.jpg"}\"";
   
@@ -48,7 +48,7 @@ in
     ];
 
     bind = [
-        "$mod,Return,exec,wezterm"
+        "$mod,Return,exec,kitty"
         "$mod,t,exec,thunar"       
         "$mod,Tab,cyclenext"
         "$mod,Q,killactive,"
@@ -62,7 +62,7 @@ in
         "$mod,f,fullscreen"
         "$mod SHIFT,f,fakefullscreen"
         "$mod SHIFT,l,exec,hyprlock"
-        "$mod SHIFT,c,exec,hyprpicker | wl-copy"
+        "$mod SHIFT,c,exec,hyprpicker -a"
         
         # swap windows
         "$mod,left,movewindow,l"

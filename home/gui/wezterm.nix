@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, ... }:
 {
   programs.wezterm = {
     enable = true;
@@ -20,12 +20,12 @@
         config.font = wezterm.font 'IosevkaTerm Nerd Font'
         config.font_size = 32.0
         -- For example, changing the color scheme:
-        config.color_scheme = ${if inputs.myConfig.theme.dark then "'rose-pine-moon'" else "'rose-pine-dawn'"}
+        config.color_scheme = ${if self.theme.dark then "'rose-pine-moon'" else "'rose-pine-dawn'"}
         
         config.hide_tab_bar_if_only_one_tab = true
         config.disable_default_key_bindings = false
         
-        config.enable_wayland = false
+        -- config.enable_wayland = false
         
         -- and finally, return the configuration to wezterm
         return config

@@ -1,10 +1,8 @@
-{ inputs, config, pkgs, ... }:
+{ self, inputs, config, pkgs, ... }:
 {
 
   imports = [
-    inputs.hyprland.homeManagerModules.default
     inputs.hyprlock.homeManagerModules.default
-    inputs.hypridle.homeManagerModules.default
     ./binds.nix
     ./rules.nix
     ./settings.nix
@@ -15,6 +13,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    package = pkgs.hyprland;
 
     systemd = {
       variables = [ "--all"];
@@ -36,8 +35,8 @@
 gtk = {
   enable = true;
   theme = {
-    package = if inputs.myConfig.theme.dark then pkgs.palenight-theme else pkgs.gruvterial-theme;
-    name = if inputs.myConfig.theme.dark then "palenight" else "gruvterial";
+    package = if self.theme.dark then pkgs.palenight-theme else pkgs.gruvterial-theme;
+    name = if self.theme.dark then "palenight" else "gruvterial";
   };
   iconTheme = {
     package = pkgs.gnome.adwaita-icon-theme;
@@ -53,7 +52,7 @@ gtk = {
   qt = {
     enable = true;
     platformTheme.name = "gtk";
-    style.name = if inputs.myConfig.theme.dark then "adwaita-dark" else "adwaita-light";
+    style.name = if self.theme.dark then "adwaita-dark" else "adwaita-light";
     style.package = pkgs.adwaita-qt;
   };
   
@@ -69,12 +68,10 @@ gtk = {
     networkmanagerapplet
     qt5.qtwayland
     qt6.qtwayland
-    # hyprland-share-picker
     pavucontrol
     pipewire
     wireplumber
     hyprpicker
-    # hyprshade
     brightnessctl
     alsa-utils
     grim

@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }:
+{ self, inputs, config, pkgs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -14,10 +14,7 @@
   ];
 
 
-  colorScheme = if inputs.myConfig.theme.dark
+  colorScheme = if self.theme.dark
                 then inputs.nix-colors.colorSchemes.rose-pine-moon
                 else inputs.nix-colors.colorSchemes.rose-pine-dawn;
-  
-
-  home.file.".config/nixpkgs".source = ./config/nixpkgs;
 }
