@@ -1,13 +1,19 @@
 { self, config, pkgs, inputs, ... }:
-
+let
+    wl-ocr = pkgs.callPackage ../../pkgs/wl-ocr { };
+in
 {
   nixpkgs.config.allowUnfree = true;
 
   imports = [
-    ./git.nix
+    ./helix
+    ./git
+    ./lf
   ];
 
   home.packages = with pkgs; [
+    ledger
+    wl-ocr
     nix-output-monitor
     nvd
     p7zip
@@ -28,7 +34,6 @@
     pv
     zellij
     restic # backups
-    helix
     # xclip todo: add tools.x11 and tools.wayland
     # marksman
     nil
@@ -97,7 +102,6 @@
   # Add config.lib.file.mkOutOfStoreSymlink to make config file just symlink to the origin
   # Folder reference also allows to mutate files
   home.file."/home/vb/.emacs.d/init.el".source = config.lib.file.mkOutOfStoreSymlink ./config/emacs/init.el;
-  home.file.".config/helix".source = config.lib.file.mkOutOfStoreSymlink ./config/helix;
   home.file.".config/zellij".source = config.lib.file.mkOutOfStoreSymlink ./config/zellij;
   home.file.".config/ghc".source = ./config/ghc;
 

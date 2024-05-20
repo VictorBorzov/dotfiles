@@ -1,14 +1,7 @@
-{ pkgs, lib, ... }:
-let
-  bgImageSection = name: ''
-    #${name} {
-      background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/${name}.png"));
-    }
-  '';
-in {
+{ config, pkgs, ... }: {
+
   programs.wlogout = {
     enable = true;
-
     layout = [
       {
         label = "lock";
@@ -24,7 +17,7 @@ in {
       }
       {
         label = "logout";
-        action = "killall -9 Hyprland sleep 2";
+        action = "pkill -9 Hyprland && sleep 2";
         text = "Exit";
         keybind = "e";
       }
@@ -47,6 +40,7 @@ in {
         keybind = "r";
       }
     ];
+
     style = ''
       * {
         background: none;
@@ -73,14 +67,45 @@ in {
         outline-style: none;
       }
 
-      ${lib.concatMapStringsSep "\n" bgImageSection [
-        "lock"
-        "logout"
-        "suspend"
-        "hibernate"
-        "shutdown"
-        "reboot"
-      ]}
+             /* 
+                ----------------------------------------------------- 
+                Buttons
+                ----------------------------------------------------- 
+              */
+
+      #lock,#logout,#suspend,#hibernate,#shutdown,#reboot {
+        margin: 10px;
+      }
+
+      #lock {
+              background-image: image(url("icons/lock.png"));
+      }
+
+      #logout {
+              background-image: image(url("icons/logout.png"));
+      }
+
+      #suspend {
+              background-image: image(url("icons/suspend.png"));
+      }
+
+      #hibernate {
+              background-image: image(url("icons/hibernate.png"));
+      }
+
+      #shutdown {
+              background-image: image(url("icons/shutdown.png"));
+      }
+
+      #reboot {
+              background-image: image(url("icons/reboot.png"));
+      }
     '';
   };
+
+  xdg.configFile."wlogout/icons" = {
+    recursive = false;
+    source = ./icons;
+  };
+
 }

@@ -1,6 +1,8 @@
 { pkgs, inputs, ... }:
 
 {
+  security.pam.services.hyprlock = {};
+
   hardware = {
     opengl = {
       enable = true;

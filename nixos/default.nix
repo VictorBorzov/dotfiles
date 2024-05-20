@@ -2,21 +2,20 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ lib, config, pkgs, inputs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      # "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/asus/zephyrus/ga401"
-      # /etc/nixos/hardware-configuration.nix
-      ./syncthing.nix
-      ./hyprland.nix
-      ./greetd.nix
-      ./vpn.ap.nix
-      ./vpn.mullvad.nix
-      # ./k8s.nix
-    ];
-  
+  imports = [ # Include the results of the hardware scan.
+    # "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/asus/zephyrus/ga401"
+    # /etc/nixos/hardware-configuration.nix
+    ./syncthing.nix
+    ./hyprland.nix
+    ./greetd.nix
+    ./vpn.ap.nix
+    ./vpn.mullvad.nix
+    # ./k8s.nix
+  ];
+
   # nix.nixPath = [  "nixpkgs=${inputs.nixpkgs}" ];
 
   # Bootloader.
@@ -24,14 +23,14 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 42;
 
-# Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
+  # Setup keyfile
+  boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
 
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-6831d591-ca24-46d4-9359-aa5c6bf9e2eb".device = "/dev/disk/by-uuid/6831d591-ca24-46d4-9359-aa5c6bf9e2eb";
-  boot.initrd.luks.devices."luks-6831d591-ca24-46d4-9359-aa5c6bf9e2eb".keyFile = "/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-6831d591-ca24-46d4-9359-aa5c6bf9e2eb".device =
+    "/dev/disk/by-uuid/6831d591-ca24-46d4-9359-aa5c6bf9e2eb";
+  boot.initrd.luks.devices."luks-6831d591-ca24-46d4-9359-aa5c6bf9e2eb".keyFile =
+    "/crypto_keyfile.bin";
 
   networking.hostName = "marshmallow"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -90,8 +89,7 @@
     description = "vb";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
- 
-  environment.systemPackages = [ inputs.agenix.packages.x86_64-linux.default ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

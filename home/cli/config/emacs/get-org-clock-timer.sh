@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-
-
 # Fetch the remaining time for the current Org timer
 timer_remaining=$(emacsclient -e "(my-org-timer-remaining-time)" | sed 's/^"\(.*\)"$/\1/' | sed 's/\\//g')
 

@@ -24,6 +24,7 @@ in
     ];
 
     exec-once = [
+      "hyprpaper"
       "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
       "dunst"
       
@@ -90,7 +91,7 @@ in
     
     dwindle = {
       pseudotile = true;
-      preserve_split = true;
+      smart_split = true;
     };
         
     master = {

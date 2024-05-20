@@ -6,7 +6,7 @@
   slurp,
   tesseract5,
   wl-clipboard,
-  langs ? "eng+hun+fra+jpn+jpn_vert+kor+kor_vert+pol+ron+spa",
+  langs ? "eng+rus+srp+srp_latn",
 }: let
   _ = lib.getExe;
 in
@@ -15,3 +15,4 @@ in
     echo "$(${wl-clipboard}/bin/wl-paste)"
     ${_ libnotify} -- "$(${wl-clipboard}/bin/wl-paste)"
   ''
+

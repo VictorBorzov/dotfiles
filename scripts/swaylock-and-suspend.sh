@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-
-# hyprlock &
-swaylock -f &  # Lock the screen
-sleep 1        # Wait a bit to ensure the lock screen is active
-systemctl suspend  # Suspend the machine

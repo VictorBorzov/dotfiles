@@ -1,21 +1,30 @@
 { self, config, pkgs, inputs, ... }:
 let
-  screenshotarea = "hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copy area; hyprctl keyword animation 'fadeOut,1,4,default'";
+  screenshotarea =
+    "hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copy area; hyprctl keyword animation 'fadeOut,1,4,default'";
 
   swappyClipboard = "wl-paste | swappy -f -";
 
-  updateHyprpaper = "hyprctl hyprpaper wallpaper \"eDP-1,${
-    if self.theme.dark
-    then "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-2880x1800.jpg"
-    else "${config.home.homeDirectory}/dotfiles/home/gui/pictures/roses-2880x1800.jpg"}\" && hyprctl hyprpaper wallpaper \"HDMI-A-1,${
-    if self.theme.dark
-    then "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-blue-1920x1080.jpg"
-    else "${config.home.homeDirectory}/dotfiles/home/gui/pictures/pointoverhead-1920x1080.jpg"}\"";
+  updateHyprpaper = ''
+    hyprctl hyprpaper wallpaper "eDP-1,${
+      if self.theme.dark then
+        "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-2880x1800.jpg"
+      else
+        "${config.home.homeDirectory}/dotfiles/home/gui/pictures/roses-2880x1800.jpg"
+    }" && hyprctl hyprpaper wallpaper "HDMI-A-1,${
+      if self.theme.dark then
+        "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-blue-1920x1080.jpg"
+      else
+        "${config.home.homeDirectory}/dotfiles/home/gui/pictures/pointoverhead-1920x1080.jpg"
+    }"'';
 
-  ecoMode = pkgs.writeShellScriptBin "ecoMode" ''
-      HYPRGAMEMODE=$(${pkgs.hyprland}/bin/hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
+  ecoMode = pkgs.writeShellApplication {
+    name = "ecoMode";
+    runtimeInputs = [ pkgs.hyprland ];
+    text = ''
+      HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
       if [ "$HYPRGAMEMODE" = 1 ] ; then
-              ${pkgs.hyprland}/bin/hyprctl --batch "\
+          hyprctl --batch "\
               keyword animations:enabled 0;\
               keyword decoration:drop_shadow 0;\
               keyword decoration:blur:enabled 0;\
@@ -27,34 +36,24 @@ let
               keyword decoration:rounding 0"
           exit
       else
-          ${pkgs.hyprland}/bin/hyprctl reload
+          hyprctl reload
       fi
-      '';
-
+    '';
+  };
   # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-  workspaces = builtins.concatLists (builtins.genList (
-      x: let
-        ws = let
-          c = (x + 1) / 10;
-        in
-          builtins.toString (x + 1 - (c * 10));
-      in [
-        "$mod, ${ws}, workspace, ${toString (x + 1)}"
-        # "$mod, ${ws}, moveworkspacetomonitor, ${toString (x + 1)}"
-        "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-      ]
-    )
-    10);
-in
-{
+  workspaces = builtins.concatLists (builtins.genList (x:
+    let ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
+    in [
+      "$mod, ${ws}, workspace, ${toString (x + 1)}"
+      # "$mod, ${ws}, moveworkspacetomonitor, ${toString (x + 1)}"
+      "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+    ]) 10);
+in {
   wayland.windowManager.hyprland.settings = {
- 
+
     "$mod" = "SUPER";
     # mouse movements
-    bindm = [
-      "$mod,mouse:272,movewindow"
-      "$mod SHIFT,mouse:272,resizewindow"
-    ];
+    bindm = [ "$mod,mouse:272,movewindow" "$mod SHIFT,mouse:272,resizewindow" ];
 
     bindle = [
       # Volume and Brightness
@@ -66,44 +65,47 @@ in
       ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
     ];
 
+    binde = [
+      "$mod ALT, ,resizeactive,"
+      "$mod SHIFT,left,resizeactive,-40 0"
+      "$mod SHIFT,down,resizeactive,0 40"
+      "$mod SHIFT,up,resizeactive,0 -40"
+      "$mod SHIFT,right,resizeactive,40 0"
+    ];
+
     bind = [
-        "$mod,Return,exec,kitty"
-        "$mod,t,exec,thunar"       
-        "$mod,Tab,cyclenext"
-        "$mod,Q,killactive,"
-        "$mod SHIFT, R, exec, ${screenshotarea}"
-        "$mod SHIFT, E, exec, ${swappyClipboard}"
-        "$mod SHIFT, P, exec, ${updateHyprpaper}"
-        "$mod, F1, exec, ${ecoMode}/bin/ecoMode"
-        "$mod,r,exec,bash ~/.config/rofi/application-launcher-wayland.sh"
-        "$mod,p,exec,bash ~/.config/rofi/powermenu-wayland.sh"
-        "$mod,f,fullscreen"
-        "$mod SHIFT,f,fakefullscreen"
-        "$mod SHIFT,l,exec,hyprlock"
-        "$mod SHIFT,c,exec,hyprpicker -a"
-        
-        # swap windows
-        "$mod,left,movewindow,l"
-        "$mod,down,movewindow,d"
-        "$mod,up,movewindow,u"
-        "$mod,right,movewindow,r"
-        
-        # Move focus with mainMod + arrow keys
-        "$mod, h, movefocus, l"
-        "$mod, l, movefocus, r"
-        "$mod, k, movefocus, u"
-        "$mod, j, movefocus, d"
-        
-        # toggle float on active window
-        "$mod, w, togglefloating"
-        "$mod, y, togglesplit"
-        
-    #     "$mod ALT, ,resizeactive,"
-    #     "$mod,SHIFT,left,resizeactive,-40 0"
-    #     "$mod,SHIFT,down,resizeactive,0 40"
-    #     "$mod,SHIFT,up,resizeactive,0 -40"
-    #     "$mod,SHIFT,right,resizeactive,40 0"
-    ]
-    ++ workspaces;
+      "$mod,Return,exec,kitty"
+      "$mod,t,exec,thunar"
+      "$mod,Tab,cyclenext"
+      "$mod,Q,killactive,"
+      "$mod SHIFT, R, exec, ${screenshotarea}"
+      "$mod SHIFT, O, exec, wl-ocr"
+      "$mod SHIFT, E, exec, ${swappyClipboard}"
+      "$mod SHIFT, P, exec, systemctl --user restart hyprpaper"
+      "$mod, F1, exec, ${ecoMode}/bin/ecoMode"
+      "$mod,r,exec,bash ~/.config/rofi/application-launcher-wayland.sh"
+      "$mod,p,exec, bash ~/.config/rofi/powermenu-wayland.sh"
+      "$mod,f,fullscreen"
+      "$mod SHIFT,f,fakefullscreen"
+      "$mod SHIFT,l,exec,hyprlock"
+      "$mod SHIFT,c,exec,hyprpicker -a"
+
+      # swap windows
+      "$mod,left,movewindow,l"
+      "$mod,down,movewindow,d"
+      "$mod,up,movewindow,u"
+      "$mod,right,movewindow,r"
+
+      # Move focus with mainMod + arrow keys
+      "$mod, h, movefocus, l"
+      "$mod, l, movefocus, r"
+      "$mod, k, movefocus, u"
+      "$mod, j, movefocus, d"
+
+      # toggle float on active window
+      "$mod, w, togglefloating"
+      "$mod, y, togglesplit"
+
+    ] ++ workspaces;
   };
 }
