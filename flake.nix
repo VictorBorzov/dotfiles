@@ -29,9 +29,15 @@
       };
     };
 
-    theme = { dark = true; };
+    theme = { dark = false; };
 
     defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
+
+    apps.x86_64-linux.helix = {
+      type = "app";
+      program = "${self.homeConfigurations."vb@marshmallow".pkgs.helix}/bin/hx";
+    };
+
 
     homeConfigurations = {
       "vb@marshmallow" = home-manager.lib.homeManagerConfiguration {
