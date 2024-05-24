@@ -34,59 +34,26 @@ in
     pv
     zellij
     restic # backups
-    # xclip todo: add tools.x11 and tools.wayland
-    # marksman
     nil
     haskellPackages.cabal-install
-    # haskellPackages.stack
     ghc
-# haskell.compiler.ghc96
-    # cabal-install
-    # haskell-language-server
     bat
     bc
     tldr
     gping
     (nerdfonts.override { fonts = [ "Iosevka" "IosevkaTerm" "JetBrainsMono" ]; })
-    # nerdfonts
     bottom # btop alternative, call btm
-    # nodePackages.vscode-langservers-extracted
     cifs-utils
     zoxide
     coreutils
     emacs29-pgtk
-    # ghostscript
-    # pandoc
-    # dotnet-sdk_8
-    # omnisharp-roslyn
     gnuplot
-    # netcoredbg
-    # (python3.withPackages (ps: with ps; [
-    #   jupyter
-    #   ipython
-    #   matplotlib
-    #   numpy
-    #   googletrans
-    #   wikipedia
-    #   pandas
-    #   jieba
-    #   fugashi
-    #   nltk
-    # ]))
-    # protobuf
-    # go
-    # gopls
     (with dotnetCorePackages; combinePackages [
       sdk_7_0
       sdk_8_0
       jetbrains.rider
     ])
     texlive.combined.scheme-full
-    # graphviz
-  #   elmPackages.elm
-  #   elmPackages.nodejs
-  #   elmPackages.elm-format
-  #   elmPackages.elm-language-server
   ];
 
   # Enable nerdfonts
