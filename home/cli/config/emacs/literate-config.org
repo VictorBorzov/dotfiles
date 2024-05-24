@@ -84,9 +84,10 @@ Put =(org-babel-load-file (expand-file-name "~/dotfiles/config/emacs/init.org"))
 
 ;;  (setq org-refile-targets '((nil :maxlevel . 2)))
 
-  (setq org-capture-templates '(("t" "Todo [inbox]" entry
-                                 (file+headline "~/sync/orgmode/gtd/inbox.org" "Inbox")
-                                 "\n* TODO %i%?\n")))
+  (setq org-capture-templates '(
+    ("t" "Todo [inbox]" entry (file+headline "~/sync/orgmode/gtd/inbox.org" "Inbox") "\n* TODO %i%?\n")
+    ("c" "Todo [main]" entry (file+headline "~/sync/orgmode/gtd/main.org" "Inbox") "\n* TODO %i%?\n")
+   ))
 
   (global-set-key (kbd "C-c a") #'org-agenda)
   (global-set-key (kbd "C-c c") #'org-capture)
