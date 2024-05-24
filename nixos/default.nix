@@ -8,7 +8,7 @@
   imports = [ # Include the results of the hardware scan.
     # "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/asus/zephyrus/ga401"
     # /etc/nixos/hardware-configuration.nix
-    ./syncthing.nix
+    # ./syncthing.nix
     ./hyprland.nix
     ./greetd.nix
     ./vpn.ap.nix
@@ -50,16 +50,6 @@
 
   # Configure keymap in X11
 
-  # services.xserver = {
-  #   enable = true;
-  #   videoDrivers = [ "amdgpu" ];
-  #   xkb = {
-  #     layout = "us,ru";
-  #     variant = "";
-  #     options = "grp:win_space_toggle";
-  #   };
-  # };
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -76,28 +66,18 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    # jack.enable = true;
-    
+    jack.enable = true;
+
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
-  };
-
-  services.jack = {
-    jackd.enable = true;
-    # support ALSA only programs via ALSA JACK PCM plugin
-    alsa.enable = false;
-    # support ALSA only programs via loopback device (supports programs like Steam)
-    loopback = {
-      enable = true;
-    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.vb = {
     isNormalUser = true;
     description = "vb";
-    extraGroups = [ "networkmanager" "wheel" "docker" "jackaudio" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -123,7 +103,7 @@
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
 
-  virtualisation.docker.enable = true;
+  # virtualisation.docker.enable = true;
 
   services.postgresql = {
     enable = false;

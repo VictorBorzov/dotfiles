@@ -34,8 +34,7 @@
     zoxide
     coreutils
     emacs29-pgtk
-    (with dotnetCorePackages;
-      combinePackages [ sdk_7_0 sdk_8_0 jetbrains.rider ])
+    (with dotnetCorePackages; combinePackages [ sdk_7_0 sdk_8_0 ])
   ];
 
   # Enable nerdfonts

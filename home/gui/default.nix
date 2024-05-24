@@ -2,8 +2,6 @@
   imports = [ ./kitty.nix ];
 
   home.packages = with pkgs; [
-    jack2
-    qjackctl
     xournal # to sign pdfs
     mullvad-browser
     # yubikey-manager # For managing YubiKey settings
@@ -20,7 +18,6 @@
     vlc
     docker-compose
     jetbrains.rider
-    alsa-scarlett-gui
   ];
 
   home.file.".config/swappy/config".text = ''
