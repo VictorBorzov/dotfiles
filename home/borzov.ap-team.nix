@@ -5,7 +5,7 @@
   home.homeDirectory = "/home/borzov@ap-team.ru";
   home.stateVersion = "23.05";
 
-  imports = [ inputs.nix-colors.homeManagerModules.default ./cli ];
+  imports = [ inputs.nix-colors.homeManagerModules.default ./cli/server.nix ];
 
   colorScheme = if self.theme.dark then
     inputs.nix-colors.colorSchemes.rose-pine-moon
