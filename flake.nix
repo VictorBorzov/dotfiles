@@ -45,11 +45,11 @@
         extraSpecialArgs = { inherit inputs self; };
         modules = [ ./home/vb.nix ]; # Defined later
       };
-      "borzov@borzov2.ap-team.ru" = home-manager.lib.homeManagerConfiguration {
+      "borzov@ap-team.ru@borzov2" = home-manager.lib.homeManagerConfiguration {
         pkgs =
           nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = { inherit inputs self; };
-        modules = [ ./home/server.nix ]; # Defined later
+        modules = [ ./home/borzov.ap-team.nix ]; # Defined later
       };
     };
   };

@@ -2,7 +2,7 @@
   nixpkgs.config.allowUnfree = true;
 
   home.username = "borzov";
-  home.homeDirectory = "/home/borzov";
+  home.homeDirectory = "/home/borzov@ap-team.ru";
   home.stateVersion = "23.05";
 
   imports = [ inputs.nix-colors.homeManagerModules.default ./cli ];
