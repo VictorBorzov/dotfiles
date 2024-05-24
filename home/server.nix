@@ -1,6 +1,8 @@
-{ self, inputs, ... }: {
+{ self, inputs, config, pkgs, ... }: {
   nixpkgs.config.allowUnfree = true;
 
+  home.username = "borzov";
+  home.homeDirectory = "/home/borzov";
   home.stateVersion = "23.05";
 
   imports = [ inputs.nix-colors.homeManagerModules.default ./cli ];

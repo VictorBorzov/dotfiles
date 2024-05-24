@@ -38,15 +38,18 @@
       program = "${self.homeConfigurations."vb@marshmallow".pkgs.helix}/bin/hx";
     };
 
-
     homeConfigurations = {
       "vb@marshmallow" = home-manager.lib.homeManagerConfiguration {
         pkgs =
           nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-
         extraSpecialArgs = { inherit inputs self; };
-
         modules = [ ./home/vb.nix ]; # Defined later
+      };
+      "borzov@borzov2.ap-team.ru" = home-manager.lib.homeManagerConfiguration {
+        pkgs =
+          nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = { inherit inputs self; };
+        modules = [ ./home/server.nix ]; # Defined later
       };
     };
   };
