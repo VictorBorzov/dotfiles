@@ -38,6 +38,8 @@ in {
     (nerdfonts.override {
       fonts = [ "Iosevka" "IosevkaTerm" "JetBrainsMono" ];
     })
+    fira-code
+    alegreya
     bottom # btop alternative, call btm
     cifs-utils
     zoxide
@@ -46,6 +48,7 @@ in {
     gnuplot
     (with dotnetCorePackages; combinePackages [ sdk_7_0 sdk_8_0 ])
     texlive.combined.scheme-full
+    ghostscript
   ];
 
   # Enable nerdfonts
@@ -55,6 +58,7 @@ in {
     EDITOR = "emacsclient";
     # EDITOR = "emacs -nw"; # terminal emacs
     DOTNET_CLI_TELEMETRY_OPTOUT = "1";
+    TLDR_AUTO_UPDATE_DISABLED = "1";
   };
 
   # Add config.lib.file.mkOutOfStoreSymlink to make config file just symlink to the origin
