@@ -102,6 +102,9 @@ in {
       "$mod, k, movefocus, u"
       "$mod, j, movefocus, d"
 
+      "$mod CTRL, h, workspace, -1"
+      "$mod CTRL, l, workspace, +1"
+
       # toggle float on active window
       "$mod, w, togglefloating"
       "$mod, y, togglesplit"

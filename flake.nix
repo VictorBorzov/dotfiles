@@ -19,38 +19,67 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+    let
+      dark_mode = true;
+      customHelix = import ./pkgs/helix { pkgs = nixpkgs.legacyPackages.x86_64-linux; dark = dark_mode;
+ };
+    in {
 
-    nixosConfigurations = {
-      marshmallow = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [ ./nix ./nixos ./hosts/asus-vivobook-m3401q ];
+      nixosConfigurations = {
+        marshmallow = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [ ./nix ./nixos ./hosts/asus-vivobook-m3401q ];
+        };
       };
-    };
 
-    theme = { dark = false; };
+      theme = { dark = dark_mode; };
 
-    defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
+      defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
 
-    apps.x86_64-linux.helix = {
-      type = "app";
-      program = "${self.homeConfigurations."vb@marshmallow".pkgs.helix}/bin/hx";
-    };
-
-    homeConfigurations = {
-      "vb@marshmallow" = home-manager.lib.homeManagerConfiguration {
-        pkgs =
-          nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = { inherit inputs self; };
-        modules = [ ./home/vb.nix ]; # Defined later
+      homeConfigurations = {
+        "vb@marshmallow" = home-manager.lib.homeManagerConfiguration {
+          pkgs =
+            nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = { inherit inputs self customHelix; };
+          modules = [ ./home/vb.nix ]; # Defined later
+        };
+        "borzov@ap-team.ru@borzov2" =
+          home-manager.lib.homeManagerConfiguration {
+            pkgs =
+              nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+            extraSpecialArgs = { inherit inputs self; };
+            modules = [ ./home/borzov.ap-team.nix ]; # Defined later
+          };
       };
-      "borzov@ap-team.ru@borzov2" = home-manager.lib.homeManagerConfiguration {
-        pkgs =
-          nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = { inherit inputs self; };
-        modules = [ ./home/borzov.ap-team.nix ]; # Defined later
+
+      apps.x86_64-linux = {
+        helix = {
+          type = "app";
+          program = "${customHelix}/bin/hx";
+        };
       };
+
+      devShells.x86_64-linux.dotnet = with nixpkgs.legacyPackages.x86_64-linux;
+        mkShell {
+          buildInputs =
+            [ customHelix dotnet-sdk_8 netcoredbg omnisharp-roslyn fsautocomplete ];
+          shellHook = "hx";
+        };
+      devShells.x86_64-linux.nix = with nixpkgs.legacyPackages.x86_64-linux;
+        mkShell { buildInputs = [ customHelix nil ]; shellHook = "hx"; };
+      devShells.x86_64-linux.go = with nixpkgs.legacyPackages.x86_64-linux;
+        mkShell { buildInputs = [ go gopls go-tools gotools delve customHelix ]; shellHook = "hx"; };
+      devShells.x86_64-linux.haskell = with nixpkgs.legacyPackages.x86_64-linux;
+        mkShell {
+          buildInputs = [
+            haskellPackages.cabal-install
+            haskellPackages.haskell-language-server
+            ghc
+            customHelix
+          ];
+          shellHook = "hx";
+        };
     };
-  };
 }

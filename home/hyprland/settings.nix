@@ -17,6 +17,7 @@ in
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
     
       # use primarly amd gpu, if it's not available then use nvidia card
+      # "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
       "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
       # "HYPRCURSOR_THEME,bibata"
       # "HYPRCURSOR_SIZE,24"        

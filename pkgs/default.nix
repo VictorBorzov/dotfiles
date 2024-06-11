@@ -1,5 +1,3 @@
 { pkgs, inputs, ... }: {
-  imports = [
-    pkgs.callPackage ./wl-ocr {};
-  };
+  imports = [ pkgs.callPackage ./wl-ocr { } ./dotnet-publish ];
 }
