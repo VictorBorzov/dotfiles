@@ -21,9 +21,10 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      dark_mode = true;
-      customHelix = import ./pkgs/helix { pkgs = nixpkgs.legacyPackages.x86_64-linux; dark = dark_mode;
- };
+      dark_mode = false;
+      customHelix = import ./pkgs/helix { pkgs = nixpkgs.legacyPackages.x86_64-linux; dark = dark_mode; };
+      customZellij = import ./pkgs/zellij { pkgs = nixpkgs.legacyPackages.x86_64-linux; dark = dark_mode; };
+      customLf = import ./pkgs/lf { pkgs = nixpkgs.legacyPackages.x86_64-linux; };
     in {
 
       nixosConfigurations = {
@@ -42,7 +43,7 @@
         "vb@marshmallow" = home-manager.lib.homeManagerConfiguration {
           pkgs =
             nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = { inherit inputs self customHelix; };
+          extraSpecialArgs = { inherit inputs self customHelix customZellij customLf; };
           modules = [ ./home/vb.nix ]; # Defined later
         };
         "borzov@ap-team.ru@borzov2" =
@@ -55,6 +56,14 @@
       };
 
       apps.x86_64-linux = {
+        lf = {
+          type = "app";
+          program = "${customLf}/bin/lf";
+        };
+        zellij = {
+          type = "app";
+          program = "${customZellij}/bin/zellij";
+        };
         helix = {
           type = "app";
           program = "${customHelix}/bin/hx";
@@ -64,13 +73,13 @@
       devShells.x86_64-linux.dotnet = with nixpkgs.legacyPackages.x86_64-linux;
         mkShell {
           buildInputs =
-            [ customHelix dotnet-sdk_8 netcoredbg omnisharp-roslyn fsautocomplete ];
-          shellHook = "hx";
+            [ customHelix customZellij customLf dotnet-sdk_8 netcoredbg omnisharp-roslyn fsautocomplete ];
+          shellHook = "zellij";
         };
       devShells.x86_64-linux.nix = with nixpkgs.legacyPackages.x86_64-linux;
-        mkShell { buildInputs = [ customHelix nil ]; shellHook = "hx"; };
+        mkShell { buildInputs = [ customHelix customZellij customLf nil ]; shellHook = "hx"; };
       devShells.x86_64-linux.go = with nixpkgs.legacyPackages.x86_64-linux;
-        mkShell { buildInputs = [ go gopls go-tools gotools delve customHelix ]; shellHook = "hx"; };
+        mkShell { buildInputs = [ go gopls go-tools gotools delve customHelix customZellij customLf ]; shellHook = "hx"; };
       devShells.x86_64-linux.haskell = with nixpkgs.legacyPackages.x86_64-linux;
         mkShell {
           buildInputs = [
@@ -78,6 +87,8 @@
             haskellPackages.haskell-language-server
             ghc
             customHelix
+            customZellij
+            customLf 
           ];
           shellHook = "hx";
         };

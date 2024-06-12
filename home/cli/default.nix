@@ -1,14 +1,16 @@
-{ self, config, pkgs, inputs, customHelix, ... }:
+{ self, config, pkgs, inputs, customHelix, customZellij, customLf, ... }:
 let wl-ocr = pkgs.callPackage ../../pkgs/wl-ocr { };
 in {
   nixpkgs.config.allowUnfree = true;
 
-  imports = [ ./git ./lf ];
+  imports = [ ./git  ];
 
   # nixpkgs.overlays =
   #   [ (final: prev: { dp = import ../../pkgs/dotnet-publish pkgs; }) ];
 
   home.packages = with pkgs; [
+    customLf
+    customZellij
     customHelix
     ledger
     wl-ocr
@@ -30,7 +32,7 @@ in {
     trashy # instead of rm
     imgcat # terminal image viewer
     pv
-    zellij
+    # zellij
     restic # backups
     nil
     haskellPackages.cabal-install
@@ -51,7 +53,7 @@ in {
     coreutils
     emacs29-pgtk
     gnuplot
-    (with dotnetCorePackages; combinePackages [ sdk_7_0 sdk_8_0 ])
+    # (with dotnetCorePackages; combinePackages [ sdk_7_0 sdk_8_0 ])
     texlive.combined.scheme-full
     ghostscript
   ];
@@ -70,8 +72,8 @@ in {
   # Folder reference also allows to mutate files
   home.file."/home/vb/.emacs.d/init.el".source =
     config.lib.file.mkOutOfStoreSymlink ./config/emacs/init.el;
-  home.file.".config/zellij".source =
-    config.lib.file.mkOutOfStoreSymlink ./config/zellij;
+  # home.file.".config/zellij".source =
+  #   config.lib.file.mkOutOfStoreSymlink ./config/zellij;
   home.file.".config/ghc".source = ./config/ghc;
 
   home.file.".config/matplotlib/matplotlibrc".source = if self.theme.dark then
