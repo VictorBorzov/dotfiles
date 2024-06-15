@@ -7,6 +7,7 @@
 
     ignores = [
       ".idea/"
+      ".helix/"
     ];
     delta = {
       enable = true;
