@@ -14,7 +14,7 @@
       options = {
         # use n and N to move between
         navigate = true;
-        light = !self.theme.dark;
+        light = false;
         features = "decorations";
         line-numbers = true;
         side-by-side = true;

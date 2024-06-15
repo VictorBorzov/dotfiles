@@ -15,12 +15,12 @@ in {
     enable = true;
     settings = {
       preload = [
-        (if self.theme.dark then w1Dark else w1Light)
-        (if self.theme.dark then w2Dark else w2Light)
+        (if true then w1Dark else w1Light)
+        (if true then w2Dark else w2Light)
       ];
       wallpaper = [
-        "eDP-1,${if self.theme.dark then w1Dark else w1Light}"
-        "HDMI-A-1,${if self.theme.dark then w2Dark else w2Light}"
+        "eDP-1,${if true then w1Dark else w1Light}"
+        "HDMI-A-1,${if true then w2Dark else w2Light}"
       ];
     };
   };

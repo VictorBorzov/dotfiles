@@ -53,8 +53,8 @@ in
     general = {
       gaps_out = 20;
       border_size = 3;
-      "col.active_border" = "rgb(${config.colorScheme.palette.base03})";#$muted; # rgba(ffffffee)
-      "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";#$overlay; # rgba(ffffffee)     
+      # # "col.active_border" = "rgb(${config.colorScheme.palette.base03})";#$muted; # rgba(ffffffee)
+      # "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";#$overlay; # rgba(ffffffee)     
       layout = "dwindle";
     };
     
@@ -74,7 +74,7 @@ in
       drop_shadow = true;
       shadow_range = 30;
       shadow_render_power = 3;
-      "col.shadow" = "0x66000000";
+      # "col.shadow" = "0x66000000";
     };
         
     animations = {

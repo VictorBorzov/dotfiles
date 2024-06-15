@@ -7,12 +7,12 @@ let
 
   updateHyprpaper = ''
     hyprctl hyprpaper wallpaper "eDP-1,${
-      if self.theme.dark then
+      if true then
         "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-2880x1800.jpg"
       else
         "${config.home.homeDirectory}/dotfiles/home/gui/pictures/roses-2880x1800.jpg"
     }" && hyprctl hyprpaper wallpaper "HDMI-A-1,${
-      if self.theme.dark then
+      if true then
         "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-blue-1920x1080.jpg"
       else
         "${config.home.homeDirectory}/dotfiles/home/gui/pictures/pointoverhead-1920x1080.jpg"

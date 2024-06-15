@@ -22,37 +22,37 @@
     };
   };
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    package = pkgs.quintom-cursor-theme;
-    name = "Quintom_Snow";
-    size = 22;
-  };
+  # home.pointerCursor = {
+  #   gtk.enable = true;
+  #   x11.enable = true;
+  #   package = pkgs.quintom-cursor-theme;
+  #   name = "Quintom_Snow";
+  #   size = 22;
+  # };
 
   gtk = {
     enable = true;
-    theme = {
-      package =
-        if self.theme.dark then pkgs.palenight-theme else pkgs.gruvterial-theme;
-      name = if self.theme.dark then "palenight" else "gruvterial";
-    };
-    iconTheme = {
-      package = pkgs.gnome.adwaita-icon-theme;
-      name = "Adwaita";
-    };
-    font = {
-      name = "Sans";
-      size = 11;
-    };
+    # theme = {
+    #   package =
+    #     if self.theme.dark then pkgs.palenight-theme else pkgs.gruvterial-theme;
+    #   name = if self.theme.dark then "palenight" else "gruvterial";
+    # };
+    # iconTheme = {
+    #   package = pkgs.gnome.adwaita-icon-theme;
+    #   name = "Adwaita";
+    # };
+    # font = {
+    #   name = "Sans";
+    #   size = 11;
+    # };
   };
 
   # enable qt
   qt = {
     enable = true;
-    platformTheme.name = "gtk";
-    style.name = if self.theme.dark then "adwaita-dark" else "adwaita-light";
-    style.package = pkgs.adwaita-qt;
+    # platformTheme.name = "gtk";
+    # style.name = if self.theme.dark then "adwaita-dark" else "adwaita-light";
+    # style.package = pkgs.adwaita-qt;
   };
 
   home.packages = with pkgs; [

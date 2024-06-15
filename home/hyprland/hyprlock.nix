@@ -1,11 +1,11 @@
 { self, config, inputs, ... }:
 let
   font_family = "Iosevka Nerd Font";
-  w1 = if self.theme.dark then
+  w1 = if true then
     "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-2880x1800.png"
   else
     "${config.home.homeDirectory}/dotfiles/home/gui/pictures/roses-2880x1800.png";
-  w2 = if self.theme.dark then
+  w2 = if true then
     "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-blue-1920x1080.png"
   else
     "${config.home.homeDirectory}/dotfiles/home/gui/pictures/pointoverhead-1920x1080.png";
