@@ -1,17 +1,11 @@
-{ self, config, pkgs, inputs, customHelix, customZellij, customLf, ... }:
+{ self, config, pkgs, inputs, ... }:
 let wl-ocr = pkgs.callPackage ../../pkgs/wl-ocr { };
 in {
   nixpkgs.config.allowUnfree = true;
 
-  imports = [ ./git  ];
-
-  # nixpkgs.overlays =
-  #   [ (final: prev: { dp = import ../../pkgs/dotnet-publish pkgs; }) ];
+  imports = [ ./git ./helix ./zellij ./lf ];
 
   home.packages = with pkgs; [
-    customLf
-    customZellij
-    customHelix
     ledger
     wl-ocr
     nix-output-monitor
@@ -32,7 +26,6 @@ in {
     trashy # instead of rm
     imgcat # terminal image viewer
     pv
-    # zellij
     restic # backups
     nil
     haskellPackages.cabal-install
@@ -62,7 +55,7 @@ in {
   fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
-    EDITOR = "helix";
+    EDITOR = "hx";
     # EDITOR = "emacsclient -nw"; # terminal emacs
     DOTNET_CLI_TELEMETRY_OPTOUT = "1";
     TLDR_AUTO_UPDATE_DISABLED = "1";
@@ -72,14 +65,6 @@ in {
   # Folder reference also allows to mutate files
   home.file."/home/vb/.emacs.d/init.el".source =
     config.lib.file.mkOutOfStoreSymlink ./config/emacs/init.el;
-  # home.file.".config/zellij".source =
-  #   config.lib.file.mkOutOfStoreSymlink ./config/zellij;
-  home.file.".config/ghc".source = ./config/ghc;
-
-  home.file.".config/matplotlib/matplotlibrc".source = if true then
-    ./config/matplotlib/stylelib/rose-pine-moon.mplstyle
-  else
-    ./config/matplotlib/stylelib/rose-pine-dawn.mplstyle;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -114,7 +99,6 @@ in {
 
   programs.bat = {
     enable = true;
-    # config.theme = if true then "OneHalfDark" else "base16";
   };
 
   services.emacs = {

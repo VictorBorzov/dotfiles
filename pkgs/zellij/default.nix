@@ -1,4 +1,4 @@
-{ pkgs, dark ? false }:
+{ pkgs }:
 let
   configFile = pkgs.writeText "config.kdl" ''
       themes {
@@ -30,7 +30,6 @@ let
         white "#e0def4"
        }
       }
-      theme "${if dark then "rose-pine-moon" else "rose-pine-dawn"}"
       // default_layout "compact"
       // pane_frames false
   '';

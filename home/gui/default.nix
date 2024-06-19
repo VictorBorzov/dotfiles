@@ -1,5 +1,6 @@
 { lib, config, pkgs, ... }: {
-  imports = [ ./kitty.nix ];
+
+  imports = [ ./kitty.nix ./alacritty.nix ];
 
   home.packages = with pkgs; [
     xournal # to sign pdfs

@@ -74,7 +74,7 @@ in {
     ];
 
     bind = [
-      "$mod,Return,exec,kitty"
+      "$mod,Return,exec,alacritty"
       "$mod,t,exec,thunar"
       "$mod,Tab,cyclenext"
       "$mod,Q,killactive,"

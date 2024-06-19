@@ -32,7 +32,8 @@ in
       "waybar"
       "blueman-applet"
       "nm-applet"
-      "hyprctl setcursor XCursor-Pro-Light 24"
+      # "hyprctl setcursor XCursor-Pro-Light 24"
+      "hyprctl setcursor Quintom_Snow 22"
       "hyprlock"
     ];
 
