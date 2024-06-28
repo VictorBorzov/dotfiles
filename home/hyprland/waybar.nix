@@ -74,67 +74,125 @@
           tooltip = false;
         };
 
-        "custom/cava-internal" = {
-          "exec" = "sleep 1s && cava-internal";
-          "tooltip" = false;
+        "backlight" = {
+          "device" = "intel_backlight";
+          "interval" = 2;
+          "format" = "{icon} {percent}%";
+          "format-icons" = [
+            "󰃞"
+            "󰃟"
+            "󰃝"
+            "󰃠"
+          ];
         };
+
         "pulseaudio" = {
           "scroll-step" = 1;
-          "format" = "{icon} {volume}%";
-          "format-muted" = "󰖁 Muted";
+          "format" = "{icon} {volume}% {format_source}";
+          "format-muted" = "󰖁 Muted {format_source}";
+          "format-source" = " {volume}%";
+          "format-source-muted" = "";
           "format-icons" = {
-            "default" = ["" "" ""];
+            "default" = [
+              ""
+              ""
+              ""
+            ];
           };
-          "on-click" = "pamixer -t";
+          "on-click" = "pavucontrol";
           "tooltip" = false;
         };
+
+        "battery" = {
+          "interval" = 10;
+          "states" = {
+            "warning" = 20;
+            "critical" = 10;
+          };
+          "format" = "{icon} {capacity}%";
+          "format-icons" = [
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
+          ];
+          "format-full" = "{icon} {capacity}%";
+          "format-charging" = "󰂄 {capacity}%";
+          "tooltip" = false;
+        };
+
         "clock" = {
           "interval" = 1;
-          "format" = "{:%I:%M %p  %A %b %d}";
+          # "format" = "{ =%I =%M %p  %A %b %d}";
+          "format" = "{ =%H =%M}";
           "tooltip" = true;
-          "tooltip-format" = "{=%A; %d %B %Y}\n<tt>{calendar}</tt>";
+          "tooltip-format" = "{ =%A; %d %B %Y}\n<tt>{calendar}</tt>";
+          # "tooltip-format" = "<big>{ =%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
+
         "memory" = {
           "interval" = 1;
-          "format" = "󰻠 {percentage}%";
+          "format" = "󰍛 {percentage}%";
+          "on-click" = "alacritty -e btm";
           "states" = {
             "warning" = 85;
           };
         };
+
         "cpu" = {
           "interval" = 1;
-          "format" = "󰍛 {usage}%";
+          "on-click" = "alacritty -e btm";
+          "format" = "󰻠 {usage}%";
         };
-        "mpd" = {
-          "max-length" = 25;
-          "format" = "<span foreground='#bb9af7'></span> {title}";
-          "format-paused" = " {title}";
-          "format-stopped" = "<span foreground='#bb9af7'></span>";
-          "format-disconnected" = "";
-          "on-click" = "mpc --quiet toggle";
-          "on-click-right" = "mpc update; mpc ls | mpc add";
-          "on-click-middle" = "kitty --class='ncmpcpp' ncmpcpp ";
-          "on-scroll-up" = "mpc --quiet prev";
-          "on-scroll-down" = "mpc --quiet next";
-          "smooth-scrolling-threshold" = 5;
-          "tooltip-format" = "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})";
-        };
+
         "network" = {
-          "format-disconnected" = "󰯡 Disconnected";
-          "format-ethernet" = "󰒢 Connected!";
-          "format-linked" = "󰖪 {essid} (No IP)";
-          "format-wifi" = "󰖩 {essid}";
-          "interval" = 1;
+          "interface" = "wlp2s0";
+          "format" = "{ifname}";
+          "format-wifi" = "{essid} ({signalStrength}%) ";
+          "format-ethernet" = "{ipaddr}/{cidr} ";
+          "format-disconnected" = ""; # An empty format will hide the module.
+          "tooltip-format" = "{ifname} via {gwaddr} ";
+          "tooltip-format-wifi" = "{essid} ({signalStrength}%) ";
+          "tooltip-format-ethernet" = "{ifname} ";
+          "tooltip-format-disconnected" = "Disconnected";
+          "max-length" = 50;
+        };
+
+        "temperature" = {
+          "critical-threshold" = 95;
           "tooltip" = false;
+          "format" = " {temperatureC}°C";
+        };
+
+        "custom/remmina" = {
+          "format" = "󰢹";
+          "on-click" = "sh -c 'env GDK_BACKEND=x11 GDK_SCALE=1 GDK_DPI_SCALE=1 CLUTTER_SCALE=1 XCURSOR_SIZE=6 remmina
+' & disown";
+          "tooltip" = true;
+        };
+        "custom/chat" = {
+          "format" = "󰭹";
+          "on-click" = "brave --app=https =//chat.openai.com";
+          "tooltip" = true;
         };
         "custom/powermenu" = {
           "format" = "";
-          "on-click" = "pkill rofi || ~/.config/rofi/powermenu/type-3/powermenu.sh";
+          "on-click" = "sh -c '(sleep 0.2s; sh ~/.config/rofi/powermenu-wayland.sh)' & disown";
           "tooltip" = false;
         };
         "tray" = {
-          "icon-size" = 15;
+          "icon-size" = 16;
           "spacing" = 5;
+        };
+        "hyprland/language" = {
+          "format" = "{short}";
+          "on-click" = "hyprctl switchxkblayout at-translated-set-2-keyboard next";
         };
       };
     };
