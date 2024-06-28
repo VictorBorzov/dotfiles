@@ -1,9 +1,15 @@
-{ self, config, pkgs, inputs, ... }:
-let wl-ocr = pkgs.callPackage ../../pkgs/wl-ocr { };
+{
+  self,
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
+  wl-ocr = pkgs.callPackage ../../pkgs/wl-ocr {};
 in {
   nixpkgs.config.allowUnfree = true;
 
-  imports = [ ./git ./helix ./zellij ./lf ];
+  imports = [./git ./helix ./zellij ./lf];
 
   home.packages = with pkgs; [
     ledger
@@ -28,6 +34,7 @@ in {
     pv
     restic # backups
     nil
+    alejandra
     haskellPackages.cabal-install
     ghc
     bat
@@ -35,7 +42,7 @@ in {
     tldr
     gping
     (nerdfonts.override {
-      fonts = [ "Iosevka" "IosevkaTerm" "JetBrainsMono" ];
+      fonts = ["Iosevka" "IosevkaTerm" "JetBrainsMono"];
     })
     fira-code
     alegreya
@@ -46,7 +53,7 @@ in {
     coreutils
     emacs29-pgtk
     gnuplot
-    (with dotnetCorePackages; combinePackages [ sdk_7_0 sdk_8_0 ])
+    (with dotnetCorePackages; combinePackages [sdk_7_0 sdk_8_0])
     texlive.combined.scheme-full
     ghostscript
   ];
@@ -69,17 +76,12 @@ in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
-  # optional for nix flakes support in home-manager 21.11, not required in home-manager unstable or 22.05
-  # programs.direnv.nix-direnv.enableFlakes = true;
-
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    initExtra = ''
-      set -o vi
-    '';
+    # initExtra = ''
+    #   set -o vi
+    # '';
     bashrcExtra = ''
       PS1='\[\033[1;33m\]λ(\u@\h)\[\033[1;36m\].λ(\w)\[\033[1;35m\]$([ -n "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ] && echo ".λ($(git rev-parse --abbrev-ref HEAD 2>/dev/null))")\[\033[0;37m\].λ \[\033[0;37m\]'
 
@@ -92,7 +94,6 @@ in {
       alias cat=bat
       alias cd=z
       alias zz='z -'
-      eval "$(direnv hook bash)"
       eval "$(zoxide init bash)"
     '';
   };

@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   suspendScript = pkgs.writeShellScript "suspend-script" ''
     ${pkgs.pipewire}/bin/pw-cli i all 2>&1 | ${pkgs.ripgrep}/bin/rg running -q
     # only suspend if audio isn't running
@@ -18,15 +17,15 @@ in {
     enable = true;
     settings = {
       general = {
+        lock_cmd = "pidof hyprlock || hyprlock";
         beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session";
-        lock_cmd = "hyprlock";
-        ignore_dbus_inhibit = false;
+        afterSleepCmd = "hyprctl dispatch dpms on";
       };
 
       listener = [
         {
           timeout = 120;
-          onTimeout = suspendScript.outPath;
+          onTimeout = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ];
     };

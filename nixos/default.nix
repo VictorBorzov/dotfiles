@@ -1,11 +1,15 @@
- # Edit this configuration file to define what should be installed on
+# Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ lib, config, pkgs, inputs, ... }:
-
 {
-  imports = [ # Include the results of the hardware scan.
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
     # "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/asus/zephyrus/ga401"
     # /etc/nixos/hardware-configuration.nix
     # ./syncthing.nix
@@ -25,13 +29,11 @@
   boot.loader.systemd-boot.configurationLimit = 42;
 
   # Setup keyfile
-  boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
+  boot.initrd.secrets = {"/crypto_keyfile.bin" = null;};
 
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-6831d591-ca24-46d4-9359-aa5c6bf9e2eb".device =
-    "/dev/disk/by-uuid/6831d591-ca24-46d4-9359-aa5c6bf9e2eb";
-  boot.initrd.luks.devices."luks-6831d591-ca24-46d4-9359-aa5c6bf9e2eb".keyFile =
-    "/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-6831d591-ca24-46d4-9359-aa5c6bf9e2eb".device = "/dev/disk/by-uuid/6831d591-ca24-46d4-9359-aa5c6bf9e2eb";
+  boot.initrd.luks.devices."luks-6831d591-ca24-46d4-9359-aa5c6bf9e2eb".keyFile = "/crypto_keyfile.bin";
 
   networking.hostName = "marshmallow"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -78,7 +80,7 @@
   users.users.vb = {
     isNormalUser = true;
     description = "vb";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = ["audio" "networkmanager" "wheel" "docker"];
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -104,11 +106,11 @@
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
 
-  # virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
 
   services.postgresql = {
     enable = false;
-    ensureDatabases = [ "postgres" ];
+    ensureDatabases = ["postgres"];
     authentication = pkgs.lib.mkOverride 10 ''
       #type database  DBuser  auth-method
       local all       all     trust

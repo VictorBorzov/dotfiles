@@ -157,7 +157,7 @@
   (use-package doom-themes
     :ensure t
     :config
-    (load-theme 'doom-one t)
+    (load-theme 'doom-gruvbox t)
     (doom-themes-visual-bell-config))
   (use-package magit
     :ensure t)

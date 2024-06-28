@@ -7,6 +7,7 @@
     ./hyprlock.nix
     ./hyprpaper.nix
     ./hypridle.nix
+    ./waybar.nix
   ];
 
   wayland.windowManager.hyprland = {
@@ -56,9 +57,9 @@
   };
 
   home.packages = with pkgs; [
-    (waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true " ];
-    }))
+    # (waybar.overrideAttrs (oldAttrs: {
+    #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true " ];
+    # }))
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     gnome.file-roller
     rofi-wayland
@@ -98,10 +99,10 @@
   # Add config.lib.file.mkOutOfStoreSymlink before reference to make it mutable by symlink
   home.file.".config/rofi".source = ./config/rofi;
   home.file.".config/dunst".source = ./config/dunst;
-  home.file.".config/waybar/config".source =
-    config.lib.file.mkOutOfStoreSymlink ./config/waybar/config;
-  home.file.".config/waybar/style.css".source =
-    config.lib.file.mkOutOfStoreSymlink ./config/waybar/style.css;
-  home.file.".config/waybar/rose-pine-moon.css".source =
-    ./config/waybar/rose-pine-moon.css;
+  # home.file.".config/waybar/config".source =
+  #   config.lib.file.mkOutOfStoreSymlink ./config/waybar/config;
+  # home.file.".config/waybar/style.css".source =
+  #   config.lib.file.mkOutOfStoreSymlink ./config/waybar/style.css;
+  # home.file.".config/waybar/rose-pine-moon.css".source =
+  #   ./config/waybar/rose-pine-moon.css;
 }
