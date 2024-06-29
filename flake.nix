@@ -34,20 +34,20 @@
           ./hosts/asus-vivobook-m3401q
 
           stylix.nixosModules.stylix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.vb = import ./home/vb.nix;
-            home-manager.extraSpecialArgs = {inherit inputs;};
-            home-manager.sharedModules = [
-              {
-                stylix.targets.zellij.enable = false;
-                stylix.targets.helix.enable = false;
-                stylix.targets.waybar.enable = false;
-              }
-            ];
-          }
+          # home-manager.nixosModules.home-manager
+          # {
+          #   home-manager.useGlobalPkgs = true;
+          #   home-manager.useUserPackages = true;
+          #   home-manager.users.vb = import ./home/vb.nix;
+          #   home-manager.extraSpecialArgs = {inherit inputs;};
+          #   home-manager.sharedModules = [
+          #     {
+          #       stylix.targets.zellij.enable = false;
+          #       stylix.targets.helix.enable = false;
+          #       # stylix.targets.waybar.enable = false;
+          #     }
+          #   ];
+          # }
         ];
       };
     };
@@ -61,6 +61,7 @@
         extraSpecialArgs = {inherit inputs self;};
         modules = [./home/vb.nix stylix.homeManagerModules.stylix];
       };
+
       "borzov@ap-team.ru@borzov2" = home-manager.lib.homeManagerConfiguration {
         pkgs =
           nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance

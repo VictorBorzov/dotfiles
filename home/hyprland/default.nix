@@ -1,5 +1,10 @@
-{ self, inputs, config, pkgs, ... }: {
-
+{
+  self,
+  inputs,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./binds.nix
     ./rules.nix
@@ -15,7 +20,7 @@
     package = pkgs.hyprland;
 
     systemd = {
-      variables = [ "--all" ];
+      variables = ["--all"];
       extraCommands = [
         "systemctl --user stop graphical-session.target"
         "systemctl --user start hyprland-session.target"

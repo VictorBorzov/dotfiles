@@ -65,6 +65,9 @@
             F = ["file_picker"];
           };
         };
+        insert = {
+          "C-[" = ["normal_mode"];
+        };
       };
     };
     languages = {

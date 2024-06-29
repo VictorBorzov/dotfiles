@@ -1,14 +1,18 @@
-{ self, config, inputs, ... }:
-let
+{
+  self,
+  config,
+  inputs,
+  ...
+}: let
   font_family = "Iosevka Nerd Font";
-  w1 = if false then
-    "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-2880x1800.png"
-  else
-    "${config.home.homeDirectory}/dotfiles/home/gui/pictures/roses-2880x1800.png";
-  w2 = if false then
-    "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-blue-1920x1080.png"
-  else
-    "${config.home.homeDirectory}/dotfiles/home/gui/pictures/pointoverhead-1920x1080.png";
+  w1 =
+    if false
+    then "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-2880x1800.png"
+    else "${config.home.homeDirectory}/dotfiles/home/gui/pictures/autumn-forest-trees-b9-2880x1800.jpg";
+  w2 =
+    if false
+    then "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-blue-1920x1080.png"
+    else "${config.home.homeDirectory}/dotfiles/home/gui/pictures/pointoverhead-1920x1080.png";
 in {
   programs.hyprlock = {
     enable = true;
@@ -61,8 +65,7 @@ in {
           inner_color = "rgb(200, 200, 200)";
           font_color = "rgb(10, 10, 10)";
           fade_on_empty = true;
-          placeholder_text =
-            "<i>Input Password...</i>"; # Text rendered in the input box when it's empty.
+          placeholder_text = "<i>Input Password...</i>"; # Text rendered in the input box when it's empty.
           hide_input = false;
           position = "0, -300";
           halign = "center";

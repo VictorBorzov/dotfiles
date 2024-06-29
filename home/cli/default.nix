@@ -9,7 +9,7 @@
 in {
   nixpkgs.config.allowUnfree = true;
 
-  imports = [./git ./helix ./zellij ./lf];
+  imports = [./git ./helix ./zellij ./lf ./tealdeer];
 
   home.packages = with pkgs; [
     ledger
@@ -39,7 +39,6 @@ in {
     ghc
     bat
     bc
-    tldr
     gping
     (nerdfonts.override {
       fonts = ["Iosevka" "IosevkaTerm" "JetBrainsMono"];

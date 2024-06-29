@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   nixpkgs.config.allowUnfree = true;
 
   home.username = "vb";
@@ -10,7 +9,6 @@
     ./cli
     ./gui
     ./hyprland
+    ./stylix.nix
   ];
-
-
 }

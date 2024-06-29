@@ -1,38 +1,30 @@
-{ config, ... }:
-let
-  variant = config.theme.name;
-  pointer = config.home.pointerCursor;
-in
-{
+{config, ...}: {
   wayland.windowManager.hyprland.settings = {
- 
     monitor = [
       "eDP-1,2880x1800@90,0x0,2"
       "HDMI-A-1,1920x1080,1440x0,1.2"
     ];
-    
-   "$mod" = "SUPER";
+
+    "$mod" = "SUPER";
     env = [
       "GDK_DPI_SCALE,0.5"
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-    
+
       # use primarly amd gpu, if it's not available then use nvidia card
       # "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
       "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
       # "HYPRCURSOR_THEME,bibata"
-      # "HYPRCURSOR_SIZE,24"        
+      # "HYPRCURSOR_SIZE,24"
       "GRIMBLAST_EDITOR,swappy"
     ];
 
     exec-once = [
       "hyprpaper"
-      "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
       "dunst"
-      
+
       "waybar"
       "blueman-applet"
       "nm-applet"
-      # "hyprctl setcursor XCursor-Pro-Light 24"
       "hyprctl setcursor Quintom_Snow 22"
       "hyprlock"
     ];
@@ -45,20 +37,20 @@ in
       touchpad.natural_scroll = 1;
       sensitivity = 0.3; # -1.0 - 1.0, 0 means no modification.
     };
-        
+
     device = {
       name = "wacom-intuos-s-pen";
-      output= "HDMI-A-1";
+      output = "HDMI-A-1";
     };
-    
+
     general = {
       gaps_out = 20;
       border_size = 3;
       # # "col.active_border" = "rgb(${config.colorScheme.palette.base03})";#$muted; # rgba(ffffffee)
-      # "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";#$overlay; # rgba(ffffffee)     
+      # "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";#$overlay; # rgba(ffffffee)
       layout = "dwindle";
     };
-    
+
     decoration = {
       rounding = 10; # 6 or 3
       active_opacity = 1.0; # 0.95
@@ -71,13 +63,13 @@ in
         new_optimizations = 1;
         blurls = "waybar";
       };
-      
+
       drop_shadow = true;
       shadow_range = 30;
       shadow_render_power = 3;
       # "col.shadow" = "0x66000000";
     };
-        
+
     animations = {
       enabled = true;
       bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
@@ -90,25 +82,25 @@ in
         "workspaces, 1, 6, default"
       ];
     };
-    
+
     dwindle = {
       pseudotile = true;
       smart_split = true;
     };
-        
+
     master = {
       new_is_master = true;
       orientation = "left";
     };
-        
+
     gestures = {
       workspace_swipe = true;
-      workspace_swipe_forever = true;      
+      workspace_swipe_forever = true;
       workspace_swipe_invert = true;
       workspace_swipe_min_speed_to_force = 10;
       workspace_swipe_cancel_ratio = 0.85;
     };
-        
+
     misc = {
       disable_autoreload = true;
       force_default_wallpaper = 0;
