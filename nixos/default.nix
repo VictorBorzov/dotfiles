@@ -107,7 +107,7 @@
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
 
-  # virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
 
   services.postgresql = {
     enable = false;

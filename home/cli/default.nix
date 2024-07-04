@@ -6,12 +6,16 @@
   ...
 }: let
   wl-ocr = pkgs.callPackage ../../pkgs/wl-ocr {};
+  devs = inputs.dev.packages."x86_64-linux";
 in {
   nixpkgs.config.allowUnfree = true;
 
-  imports = [./git ./helix ./zellij ./lf ./tealdeer];
+  imports = [./git ./tealdeer];
 
   home.packages = with pkgs; [
+    devs.helix
+    devs.zellij
+    devs.lf
     ledger
     wl-ocr
     nix-output-monitor
@@ -44,16 +48,12 @@ in {
       fonts = ["Iosevka" "IosevkaTerm" "JetBrainsMono"];
     })
     fira-code
-    alegreya
-    alegreya-sans
     bottom # btop alternative, call btm
     cifs-utils
     zoxide
     coreutils
-    emacs29-pgtk
     gnuplot
     (with dotnetCorePackages; combinePackages [sdk_7_0 sdk_8_0])
-    texlive.combined.scheme-full
     ghostscript
   ];
 
@@ -69,8 +69,6 @@ in {
 
   # Add config.lib.file.mkOutOfStoreSymlink to make config file just symlink to the origin
   # Folder reference also allows to mutate files
-  home.file."/home/vb/.emacs.d/init.el".source =
-    config.lib.file.mkOutOfStoreSymlink ./config/emacs/init.el;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -101,8 +99,4 @@ in {
     enable = true;
   };
 
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacs29-pgtk;
-  };
 }
