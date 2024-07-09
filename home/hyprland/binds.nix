@@ -54,6 +54,9 @@
 in {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
+    binds = {
+      allow_workspace_cycles = true;
+    };
     # mouse movements
     bindm = ["$mod,mouse:272,movewindow" "$mod SHIFT,mouse:272,resizewindow"];
 
@@ -79,7 +82,6 @@ in {
       [
         "$mod,Return,exec,alacritty"
         "$mod,t,exec,thunar"
-        "$mod,Tab,cyclenext"
         "$mod,Q,killactive,"
         "$mod SHIFT, R, exec, ${screenshotarea}"
         "$mod SHIFT, O, exec, wl-ocr"
@@ -105,8 +107,7 @@ in {
         "$mod, k, movefocus, u"
         "$mod, j, movefocus, d"
 
-        "$mod, TAB, workspace, e+1"
-        "$mod SHIFT, TAB, workspace, e-1"
+        "$mod, TAB, workspace, previous_per_monitor"
 
         # toggle float on active window
         "$mod, w, togglefloating"
