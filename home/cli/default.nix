@@ -16,6 +16,7 @@ in {
     devs.helix
     devs.zellij
     devs.lf
+    devs.emacs
     ledger
     wl-ocr
     nix-output-monitor
