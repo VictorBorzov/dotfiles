@@ -89,7 +89,6 @@
     };
 
     master = {
-      new_is_master = true;
       orientation = "left";
     };
 
