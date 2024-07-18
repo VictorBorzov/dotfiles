@@ -23,6 +23,7 @@
           "idle_inhibitor"
           "custom/remmina"
           "custom/chat"
+          "custom/weather"
         ];
         modules-center = ["custom/emacs-org-timer"];
         modules-right = [
@@ -181,6 +182,11 @@
           "on-click" = "brave --app=https =//chat.openai.com";
           "tooltip" = true;
         };
+        "custom/weather" = {
+          "format" = "🌦";
+          "on-click" = "alacritty --hold -e wthrr belgrade -f d";
+          "tooltip" = true;
+        };
         "custom/powermenu" = {
           "format" = "";
           "on-click" = "sh -c '(sleep 0.2s; sh ~/.config/rofi/powermenu-wayland.sh)' & disown";
@@ -229,6 +235,7 @@
       #custom-powermenu,
       #custom-remmina,
       #custom-chat,
+      #custom-weather,
       #idle_inhibitor {
         padding-left: 2px;
         padding-right: 10px;

@@ -25,6 +25,12 @@ in {
     eza # instead of ls
     unzip
     delta
+    dust # instead of du
+    sd # instead of sed
+    procs # instead of ps
+    bandwhich # network
+    hyperfine # benchmark
+    wthrr # weather like wthrr belgrade -f d
     wget
     cmake
     gcc
