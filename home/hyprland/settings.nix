@@ -1,18 +1,15 @@
 {config, ...}: {
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "eDP-1,2880x1800@90,0x0,2"
-      "HDMI-A-1,1920x1080,1440x0,1.2"
+      "eDP-1,1920x1080@60,0x0,1.25"
     ];
 
     "$mod" = "SUPER";
     env = [
-      "GDK_DPI_SCALE,0.5"
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
 
       # use primarly amd gpu, if it's not available then use nvidia card
       # "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
-      "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
       # "HYPRCURSOR_THEME,bibata"
       # "HYPRCURSOR_SIZE,24"
       "GRIMBLAST_EDITOR,swappy"

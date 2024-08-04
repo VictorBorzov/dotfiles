@@ -15,25 +15,12 @@
     # ./syncthing.nix
     ./hyprland.nix
     ./greetd.nix
-    ./vpn.ap.nix
     ./vpn.mullvad.nix
     ./stylix.nix
     # ./k8s.nix
   ];
 
   # nix.nixPath = [  "nixpkgs=${inputs.nixpkgs}" ];
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 42;
-
-  # Setup keyfile
-  boot.initrd.secrets = {"/crypto_keyfile.bin" = null;};
-
-  # Enable swap on luks
-  boot.initrd.luks.devices."luks-6831d591-ca24-46d4-9359-aa5c6bf9e2eb".device = "/dev/disk/by-uuid/6831d591-ca24-46d4-9359-aa5c6bf9e2eb";
-  boot.initrd.luks.devices."luks-6831d591-ca24-46d4-9359-aa5c6bf9e2eb".keyFile = "/crypto_keyfile.bin";
 
   networking.hostName = "marshmallow"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -60,14 +47,12 @@
   # hardware.opentabletdriver.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true;
 
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     # jack.enable = true;

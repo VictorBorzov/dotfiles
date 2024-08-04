@@ -78,10 +78,10 @@ in {
           monitor = "eDP-1";
           text = "$TIME";
           color = "rgba(200, 200, 200, 1.0)";
-          font_size = 350;
+          font_size = 250;
           inherit font_family;
 
-          position = "0, 400";
+          position = "0, 300";
           halign = "center";
           valign = "center";
         }
@@ -89,7 +89,7 @@ in {
           monitor = "eDP-1";
           text = "Hi, please enter the password...";
           color = "rgba(200, 200, 200, 1.0)";
-          font_size = 75;
+          font_size = 65;
           inherit font_family;
 
           position = "0, 0";

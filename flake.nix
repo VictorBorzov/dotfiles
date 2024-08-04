@@ -33,7 +33,7 @@
         modules = [
           ./nix
           ./nixos
-          ./hosts/asus-vivobook-m3401q
+          ./hosts/hp-envy-x360.nix
           stylix.nixosModules.stylix
         ];
       };

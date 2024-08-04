@@ -80,7 +80,6 @@
     wireplumber
     hyprpicker
     brightnessctl
-    alsa-utils
     grim
     slurp
     vvave
