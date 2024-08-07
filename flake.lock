@@ -121,11 +121,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1721172114,
-        "narHash": "sha256-UETxL4rcYyNUOan9ruAcv7l85tAGIkvyexrqFuZJkmY=",
+        "lastModified": 1722030426,
+        "narHash": "sha256-LLkkh6UwjKxRgBrkicxnvtaU/vy8XU0FNeidE2p0oPU=",
         "owner": "victorborzov",
         "repo": "dev",
-        "rev": "8124e652197cfd358f77d98753a71c4b24c4c16d",
+        "rev": "c1da3003a208f1d72fd6860de8d6a9b8edd7ecf3",
         "type": "gitlab"
       },
       "original": {

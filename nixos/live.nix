@@ -9,58 +9,26 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
-    # "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/asus/zephyrus/ga401"
-    # /etc/nixos/hardware-configuration.nix
-    # ./syncthing.nix
     ./hyprland.nix
     ./greetd.nix
-    ./vpn.ap.nix
     ./vpn.mullvad.nix
     ./stylix.nix
-    # ./k8s.nix
   ];
 
-  # nix.nixPath = [  "nixpkgs=${inputs.nixpkgs}" ];
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    supportedFilesystems = lib.mkForce ["btrfs" "reiserfs" "vfat" "f2fs" "xfs" "ntfs" "cifs"];
+  };
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 42;
-
-  # Setup keyfile
-  boot.initrd.secrets = {"/crypto_keyfile.bin" = null;};
-
-  # Enable swap on luks
-  boot.initrd.luks.devices."luks-6831d591-ca24-46d4-9359-aa5c6bf9e2eb".device = "/dev/disk/by-uuid/6831d591-ca24-46d4-9359-aa5c6bf9e2eb";
-  boot.initrd.luks.devices."luks-6831d591-ca24-46d4-9359-aa5c6bf9e2eb".keyFile = "/crypto_keyfile.bin";
-
-  networking.hostName = "marshmallow"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "iso";
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Belgrade";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
-  # Configure keymap in X11
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Wacom tablet support
-  # hardware.opentabletdriver.enable = true;
-
-  # Enable sound with pipewire.
-  # sound.enable = true;
 
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -109,18 +77,6 @@
 
   # virtualisation.docker.enable = true;
 
-  services.postgresql = {
-    enable = false;
-    ensureDatabases = ["postgres"];
-    authentication = pkgs.lib.mkOverride 10 ''
-      #type database  DBuser  auth-method
-      local all       all     trust
-      host  all       all     127.0.0.1/32            trust
-      host  all       all     ::1/128                 trust
-    '';
-  };
-
-  # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.

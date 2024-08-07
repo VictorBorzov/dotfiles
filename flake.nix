@@ -37,7 +37,27 @@
           stylix.nixosModules.stylix
         ];
       };
+
+    live = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./nix
+          ./nixos/live.nix
+          (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.vb = import ./home/live.nix;
+            home-manager.extraSpecialArgs = {inherit inputs;};
+          }
+
+          stylix.nixosModules.stylix
+        ];
     };
+  };
 
     defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
 
