@@ -168,7 +168,7 @@
         "temperature" = {
           "critical-threshold" = 95;
           "tooltip" = false;
-          "format" = " {temperatureC}°C";
+          "format" = "☕ {temperatureC}°C";
         };
 
         "custom/remmina" = {
