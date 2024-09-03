@@ -100,6 +100,11 @@
       workspace_swipe_cancel_ratio = 0.85;
     };
 
+    # render = {
+    #   # turn on if there are glitches
+    #   direct_scanout = false;
+    # };
+
     misc = {
       disable_autoreload = true;
       force_default_wallpaper = 0;
@@ -110,7 +115,7 @@
       vrr = 1;
 
       # we do, in fact, want direct scanout
-      no_direct_scanout = false;
+      # no_direct_scanout = false;
 
       disable_hyprland_logo = true;
       disable_splash_rendering = true;

@@ -1,6 +1,6 @@
 { lib, config, pkgs, ... }: {
 
-  imports = [ ./kitty.nix ./alacritty.nix ];
+  imports = [ ./kitty.nix ./foot.nix ];
 
   home.packages = with pkgs; [
     xournal # to sign pdfs
@@ -14,7 +14,7 @@
     telegram-desktop
     syncthing
     libreoffice
-    mypaint
+    # mypaint
     brave # for app mode
     vlc
     docker-compose

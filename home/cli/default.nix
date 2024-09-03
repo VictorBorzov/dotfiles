@@ -13,10 +13,17 @@ in {
   imports = [./git ./tealdeer];
 
   home.packages = with pkgs; [
+    rustc
+    cargo
+    clippy
+    rustfmt
+    ltrace
+    devs.vmrss
     devs.helix
     devs.zellij
     devs.lf
     devs.emacs
+    gdb
     ledger
     wl-ocr
     nix-output-monitor
@@ -24,11 +31,11 @@ in {
     p7zip
     eza # instead of ls
     unzip
-    delta
+    # delta
     dust # instead of du
     sd # instead of sed
     procs # instead of ps
-    bandwhich # network
+    # bandwhich # network
     hyperfine # benchmark
     wthrr # weather like wthrr belgrade -f d
     wget
@@ -46,8 +53,6 @@ in {
     restic # backups
     nil
     alejandra
-    haskellPackages.cabal-install
-    ghc
     bat
     bc
     gping

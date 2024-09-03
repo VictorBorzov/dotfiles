@@ -84,6 +84,14 @@
     extraGroups = ["audio" "networkmanager" "wheel" "docker"];
   };
 
+  documentation = {
+    enable = true;
+    dev.enable = true;
+    man.enable = true;
+  };
+
+  environment.systemPackages = [ pkgs.man-pages pkgs.man-pages-posix ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

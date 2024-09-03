@@ -80,7 +80,7 @@ in {
 
     bind =
       [
-        "$mod,Return,exec,alacritty"
+        "$mod,Return,exec,foot"
         "$mod,t,exec,thunar"
         "$mod,Q,killactive,"
         "$mod SHIFT, R, exec, ${screenshotarea}"
@@ -91,7 +91,7 @@ in {
         "$mod,r,exec,bash ~/.config/rofi/application-launcher-wayland.sh"
         "$mod,p,exec, bash ~/.config/rofi/powermenu-wayland.sh"
         "$mod,f,fullscreen"
-        "$mod SHIFT,f,fakefullscreen"
+        # "$mod SHIFT,f,fullscreenstate"
         "$mod SHIFT,l,exec,hyprlock"
         "$mod SHIFT,c,exec,hyprpicker -a"
 
