@@ -15,7 +15,6 @@
     # ./syncthing.nix
     ./hyprland.nix
     ./greetd.nix
-    ./vpn.ap.nix
     ./vpn.mullvad.nix
     ./stylix.nix
     # ./k8s.nix
