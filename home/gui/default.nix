@@ -3,22 +3,18 @@
   imports = [ ./kitty.nix ./foot.nix ];
 
   home.packages = with pkgs; [
-    xournal # to sign pdfs
-    mullvad-browser
+    # xournal # to sign pdfs
+    # libreoffice
     # yubikey-manager # For managing YubiKey settings
     # yubikey-personalization-gui #
     # yubioath-flutter
+    mullvad-browser
     librewolf
-    remmina
-    slack
     telegram-desktop
-    syncthing
-    libreoffice
-    # mypaint
     brave # for app mode
     vlc
-    docker-compose
-    jetbrains.rider
+    # syncthing
+    # mypaint
   ];
 
   home.file.".config/swappy/config".text = ''

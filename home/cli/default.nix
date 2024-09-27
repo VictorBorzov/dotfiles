@@ -13,14 +13,10 @@ in {
   imports = [./git ./tealdeer];
 
   home.packages = with pkgs; [
-    rustc
-    cargo
-    clippy
-    rustfmt
     ltrace
     devs.vmrss
     devs.helix
-    devs.zellij
+    # devs.zellij
     devs.lf
     devs.emacs
     gdb
@@ -65,8 +61,6 @@ in {
     zoxide
     coreutils
     gnuplot
-    (with dotnetCorePackages; combinePackages [sdk_7_0 sdk_8_0])
-    ghostscript
   ];
 
   # Enable nerdfonts
@@ -75,7 +69,7 @@ in {
   home.sessionVariables = {
     EDITOR = "hx";
     # EDITOR = "emacsclient -nw"; # terminal emacs
-    DOTNET_CLI_TELEMETRY_OPTOUT = "1";
+    # DOTNET_CLI_TELEMETRY_OPTOUT = "1";
     TLDR_AUTO_UPDATE_DISABLED = "1";
   };
 
