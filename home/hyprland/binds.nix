@@ -90,7 +90,7 @@ in {
         "$mod, F1, exec, ${ecoMode}/bin/ecoMode"
         "$mod,r,exec,bash ~/.config/rofi/application-launcher-wayland.sh"
         "$mod,p,exec, bash ~/.config/rofi/powermenu-wayland.sh"
-        "$mod,f,fullscreen"
+        "$mod,f,fullscreen,0"
         # "$mod SHIFT,f,fullscreenstate"
         "$mod SHIFT,l,exec,hyprlock"
         "$mod SHIFT,c,exec,hyprpicker -a"

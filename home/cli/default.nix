@@ -88,8 +88,6 @@ in {
     bashrcExtra = ''
       PS1='\[\033[1;33m\]λ(\u@\h)\[\033[1;36m\].λ(\w)\[\033[1;35m\]$([ -n "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ] && echo ".λ($(git rev-parse --abbrev-ref HEAD 2>/dev/null))")\[\033[0;37m\].λ \[\033[0;37m\]'
 
-      alias dp='${pkgs.dotnet-sdk_8}/bin/dotnet publish -c Release -r linux-x64 --self-contained=true -p:InvariantGlobalization=true -p:PublishTrimmed=true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=True -p:DebugType=None -p:DebugSymbols=False'
-
       alias rm='echo "Please use trash instead."; false'
       alias ls='eza --icons -F -H --group-directories-first --git -1'
       alias ll='ls -alF'
