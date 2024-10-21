@@ -80,6 +80,7 @@ in {
 
     bind =
       [
+        "$mod,z,exec,hyprctl keyword misc:cursor_zoom_factor 1.5"
         "$mod,Return,exec,foot"
         "$mod,t,exec,thunar"
         "$mod,Q,killactive,"
