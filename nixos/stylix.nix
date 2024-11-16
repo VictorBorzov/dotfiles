@@ -5,9 +5,9 @@
   ...
 }: {
   stylix = {
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/da-one-gray.yaml";
     enable = true;
-    image = ../home/gui/pictures/autumn-forest-trees-b9-2880x1800.jpg;
+    image = ../home/gui/pictures/azul-2880x1800.jpg;
 
     cursor = {
       package = pkgs.quintom-cursor-theme;
@@ -42,7 +42,7 @@
     };
   };
 
-  specialisation.light.configuration.stylix = {
-    base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/gruvbox-light-medium.yaml";
-  };
+  # specialisation.light.configuration.stylix = {
+  #   base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/gruvbox-light-medium.yaml";
+  # };
 }

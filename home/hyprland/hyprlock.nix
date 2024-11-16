@@ -8,7 +8,7 @@
   w1 =
     if false
     then "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-2880x1800.png"
-    else "${config.home.homeDirectory}/dotfiles/home/gui/pictures/autumn-forest-trees-b9-2880x1800.jpg";
+    else "${config.home.homeDirectory}/dotfiles/home/gui/pictures/azul-2880x1800.jpg";
   w2 =
     if false
     then "${config.home.homeDirectory}/dotfiles/home/gui/pictures/dark-universe-blue-1920x1080.png"
