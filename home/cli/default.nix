@@ -52,9 +52,7 @@ in {
     bat
     bc
     gping
-    (nerdfonts.override {
-      fonts = ["Iosevka" "IosevkaTerm" "JetBrainsMono"];
-    })
+    iosevka
     fira-code
     bottom # btop alternative, call btm
     cifs-utils

@@ -1,11 +1,11 @@
 #!/bin/bash
  
-lock=" Lock"
-logout="󰍃 Logout"
+lock="🔒 Lock"
+logout="➡️ Logout"
 shutdown=" Poweroff"
-reboot=" Reboot"
-sleep=" Suspend"
-hibernate="󰤁 Hibernate"
+reboot="↺ Reboot"
+sleep="💤 Suspend"
+hibernate="⏳ Hibernate"
  
 selected_option=$(echo "$lock
 $logout

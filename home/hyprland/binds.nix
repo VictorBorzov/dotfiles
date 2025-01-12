@@ -62,12 +62,12 @@ in {
 
     bindle = [
       # Volume and Brightness
-      ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 6%+"
-      ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 6%-"
+      ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"
+      ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
       ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-      ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
-      ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
+      ", XF86MonBrightnessDown, exec, brightnessctl set 1%-"
+      ", XF86MonBrightnessUp, exec, brightnessctl set 1%+"
     ];
 
     binde = [
@@ -92,7 +92,7 @@ in {
         "$mod,r,exec,bash ~/.config/rofi/application-launcher-wayland.sh"
         "$mod,p,exec, bash ~/.config/rofi/powermenu-wayland.sh"
         "$mod,f,fullscreen,0"
-        # "$mod SHIFT,f,fullscreenstate"
+        "$mod SHIFT,f,fullscreenstate,0 3"
         "$mod SHIFT,l,exec,hyprlock"
         "$mod SHIFT,c,exec,hyprpicker -a"
 

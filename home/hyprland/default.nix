@@ -66,7 +66,7 @@
     #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true " ];
     # }))
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
-    gnome.file-roller
+    file-roller
     rofi-wayland
     hyprcursor
     kitty

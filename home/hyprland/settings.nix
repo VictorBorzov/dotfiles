@@ -64,10 +64,12 @@
         blurls = "waybar";
       };
 
-      drop_shadow = true;
-      shadow_range = 30;
-      shadow_render_power = 3;
-      # "col.shadow" = "0x66000000";
+      shadow = {
+        enabled = true;
+        range = 30;
+        render_power = 3;
+        # "col.shadow" = "0x66000000";
+      };
     };
 
     animations = {

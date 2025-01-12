@@ -17,12 +17,12 @@
 
     fonts = {
       monospace = {
-        package = pkgs.nerdfonts.override {fonts = ["Iosevka"];};
-        name = "Iosevka Mono Nerd Font";
+        package = pkgs.iosevka;
+        name = "Iosevka";
       };
       sansSerif = {
-        package = pkgs.nerdfonts.override {fonts = ["Iosevka"];};
-        name = "Iosevka Nerd Font";
+        package = pkgs.iosevka;
+        name = "Iosevka";
       };
       serif = config.stylix.fonts.sansSerif;
       emoji = config.stylix.fonts.sansSerif;

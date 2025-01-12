@@ -24,8 +24,9 @@
           "custom/remmina"
           "custom/chat"
           "custom/weather"
+          "custom/emacs-org-timer"
         ];
-        modules-center = ["custom/emacs-org-timer"];
+        modules-center = [];
         modules-right = [
           "tray"
           "hyprland/language"
@@ -47,11 +48,11 @@
                            "No active task")' | sed 's/^"\(.*\)"$/\1/' | sed 's/\\//g')
 
             if [ "$task_name" = "No active task" ]; then
-              echo "No active task"
+              echo "     No active task"
             elif [ "$timer_remaining" = "No timer set" ]; then
               echo "$task_name"
             else
-              echo "''${task_name} [''${timer_remaining}]"
+              echo "     ''${task_name} [''${timer_remaining}]"
             fi
           '';
           interval = 5;
@@ -80,26 +81,27 @@
           "interval" = 2;
           "format" = "{icon} {percent}%";
           "format-icons" = [
-            "󰃞"
-            "󰃟"
-            "󰃝"
-            "󰃠"
+            "🌑"
+            "🌘"
+            "🌗"
+            "🌖"
+            "🌕"
           ];
         };
 
         "pulseaudio" = {
           "scroll-step" = 1;
           "format" = "{icon} {volume}% {format_source}";
-          "format-muted" = "󰖁 Muted {format_source}";
-          "format-source" = " {volume}%";
-          "format-source-muted" = "";
+          "format-muted" = "🔇 Muted {format_source}";
+          "format-source" = "🎤 {volume}%";
+          "format-source-muted" = "🙊";
           "format-icons" = {
             "default" = [
-              ""
-              ""
-              ""
+              "🔈"
+              "🔉"
+              "🔊"
             ];
-          };
+           };
           "on-click" = "pavucontrol";
           "tooltip" = false;
         };
@@ -112,19 +114,18 @@
           };
           "format" = "{icon} {capacity}%";
           "format-icons" = [
-            "󰁺"
-            "󰁻"
-            "󰁼"
-            "󰁽"
-            "󰁾"
-            "󰁿"
-            "󰂀"
-            "󰂁"
-            "󰂂"
-            "󰁹"
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
           ];
           "format-full" = "{icon} {capacity}%";
-          "format-charging" = "󰂄 {capacity}%";
+          "format-charging" = "⭍⭍⭍ {capacity}%";
           "tooltip" = false;
         };
 
@@ -139,7 +140,7 @@
 
         "memory" = {
           "interval" = 1;
-          "format" = "󰍛 {percentage}%";
+          "format" = "🧬 {percentage}%";
           "on-click" = "alacritty -e btm";
           "states" = {
             "warning" = 85;
@@ -149,7 +150,7 @@
         "cpu" = {
           "interval" = 1;
           "on-click" = "alacritty -e btm";
-          "format" = "󰻠 {usage}%";
+          "format" = "⚙️ {usage}%";
         };
 
         "network" = {
@@ -172,13 +173,13 @@
         };
 
         "custom/remmina" = {
-          "format" = "󰢹";
+          "format" = "📡";
           "on-click" = "sh -c 'env GDK_BACKEND=x11 GDK_SCALE=1 GDK_DPI_SCALE=1 CLUTTER_SCALE=1 XCURSOR_SIZE=6 remmina
 ' & disown";
           "tooltip" = true;
         };
         "custom/chat" = {
-          "format" = "󰭹";
+          "format" = "🗨️";
           "on-click" = "brave --app=https =//chat.openai.com";
           "tooltip" = true;
         };

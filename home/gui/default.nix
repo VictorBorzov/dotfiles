@@ -3,7 +3,7 @@
   imports = [ ./kitty.nix ./foot.nix ];
 
   home.packages = with pkgs; [
-    # xournal # to sign pdfs
+    xournalpp # to sign pdfs
     # libreoffice
     # yubikey-manager # For managing YubiKey settings
     # yubikey-personalization-gui #
@@ -13,6 +13,9 @@
     telegram-desktop
     brave # for app mode
     vlc
+    vscode
+    obsidian
+    code-cursor
     # syncthing
     # mypaint
   ];

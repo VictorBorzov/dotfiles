@@ -6,6 +6,7 @@
     targets = {
       zellij.enable = false;
       helix.enable = false;
+      hyprlock.enable = false;
     };
   };
 }
