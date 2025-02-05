@@ -69,6 +69,8 @@
     file-roller
     rofi-wayland
     hyprcursor
+    hyprpolkitagent
+    hyprsunset
     kitty
     dunst
     libnotify

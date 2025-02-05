@@ -19,6 +19,7 @@ in {
     # devs.zellij
     devs.lf
     devs.emacs
+    glibc.static
     gdb
     ledger
     wl-ocr
