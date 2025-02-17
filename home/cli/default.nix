@@ -13,9 +13,12 @@ in {
   imports = [./git ./tealdeer];
 
   home.packages = with pkgs; [
+    ed
+    vim
     ltrace
     devs.vmrss
     devs.helix
+    pinentry-tty
     # devs.zellij
     devs.lf
     devs.emacs
@@ -77,6 +80,18 @@ in {
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  services.gpg-agent = {
+    enable = true;
+    enableBashIntegration = true;
+    extraConfig = ''
+                allow-emacs-pinentry
+                '';
+    pinentryPackage = pkgs.pinentry-tty;
+    verbose = true;
+  };
+
+  programs.gpg.enable = true;
 
   programs.bash = {
     enable = true;

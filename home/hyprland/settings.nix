@@ -1,7 +1,7 @@
 {config, ...}: {
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "eDP-1,2880x1800@90,0x0,2"
+      "eDP-1,2880x1800@90.00,0x0,2"
       "HDMI-A-1,1920x1080,1440x0,1.2"
     ];
 
@@ -125,6 +125,10 @@
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
       mouse_move_enables_dpms = false;
+    };
+
+    binds = {
+      movefocus_cycles_fullscreen = false;
     };
 
     xwayland = {

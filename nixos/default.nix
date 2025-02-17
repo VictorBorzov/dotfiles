@@ -89,7 +89,7 @@
     man.enable = true;
   };
 
-  environment.systemPackages = [ pkgs.man-pages pkgs.man-pages-posix ];
+  environment.systemPackages = [ pkgs.deadpixi-sam-unstable pkgs.quickemu pkgs.man-pages pkgs.man-pages-posix ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
