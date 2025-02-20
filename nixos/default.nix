@@ -87,7 +87,9 @@
     enable = true;
     dev.enable = true;
     man.enable = true;
+    man.generateCaches = true;
   };
+
 
   environment.systemPackages = [ pkgs.deadpixi-sam-unstable pkgs.quickemu pkgs.man-pages pkgs.man-pages-posix ];
 
