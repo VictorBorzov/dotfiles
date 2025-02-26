@@ -1,8 +1,23 @@
 { pkgs, inputs, ... }:
 
 {
-  security.pam.services.hyprlock = {};
+  security.pam.services.swaylock = {};
 
+  programs.sway = {
+      package = pkgs.sway;
+      enable = true;
+      xwayland.enable = true;
+      wrapperFeatures.gtk = true;
+  };
+
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+  };
+  
   hardware = {
     opengl = {
       enable = true;
@@ -20,32 +35,15 @@
     nvidia.modesetting.enable = true;
   };
 
-  # qt = {
-  #   enable = true;
-  #   platformTheme = "gtk2";
-  #   style = "gtk2";
-  # };
 
-  # hyprland
-  programs.hyprland = {
-      package = pkgs.hyprland;
-      enable = true;
-      xwayland = {
-          enable = true;
-      };
-  };
 
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-    ];
-  };
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
 
+  programs.light.enable = true;
+  programs.nm-applet.enable = true;
   services.blueman.enable = true;
+
 
   environment.sessionVariables = {
     # Hint electron apps to use wayland
@@ -54,16 +52,4 @@
 
   # from sway nixos https://nixos.wiki/wiki/Sway
   security.polkit.enable = true;
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
-    config = {
-      common.default = ["gtk"];
-      hyprland.default = ["gtk" "hyprland"];
-    };
-
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
 }

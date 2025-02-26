@@ -75,11 +75,11 @@
         "nvf": "nvf"
       },
       "locked": {
-        "lastModified": 1739730255,
-        "narHash": "sha256-LqbRpgl68wIWVISwbkwmAB7IYqyWw8NA04h7C/3KELE=",
+        "lastModified": 1740519781,
+        "narHash": "sha256-kfcuY+dKnzBTkAiqiWOfiW4usaUeazweHTTfk/Ojo9k=",
         "owner": "victorborzov",
         "repo": "dev",
-        "rev": "728514afb027bdce0e663505bdbcf66773f32671",
+        "rev": "37868873fa22bf795253d625699b3e9f4d8d0fd0",
         "type": "gitlab"
       },
       "original": {
@@ -333,26 +333,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "hyprland-contrib": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1739465511,
-        "narHash": "sha256-kXdVW89VJoG+W6N1u0m8hgK2VIWUAweQVzehRZwdNSo=",
-        "owner": "hyprwm",
-        "repo": "contrib",
-        "rev": "59178a657b7e09ddf82b9e79681f482b6c2f378b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hyprwm",
-        "repo": "contrib",
         "type": "github"
       }
     },
@@ -3375,7 +3355,6 @@
       "inputs": {
         "dev": "dev",
         "home-manager": "home-manager",
-        "hyprland-contrib": "hyprland-contrib",
         "nixpkgs": "nixpkgs_4",
         "stylix": "stylix"
       }

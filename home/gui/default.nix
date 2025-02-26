@@ -1,6 +1,6 @@
 { lib, config, pkgs, ... }: {
 
-  imports = [ ./kitty.nix ./foot.nix ];
+  imports = [ ./foot.nix ];
 
   home.packages = with pkgs; [
     xournalpp # to sign pdfs

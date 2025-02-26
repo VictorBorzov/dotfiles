@@ -12,16 +12,20 @@ in {
 
   imports = [./git ./tealdeer];
 
+  services.emacs = {
+    enable = true;
+    package = devs.emacs;
+    client.arguments = [ "-c" ];
+  };
   home.packages = with pkgs; [
+    mailutils
     ed
     vim
     ltrace
     devs.vmrss
-    devs.helix
+    devs.emacs
     pinentry-tty
     # devs.zellij
-    devs.lf
-    devs.emacs
     glibc.static
     gdb
     ledger
@@ -69,7 +73,7 @@ in {
   fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
-    EDITOR = "hx";
+    # EDITOR = "hx";
     # EDITOR = "emacsclient -nw"; # terminal emacs
     # DOTNET_CLI_TELEMETRY_OPTOUT = "1";
     TLDR_AUTO_UPDATE_DISABLED = "1";
@@ -101,13 +105,17 @@ in {
     # '';
     bashrcExtra = ''
       alias rm='echo "Please use trash instead."; false'
-      alias ls='eza --icons -F -H --group-directories-first --git -1'
-      alias ll='ls -alF'
-      alias lt='ls --tree'
-      alias cat=bat
-      alias cd=z
-      alias zz='z -'
+      # alias ls='eza --icons -F -H --group-directories-first --git -1'
+      # alias ll='ls -alF'
+      # alias lt='ls --tree'
+      # alias cat=bat
+      # alias cd=z
+      # alias zz='z -'
       eval "$(zoxide init bash)"
+    '';
+
+    profileExtra = ''
+      [ "$(tty)" = "/dev/tty1" ] && exec sway
     '';
   };
 

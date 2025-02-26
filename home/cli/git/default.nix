@@ -34,14 +34,6 @@
         };
       };
     };
-    includes = [
-      {
-        condition = "hasconfig:remote.*.url:ssh://git@bitbucket.ap-team.ru*/**";
-        contents = {
-          user.email = "borzov@ap-team.ru";
-        };
-      }
-    ];
     extraConfig = {
       diff.colorMoved = "default";
 

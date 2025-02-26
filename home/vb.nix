@@ -8,7 +8,7 @@
   imports = [
     ./cli
     ./gui
-    ./hyprland
+    ./sway
     ./stylix.nix
   ];
 }

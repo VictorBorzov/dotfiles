@@ -4,9 +4,8 @@
   ];
   stylix = {
     targets = {
-      zellij.enable = false;
+      emacs.enable = false;
       helix.enable = false;
-      hyprlock.enable = false;
     };
   };
 }
