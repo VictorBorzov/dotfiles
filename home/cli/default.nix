@@ -18,9 +18,13 @@ in {
     client.arguments = [ "-c" ];
   };
   home.packages = with pkgs; [
-    mailutils
+    file # educated guess about file type
+    wirelesstools # iwconfig <network>
+    dig # dns lookup utils
+    mailutils # ?
     ed
-    vim
+    pstree
+    vim-full
     ltrace
     devs.vmrss
     devs.emacs

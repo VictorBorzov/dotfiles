@@ -56,7 +56,9 @@
     man.generateCaches = true;
   };
 
-  environment.systemPackages = [ pkgs.man-pages pkgs.man-pages-posix ];
+  environment.systemPackages = with pkgs; [ man-pages man-pages-posix stdman ];
+
+#  virtualisation.docker.enable = true;
 
   services.pcscd.enable = true;
 

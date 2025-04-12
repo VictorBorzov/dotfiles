@@ -6,6 +6,13 @@
   lib,
   ...
 }: let
+  screenshotarea = "grim -g \"$(slurp)\" - | wl-copy"; # requires grim and slurp
+  swappyClipboard = "wl-paste | swappy -f -";
+  send-ed-write = ''
+                ${pkgs.wtype} "w /tmp/ed-preview.txt"
+                ${pkgs.wtype} $'\n'
+                '';
+
   i3statusConf = pkgs.writeText "i3statusConf" ''
 general {
         colors = true
@@ -111,7 +118,10 @@ in {
         in lib.mkOptionDefault {
           "${modifier}+Tab" = "workspace back_and_forth";
           "${modifier}+Shift+P" = "exec wlogout";
+          "${modifier}+Shift+R" = "exec ${screenshotarea}";
+          "${modifier}+Shift+T" = "exec ${swappyClipboard}";
           "${modifier}+Shift+O" = "exec ${pkgs.hyprpicker}/bin/hyprpicker -a";
+          "${modifier}+Shift+W" = "exec ${send-ed-write}";
           "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+";
           "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-";
           "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
@@ -164,8 +174,8 @@ in {
       { event = "lock"; command = "lock"; }
     ];
     timeouts = [
-      { timeout = 60; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
-      { timeout = 90; command = "${pkgs.systemd}/bin/systemctl suspend"; }
+      { timeout = 120; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
+      { timeout = 180; command = "${pkgs.systemd}/bin/systemctl suspend"; }
     ];
   };
 
@@ -182,15 +192,16 @@ in {
     wireplumber
     brightnessctl
     alsa-utils
-    grim
-    slurp
     vvave
     wl-clip-persist
     wl-clipboard
     wl-screenrec
     wlr-randr
     # self.packages.${pkgs.system}.wl-ocr
+    # self.packages.${pkgs.system}.slurp
     swappy
+    grim
+    slurp
     breeze-gtk
   ];
 

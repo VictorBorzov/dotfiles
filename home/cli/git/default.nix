@@ -47,7 +47,7 @@
       };
       
       core = {
-        editor = "hx";
+        editor = "ed";
       };
     };
   };
