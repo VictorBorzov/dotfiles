@@ -121,7 +121,7 @@ in {
           "${modifier}+Shift+R" = "exec ${screenshotarea}";
           "${modifier}+Shift+T" = "exec ${swappyClipboard}";
           "${modifier}+Shift+O" = "exec ${pkgs.hyprpicker}/bin/hyprpicker -a";
-          "${modifier}+Shift+W" = "exec ${send-ed-write}";
+#          "${modifier}+Shift+W" = "exec ${send-ed-write}";
           "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+";
           "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-";
           "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
