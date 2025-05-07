@@ -46,7 +46,7 @@
   users.users.vb = {
     isNormalUser = true;
     description = "vb";
-    extraGroups = ["audio" "networkmanager" "wheel" "video"];
+    extraGroups = ["audio" "networkmanager" "wheel" "video" "wireshark"];
   };
 
   documentation = {
@@ -56,8 +56,12 @@
     man.generateCaches = true;
   };
 
-  environment.systemPackages = with pkgs; [ man-pages man-pages-posix stdman ];
+  environment.systemPackages = with pkgs; [ man-pages man-pages-posix stdman wireshark ];
 
+  programs.wireshark = {
+    enable = true;
+    dumpcap.enable = true;
+  };
 #  virtualisation.docker.enable = true;
 
   services.pcscd.enable = true;
