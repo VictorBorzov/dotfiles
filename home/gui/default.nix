@@ -13,9 +13,9 @@
     telegram-desktop
     brave # for app mode
     vlc
-    vscode
-    obsidian
-    code-cursor
+#    vscode
+#    obsidian
+#    code-cursor
     # syncthing
     # mypaint
   ];

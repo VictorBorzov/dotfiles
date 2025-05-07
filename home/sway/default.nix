@@ -202,7 +202,7 @@ in {
     swappy
     grim
     slurp
-    breeze-gtk
+    kdePackages.breeze-gtk
   ];
 
   # make stuff work on wayland
