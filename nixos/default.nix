@@ -16,6 +16,22 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 42;
 
+  # laptop camera fix ->
+  boot.kernelParams = [
+    "usbcore.usb3=0"
+    "usbcore.autosuspend=-1"
+    "usbcore.quirks=13d3:5458:k"
+  ];
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="13d3", ATTR{idProduct}=="5458", TEST=="power/control", ATTR{power/control}="on"
+  '';
+  services.logind.extraConfig = ''
+    HandleLidSwitch=ignore
+    HandleLidSwitchDocked=ignore
+    HandleLidSwitchExternalPower=ignore
+  '';
+  # <- laptop camera fix
+
   # Setup keyfile
   boot.initrd.secrets = {"/crypto_keyfile.bin" = null;};
 
