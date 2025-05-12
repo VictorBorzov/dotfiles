@@ -90,13 +90,20 @@ in {
       focus = {
         followMouse = "no";
       };
+
       output = {
         eDP-1 = {
-          pos = "0 0";
+          pos = "0 1296";
           res = "2880x1800@90.00Hz";
           scale = "2";
         };
+        HDMI-A-1 = {
+          pos = "0 0";
+          res = "1920x1080@60.00Hz";
+          scale = "1.2";
+        };
       };
+
       workspaceAutoBackAndForth = true;
       modifier = "Mod4";
       input = {
@@ -174,8 +181,8 @@ in {
       { event = "lock"; command = "lock"; }
     ];
     timeouts = [
-      { timeout = 120; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
-      { timeout = 180; command = "${pkgs.systemd}/bin/systemctl suspend"; }
+      { timeout = 1200; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
+      { timeout = 1800; command = "${pkgs.systemd}/bin/systemctl suspend"; }
     ];
   };
 
