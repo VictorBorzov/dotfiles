@@ -20,6 +20,8 @@ in {
   home.packages = with pkgs; [
     file # educated guess about file type
     wirelesstools # iwconfig <network>
+    valgrind
+    kdePackages.kcachegrind
     dig # dns lookup utils
     mailutils # ?
     ed

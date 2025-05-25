@@ -93,12 +93,12 @@ in {
 
       output = {
         eDP-1 = {
-          pos = "0 1296";
+          pos = "0 0";
           res = "2880x1800@90.00Hz";
           scale = "2";
         };
         HDMI-A-1 = {
-          pos = "0 0";
+          pos = "0 900";
           res = "1920x1080@60.00Hz";
           scale = "1.2";
         };
