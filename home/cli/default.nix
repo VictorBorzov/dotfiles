@@ -30,10 +30,10 @@ in {
     ltrace
     devs.vmrss
     devs.emacs
+    devs.helix
     pinentry-tty
     # devs.zellij
     glibc.static
-    gdb
     ledger
     wl-ocr
     nix-output-monitor
@@ -50,7 +50,11 @@ in {
     wthrr # weather like wthrr belgrade -f d
     wget
     cmake
-    gcc
+    clang-tools
+    clang
+    lldb
+    # gcc
+    gdb
     gnumake
     libtool
     ripgrep

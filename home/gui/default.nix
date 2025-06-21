@@ -8,7 +8,7 @@
     # yubikey-manager # For managing YubiKey settings
     # yubikey-personalization-gui #
     # yubioath-flutter
-    # jetbrains.clion
+    jetbrains.clion
     zoom-us
     mullvad-browser
     librewolf

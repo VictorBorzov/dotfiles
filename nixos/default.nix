@@ -72,7 +72,7 @@
     man.generateCaches = true;
   };
 
-  environment.systemPackages = with pkgs; [ man-pages man-pages-posix stdman wireshark ];
+  environment.systemPackages = with pkgs; [ man-pages man-pages-posix stdman llvmPackages.lldb-manpages wireshark ];
 
   programs.wireshark = {
     enable = true;
