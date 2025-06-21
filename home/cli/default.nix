@@ -6,6 +6,7 @@
   ...
 }: let
   wl-ocr = pkgs.callPackage ../../pkgs/wl-ocr {};
+  sway-scale-workspace = pkgs.callPackage ../../pkgs/sway-scale-workspace {};
   devs = inputs.dev.packages."x86_64-linux";
 in {
   nixpkgs.config.allowUnfree = true;
@@ -36,6 +37,7 @@ in {
     glibc.static
     ledger
     wl-ocr
+    sway-scale-workspace
     nix-output-monitor
     nvd
     p7zip
