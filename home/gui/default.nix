@@ -1,6 +1,6 @@
-{ lib, config, pkgs, ... }: {
+{ inputs, lib, config, pkgs, ... }: {
 
-  imports = [ ./foot.nix ];
+  imports = [ ./foot.nix ./clion.nix ];
 
   home.packages = with pkgs; [
     xournalpp # to sign pdfs
@@ -8,7 +8,6 @@
     # yubikey-manager # For managing YubiKey settings
     # yubikey-personalization-gui #
     # yubioath-flutter
-    jetbrains.clion
     zoom-us
     mullvad-browser
     librewolf
@@ -17,7 +16,9 @@
     vlc
 #    vscode
 #    obsidian
-#    code-cursor
+    code-cursor
+    steam
+    ticktick
     # syncthing
     # mypaint
   ];
@@ -40,24 +41,24 @@
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "application/pdf" = [ "mullvad-browser.desktop" ];
-        "application/x-extension-htm" = [ "mullvad-browser.desktop" ];
-        "application/x-extension-html" = [ "mullvad-browser.desktop" ];
-        "application/x-extension-shtml" = [ "mullvad-browser.desktop" ];
-        "application/x-extension-xht" = [ "mullvad-browser.desktop" ];
-        "application/x-extension-xhtml" = [ "mullvad-browser.desktop" ];
-        "application/x-extension-xhtml+xml" = [ "mullvad-browser.desktop" ];
-        "text/html" = [ "mullvad-browser.desktop" ];
-        "text/markdown" = [ "mullvad-browser.desktop;" ];
+        "application/pdf" = [ "librewolf.desktop" ];
+        "application/x-extension-htm" = [ "librewolf.desktop" ];
+        "application/x-extension-html" = [ "librewolf.desktop" ];
+        "application/x-extension-shtml" = [ "librewolf.desktop" ];
+        "application/x-extension-xht" = [ "librewolf.desktop" ];
+        "application/x-extension-xhtml" = [ "librewolf.desktop" ];
+        "application/x-extension-xhtml+xml" = [ "librewolf.desktop" ];
+        "text/html" = [ "librewolf.desktop" ];
+        "text/markdown" = [ "librewolf.desktop;" ];
         "text/plain" = [ "emacs.desktop" ];
         "video/*" = [ "vlc.desktop" ];
         "video/mp4" = [ "vlc.desktop" ];
         "video/x-matroska" = [ "vlc.desktop" ];
         "audio/*" = [ "vlc.desktop" ];
-        "x-scheme-handler/chrome" = [ "mullvad-browser.desktop" ];
-        "x-scheme-handler/ftp" = [ "mullvad-browser.desktop" ];
-        "x-scheme-handler/http" = [ "mullvad-browser.desktop" ];
-        "x-scheme-handler/https" = [ "mullvad-browser.desktop" ];
+        "x-scheme-handler/chrome" = [ "librewolf.desktop" ];
+        "x-scheme-handler/ftp" = [ "librewolf.desktop" ];
+        "x-scheme-handler/http" = [ "librewolf.desktop" ];
+        "x-scheme-handler/https" = [ "librewolf.desktop" ];
         "x-scheme-handler/slack" = [ "slack.desktop" ];
         "x-scheme-handler/rdp" = [ "org.remmina.Remmina.desktop" ];
         "x-scheme-handler/spice" = [ "org.remmina.Remmina.desktop" ];

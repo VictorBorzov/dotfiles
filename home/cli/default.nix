@@ -11,8 +11,8 @@
 in {
   nixpkgs.config.allowUnfree = true;
 
-  imports = [./git ./tealdeer];
 
+  imports = [./git ./tealdeer ./tmux];
   services.emacs = {
     enable = true;
     package = devs.emacs;
@@ -30,8 +30,9 @@ in {
     vim-full
     ltrace
     devs.vmrss
+    devs.vim
     devs.emacs
-    devs.helix
+    devs.lf
     pinentry-tty
     # devs.zellij
     glibc.static
@@ -52,6 +53,8 @@ in {
     wthrr # weather like wthrr belgrade -f d
     wget
     cmake
+    meson
+    ninja
     clang-tools
     clang
     lldb
@@ -79,13 +82,17 @@ in {
     zoxide
     coreutils
     gnuplot
+    nerd-fonts.fira-code
+    nerd-fonts.iosevka
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.droid-sans-mono
   ];
 
   # Enable nerdfonts
   fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
-    # EDITOR = "hx";
+    EDITOR = "nvim";
     # EDITOR = "emacsclient -nw"; # terminal emacs
     # DOTNET_CLI_TELEMETRY_OPTOUT = "1";
     TLDR_AUTO_UPDATE_DISABLED = "1";
@@ -116,6 +123,7 @@ in {
     #   set -o vi
     # '';
     bashrcExtra = ''
+      alias steam-nvidia='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia steam'
       alias rm='echo "Please use trash instead."; false'
       # alias ls='eza --icons -F -H --group-directories-first --git -1'
       # alias ll='ls -alF'
@@ -124,10 +132,6 @@ in {
       # alias cd=z
       # alias zz='z -'
       eval "$(zoxide init bash)"
-    '';
-
-    profileExtra = ''
-      [ "$(tty)" = "/dev/tty1" ] && exec sway
     '';
   };
 

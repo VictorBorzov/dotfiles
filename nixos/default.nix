@@ -7,9 +7,11 @@
 }: {
   imports = [
     ./vpn.mullvad.nix
-    ./sway.nix
     ./stylix.nix
+    ./greetd.nix
+    ./hyprland.nix
   ];
+
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -50,6 +52,31 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   hardware.pulseaudio.enable = false;
+  hardware.graphics.enable = true;
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia = {
+    modesetting.enable = true;       # Required for KMS, Wayland, Xorg on NVIDIA
+    open = false;                    # Use closed-source driver for CUDA compatibility, recommended for RTX 30 series :contentReference[oaicite:2]{index=2}
+    nvidiaSettings = true;          # Enables `nvidia-settings` utility :contentReference[oaicite:3]{index=3}
+    package = config.boot.kernelPackages.nvidiaPackages.stable;  # Ensures proper kernel module version :contentReference[oaicite:4]{index=4}
+
+    prime = {
+      offload.enable = true;
+      intelBusId = "PCI:4:0:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
+
+    # Optional power‑management tweaks
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+  };
+
+  # power saving
+  services.power-profiles-daemon.enable = true;
+
+  hardware.opengl.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -67,9 +94,9 @@
 
   documentation = {
     enable = true;
-    dev.enable = true;
-    man.enable = true;
-    man.generateCaches = true;
+    # dev.enable = true;
+    # man.enable = true;
+    # man.generateCaches = true;
   };
 
   environment.systemPackages = with pkgs; [ man-pages man-pages-posix stdman llvmPackages.lldb-manpages wireshark ];
