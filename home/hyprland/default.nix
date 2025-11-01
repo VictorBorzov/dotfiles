@@ -13,7 +13,6 @@
     ./hyprpaper.nix
     ./hypridle.nix
     ./waybar.nix
-    ./gestures.nix
   ];
 
   wayland.windowManager.hyprland = {
@@ -67,7 +66,7 @@
     # }))
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     file-roller
-    rofi-wayland
+    rofi
     hyprcursor
     hyprpolkitagent
     hyprsunset
@@ -75,8 +74,6 @@
     dunst
     libnotify
     networkmanagerapplet
-    qt5.qtwayland
-    qt6.qtwayland
     pavucontrol
     pipewire
     wireplumber
@@ -85,7 +82,6 @@
     alsa-utils
     grim
     slurp
-    vvave
     wl-clip-persist
     wl-clipboard
     wl-screenrec
@@ -93,10 +89,9 @@
     # self.packages.${pkgs.system}.wl-ocr
     swappy
     kdePackages.breeze-gtk
+    kdePackages.qtwayland
     kitty-themes
 
-    libinput
-    libinput-gestures
     wmctrl
     xdotool
   ];

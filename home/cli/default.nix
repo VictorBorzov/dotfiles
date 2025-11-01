@@ -13,7 +13,7 @@ in {
   nixpkgs.config.allowUnfree = true;
 
 
-  imports = [./git ./tealdeer ./tmux];
+  imports = [./git ./delta ./tealdeer ./tmux];
   services.emacs = {
     enable = true;
     package = devs.emacs;
@@ -118,7 +118,7 @@ in {
     extraConfig = ''
                 allow-emacs-pinentry
                 '';
-    pinentryPackage = pkgs.pinentry-tty;
+    pinentry.package = pkgs.pinentry-tty;
     verbose = true;
   };
 

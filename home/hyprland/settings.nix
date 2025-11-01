@@ -30,7 +30,6 @@
       "nm-applet"
       "hyprctl setcursor Quintom_Snow 22"
       "hyprlock"
-      "libinput-gestures &"
     ];
 
     # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
@@ -106,7 +105,16 @@
     };
 
     gestures = {
-      workspace_swipe = true;
+      gesture = [
+        "4, up, mod: SUPER, scale: 1.5, fullscreen"
+        "3, up, dispatcher, exec 'pkill -USR1 waybar'"
+		    "4, left, dispatcher, splitratio -0.1"
+		    "4, right, dispatcher, splitratio 0.1"
+        "3, horizontal, workspace"
+        "3, down, dispatcher, special"
+        "4, pinchin, mod: ALT, close"
+      ];
+      # workspace_swipe = true;
       workspace_swipe_forever = true;
       workspace_swipe_invert = true;
       workspace_swipe_min_speed_to_force = 10;
