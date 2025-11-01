@@ -5,10 +5,21 @@
   ...
 }: {
   stylix = {
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal-immortal.yaml";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/irblack.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/pop.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/bright.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/isotope.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/da-one-black.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark-dark.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/pico.yaml";
+
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal-gorgoroth.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
     enable = true;
-    image = ../home/gui/pictures/autumn-forest-trees-b9-2880x1800.jpg;
+    polarity = "dark";
+    image = ../home/gui/pictures/black.png;
+    # image = ../home/gui/pictures/dark-universe-2880x1800.jpg;
+    # image = ../home/gui/pictures/autumn-forest-trees-b9-2880x1800.jpg;
     # image = ../home/gui/pictures/azul-2880x1800.jpg;
 
     cursor = {

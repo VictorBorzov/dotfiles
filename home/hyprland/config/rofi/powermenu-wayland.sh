@@ -2,7 +2,7 @@
  
 lock="🔒 Lock"
 logout="➡️ Logout"
-shutdown=" Poweroff"
+shutdown="  Poweroff"
 reboot="↺ Reboot"
 sleep="💤 Suspend"
 hibernate="⏳ Hibernate"

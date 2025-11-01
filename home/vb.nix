@@ -7,8 +7,8 @@
 
   imports = [
     ./cli
-    ./gui
-    ./stylix.nix
-    ./hyprland
+		./gui
+		./stylix.nix
+		./hyprland
   ];
 }

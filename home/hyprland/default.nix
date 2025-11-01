@@ -13,12 +13,12 @@
     ./hyprpaper.nix
     ./hypridle.nix
     ./waybar.nix
+    ./gestures.nix
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
-    plugins = [ ];
     systemd = {
       variables = ["--all"];
       extraCommands = [
@@ -94,6 +94,11 @@
     swappy
     kdePackages.breeze-gtk
     kitty-themes
+
+    libinput
+    libinput-gestures
+    wmctrl
+    xdotool
   ];
 
   # make stuff work on wayland

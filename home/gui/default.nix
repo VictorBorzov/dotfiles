@@ -1,9 +1,13 @@
+
 { inputs, lib, config, pkgs, ... }: {
 
   imports = [ ./foot.nix ./clion.nix ];
 
   home.packages = with pkgs; [
+    libreoffice
+    feh # image viewer
     xournalpp # to sign pdfs
+    obs-studio
     # libreoffice
     # yubikey-manager # For managing YubiKey settings
     # yubikey-personalization-gui #
@@ -15,9 +19,6 @@
     brave # for app mode
     vlc
 #    vscode
-#    obsidian
-    code-cursor
-    steam
     ticktick
     # syncthing
     # mypaint

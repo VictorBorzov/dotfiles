@@ -18,11 +18,12 @@
         output = ["eDP-1" "HDMI-A-1"];
 
         modules-left = [
+          "custom/os_button"
           "hyprland/workspaces"
           "temperature"
           "idle_inhibitor"
           "custom/remmina"
-          "custom/chat"
+          "custom/ticktick"
           "custom/weather"
           "custom/emacs-org-timer"
         ];
@@ -37,6 +38,14 @@
           "battery"
           "clock"
         ];
+
+        "custom/os_button" = {
+          format = "󱄅";
+          on-click = "sh -c '(sleep 0.2s; sh ~/.config/rofi/application-launcher-wayland.sh)' & disown";
+          tooltip = false;
+
+        };
+
 
         "custom/emacs-org-timer" = {
           exec = pkgs.writeShellScript "get-org-clock-timer" ''
@@ -58,13 +67,6 @@
           interval = 5;
           format = "{}";
           tooltip = "Current Org Clock Task";
-        };
-
-        "hyprland/workspaces" = {
-          format = "{id}";
-          on-click = "activate";
-          on-scroll-up = "hyprctl dispatch workspace e+1";
-          on-scroll-down = "hyprctl dispatch workspace e-1";
         };
 
         "idle_inhibitor" = {
@@ -132,7 +134,8 @@
         "clock" = {
           "interval" = 5;
           # "format" = "{ =%I =%M %p  %A %b %d}";
-          "format" = "{0:%H:%M}";
+          # "format" = "{0:%H:%M}";
+          "format" = "   {:%R\n %d.%m.%Y}";
           "tooltip" = true;
           # "tooltip-format" = "{ :%A; %d %B %Y}\n<tt>{calendar}</tt>";
           "tooltip-format" = "<big>{0:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
@@ -227,9 +230,16 @@ exec = pkgs.writeShellScript "cpu-json" ''
 ' & disown";
           "tooltip" = true;
         };
+
+        "custom/ticktick" = {
+          "format" = "🗓️";
+          "on-click" = "sh -c 'env GDK_DPI_SCALE=2 ticktick' & disown";
+          "tooltip" = false;
+        };
+
         "custom/chat" = {
           "format" = "🗨️";
-          "on-click" = "brave --app=https =//chat.openai.com";
+          "on-click" = "librewolf --new-window --kiosk https://chat.openai.com";
           "tooltip" = true;
         };
         "custom/weather" = {
@@ -243,7 +253,7 @@ exec = pkgs.writeShellScript "cpu-json" ''
           "tooltip" = false;
         };
         "tray" = {
-          "icon-size" = 16;
+          "icon-size" = 12;
           "spacing" = 5;
         };
         "hyprland/language" = {
@@ -253,6 +263,11 @@ exec = pkgs.writeShellScript "cpu-json" ''
       };
     };
     style = ''
+			* {
+			    font-family: "Iosevka";
+			    font-size: 8pt;
+			}
+
       @keyframes blink_red {
         to {
           background-color: rgb(242, 143, 173);
@@ -263,13 +278,33 @@ exec = pkgs.writeShellScript "cpu-json" ''
       .warning,
       .critical,
       .urgent {
-        animation-name: blink_red;
-        animation-duration: 1s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
+          background-color: rgba(242,190,184, 0.75);
+          color: rgb(26, 24, 38);
+
       }
 
+
+      #custom-os_button {
+        color: #96CBFE;
+        font-size: 16px;
+        padding-left: 2px;
+        padding-right: 8px;
+      }
+
+      #cpu:hover,
+      #clock:hover,
+      #memory:hover,
+      #pulseaudio:hover,
+      #language:hover,
+      #idle_inhibitor:hover,
+      #custom-powermenu:hover,
+      #custom-remmina:hover,
+      #custom-ticktick:hover,
+      #custom-chat:hover,
+      #custom-weather:hover,
+      #custom-os_button:hover {
+        background: rgba(200, 200, 200, 0.1);
+      }
 
       #mode,
       #clock,
@@ -281,14 +316,17 @@ exec = pkgs.writeShellScript "cpu-json" ''
       #pulseaudio,
       #network,
       #battery,
-      #language,
       #custom-powermenu,
       #custom-remmina,
+      #custom-ticktick,
       #custom-chat,
       #custom-weather,
       #idle_inhibitor {
         padding-left: 2px;
-        padding-right: 10px;
+        padding-right: 8px;
+      }
+      #language {
+        padding-left: 4px;
       }
       #tray {
         padding-right: 8px;

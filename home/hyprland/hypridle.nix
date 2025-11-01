@@ -18,14 +18,14 @@ in {
     settings = {
       general = {
         lock_cmd = "pidof hyprlock || hyprlock";
-        beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session";
-        afterSleepCmd = "hyprctl dispatch dpms on";
+        before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
+        after_sleep_cmd = "hyprctl dispatch dpms on";
       };
 
       listener = [
         {
           timeout = 120;
-          onTimeout = "${pkgs.systemd}/bin/systemctl suspend";
+          on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ];
     };

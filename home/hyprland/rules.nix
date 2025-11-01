@@ -1,5 +1,10 @@
 {lib, ...}: {
   wayland.windowManager.hyprland.settings = {
+    layerrule = [
+			"blur, waybar" # Add blur to waybar
+			"blurpopups, waybar" # Blur waybar popups too!
+			"ignorealpha 0.2, waybar" # Make it so transparent parts are ignored
+    ];
     windowrulev2 = [
       # "opacity 0.9 override 0.9 override,class:(foot),title:(.*)"
       # "opacity 0.95 override 0.95 override,class:(emacs),title:(.*),fullscreen:0"

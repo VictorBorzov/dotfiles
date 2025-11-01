@@ -8,6 +8,7 @@
   wl-ocr = pkgs.callPackage ../../pkgs/wl-ocr {};
   sway-scale-workspace = pkgs.callPackage ../../pkgs/sway-scale-workspace {};
   devs = inputs.dev.packages."x86_64-linux";
+  stablepkgs = import inputs.nixpkgs-stable { system = "x86_64-linux"; config.allowUnfree = true; };
 in {
   nixpkgs.config.allowUnfree = true;
 
@@ -21,7 +22,9 @@ in {
   home.packages = with pkgs; [
     file # educated guess about file type
     wirelesstools # iwconfig <network>
+    graphviz
     valgrind
+    dmalloc
     kdePackages.kcachegrind
     dig # dns lookup utils
     mailutils # ?
@@ -33,6 +36,8 @@ in {
     devs.vim
     devs.emacs
     devs.lf
+    devs.helix
+    devs.zellij
     pinentry-tty
     # devs.zellij
     glibc.static
@@ -55,10 +60,11 @@ in {
     cmake
     meson
     ninja
-    clang-tools
-    clang
+    # clang-tools
+    # clang
     lldb
-    # gcc
+    glibc.static
+    gcc
     gdb
     gnumake
     libtool
@@ -78,6 +84,7 @@ in {
     iosevka
     fira-code
     bottom # btop alternative, call btm
+    htop
     cifs-utils
     zoxide
     coreutils
@@ -86,6 +93,7 @@ in {
     nerd-fonts.iosevka
     nerd-fonts.jetbrains-mono
     nerd-fonts.droid-sans-mono
+    stablepkgs.texliveMedium
   ];
 
   # Enable nerdfonts

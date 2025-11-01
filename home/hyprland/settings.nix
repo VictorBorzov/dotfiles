@@ -1,7 +1,7 @@
 {config, ...}: {
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "eDP-1,2880x1800@90.00,0x0,2"
+      "eDP-1,2880x1800@60.00,0x0,2"
       "HDMI-A-1,1920x1080,1440x0,1.2"
     ];
 
@@ -30,6 +30,7 @@
       "nm-applet"
       "hyprctl setcursor Quintom_Snow 22"
       "hyprlock"
+      "libinput-gestures &"
     ];
 
     # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
@@ -47,8 +48,8 @@
     };
 
     general = {
-      gaps_out = 20;
-      border_size = 3;
+      gaps_out = 0;
+      border_size = 1;
       # # "col.active_border" = "rgb(${config.colorScheme.palette.base03})";#$muted; # rgba(ffffffee)
       # "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";#$overlay; # rgba(ffffffee)
       layout = "master";
@@ -66,13 +67,13 @@
       active_opacity = 1.0; # 0.95
       inactive_opacity = 0.9; # 0.95
       fullscreen_opacity = 1.0;
-      blur = {
-        enabled = true;
-        size = 3;
-        passes = 1;
-        new_optimizations = 1;
-        blurls = "waybar";
-      };
+      # blur = {
+      #   enabled = true;
+      #   size = 3;
+      #   passes = 1;
+      #   new_optimizations = 1;
+      #   # blurls = "waybar";
+      # };
 
       shadow = {
         enabled = true;
@@ -110,6 +111,7 @@
       workspace_swipe_invert = true;
       workspace_swipe_min_speed_to_force = 10;
       workspace_swipe_cancel_ratio = 0.85;
+      workspace_swipe_direction_lock = false;
     };
 
     # render = {
