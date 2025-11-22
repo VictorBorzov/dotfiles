@@ -106,13 +106,13 @@
 
     gestures = {
       gesture = [
-        "4, up, mod: SUPER, scale: 1.5, fullscreen"
-        "3, up, dispatcher, exec 'pkill -USR1 waybar'"
-		    "4, left, dispatcher, splitratio -0.1"
-		    "4, right, dispatcher, splitratio 0.1"
+        "4, up, fullscreen"
+        "3, up, dispatcher, exec, 'pkill -USR1 waybar'"
+		    "4, left, dispatcher, splitratio, -0.1"
+		    "4, right, dispatcher, splitratio, 0.1"
         "3, horizontal, workspace"
         "3, down, dispatcher, special"
-        "4, pinchin, mod: ALT, close"
+        # "4, down, close" CRASHES
       ];
       # workspace_swipe = true;
       workspace_swipe_forever = true;
