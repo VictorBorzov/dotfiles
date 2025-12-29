@@ -6,9 +6,9 @@
   home.stateVersion = "23.05";
 
   imports = [
-    ./cli
+  	        ./cli
 		./gui
 		./stylix.nix
-		./hyprland
+		./sway
   ];
 }

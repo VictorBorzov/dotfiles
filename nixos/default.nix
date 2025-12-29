@@ -7,9 +7,8 @@
 }: {
   imports = [
 		./vpn.mullvad.nix
-    ./stylix.nix
-		./greetd.nix
-		./hyprland.nix
+		./stylix.nix
+		./sway.nix
   ];
 
 

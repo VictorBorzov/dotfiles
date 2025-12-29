@@ -24,7 +24,7 @@
 
       extraPackages = with pkgs; [
         libva
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
@@ -37,7 +37,7 @@
 
 
 
-  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  #services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
 
   programs.light.enable = true;

@@ -188,7 +188,7 @@ in {
 
   home.packages = with pkgs; [
     file-roller
-    rofi-wayland
+    rofi
     dunst
     libnotify
     networkmanagerapplet
@@ -199,7 +199,6 @@ in {
     wireplumber
     brightnessctl
     alsa-utils
-    vvave
     wl-clip-persist
     wl-clipboard
     wl-screenrec
