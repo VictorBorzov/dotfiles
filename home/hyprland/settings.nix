@@ -112,7 +112,7 @@
 		    "4, right, dispatcher, splitratio, 0.1"
         "3, horizontal, workspace"
         "3, down, dispatcher, special"
-        # "4, down, close" CRASHES
+        "4, down, close" # pinchin doesn't work?
       ];
       # workspace_swipe = true;
       workspace_swipe_forever = true;

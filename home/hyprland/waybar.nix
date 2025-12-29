@@ -25,7 +25,6 @@
           "custom/remmina"
           "custom/ticktick"
           "custom/weather"
-          "custom/emacs-org-timer"
         ];
         modules-center = [];
         modules-right = [
@@ -44,29 +43,6 @@
           on-click = "sh -c '(sleep 0.2s; sh ~/.config/rofi/application-launcher-wayland.sh)' & disown";
           tooltip = false;
 
-        };
-
-
-        "custom/emacs-org-timer" = {
-          exec = pkgs.writeShellScript "get-org-clock-timer" ''
-            timer_remaining=$(emacsclient -e "(my-org-timer-remaining-time)" | sed 's/^"\(.*\)"$/\1/' | sed 's/\\//g')
-
-            task_name=$(emacsclient -e '(if (org-clocking-p)
-                             (let* ((task-name (if org-clock-current-task (substring-no-properties org-clock-current-task) "No active task")))
-                               (format "%s" task-name))
-                           "No active task")' | sed 's/^"\(.*\)"$/\1/' | sed 's/\\//g')
-
-            if [ "$task_name" = "No active task" ]; then
-              echo "     No active task"
-            elif [ "$timer_remaining" = "No timer set" ]; then
-              echo "$task_name"
-            else
-              echo "     ''${task_name} [''${timer_remaining}]"
-            fi
-          '';
-          interval = 5;
-          format = "{}";
-          tooltip = "Current Org Clock Task";
         };
 
         "idle_inhibitor" = {

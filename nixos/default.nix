@@ -167,6 +167,8 @@
   };
 
   virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+  
 #  virtualisation.docker.enable = true;
 
   # Optional: reduce surprises from automounters

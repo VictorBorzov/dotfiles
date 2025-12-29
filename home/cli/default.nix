@@ -8,12 +8,11 @@
   wl-ocr = pkgs.callPackage ../../pkgs/wl-ocr {};
   sway-scale-workspace = pkgs.callPackage ../../pkgs/sway-scale-workspace {};
   devs = inputs.dev.packages."x86_64-linux";
-  stablepkgs = import inputs.nixpkgs-stable { system = "x86_64-linux"; config.allowUnfree = true; };
 in {
   nixpkgs.config.allowUnfree = true;
 
 
-  imports = [./git ./delta ./tealdeer ./tmux];
+  imports = [./git ./tealdeer ./tmux];
   services.emacs = {
     enable = true;
     package = devs.emacs;
@@ -31,6 +30,7 @@ in {
     ed
     pstree
     vim-full
+    podman
     ltrace
     devs.vmrss
     devs.vim
@@ -93,7 +93,6 @@ in {
     nerd-fonts.iosevka
     nerd-fonts.jetbrains-mono
     nerd-fonts.droid-sans-mono
-    stablepkgs.texliveMedium
   ];
 
   # Enable nerdfonts

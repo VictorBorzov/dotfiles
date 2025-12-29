@@ -1,18 +1,17 @@
 
 { inputs, lib, config, pkgs, ... }: {
 
-  imports = [ ./foot.nix ./clion.nix ];
+  imports = [ ./foot.nix ];
 
   home.packages = with pkgs; [
+  zoom-us
     libreoffice
     feh # image viewer
     xournalpp # to sign pdfs
-    obs-studio
     # libreoffice
     # yubikey-manager # For managing YubiKey settings
     # yubikey-personalization-gui #
     # yubioath-flutter
-    zoom-us
     mullvad-browser
     librewolf
     telegram-desktop
