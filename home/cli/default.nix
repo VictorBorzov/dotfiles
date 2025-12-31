@@ -140,6 +140,10 @@ in {
       # alias zz='z -'
       eval "$(zoxide init bash)"
     '';
+
+    profileExtra = ''
+      [ "$(tty)" = "/dev/tty1" ] && exec sway
+    '';
   };
 
   programs.bat = {

@@ -6,6 +6,17 @@
   lib,
   ...
 }: let
+  toggleCursor = pkgs.writeShellScript "toggle-cursor" ''
+    STATE="$XDG_RUNTIME_DIR/sway-cursor-hidden"
+
+    if [ -e "$STATE" ]; then
+      ${pkgs.sway}/bin/swaymsg 'seat * hide_cursor 0'
+      rm "$STATE"
+    else
+      ${pkgs.sway}/bin/swaymsg 'seat * hide_cursor 1'
+      touch "$STATE"
+    fi
+  '';
   screenshotarea = "grim -g \"$(slurp)\" - | wl-copy"; # requires grim and slurp
   swappyClipboard = "wl-paste | swappy -f -";
   send-ed-write = ''
@@ -91,6 +102,7 @@ in {
         followMouse = "no";
       };
 
+
       output = {
         eDP-1 = {
           pos = "0 0";
@@ -129,6 +141,7 @@ in {
           "${modifier}+Shift+T" = "exec ${swappyClipboard}";
           "${modifier}+Shift+O" = "exec ${pkgs.hyprpicker}/bin/hyprpicker -a";
 #          "${modifier}+Shift+W" = "exec ${send-ed-write}";
+      	  "${modifier}+Shift+c" = "exec ${toggleCursor}";
           "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+";
           "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-";
           "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";

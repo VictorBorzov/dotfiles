@@ -109,11 +109,11 @@
         "nvf": "nvf"
       },
       "locked": {
-        "lastModified": 1767011143,
-        "narHash": "sha256-vSwiD2OT/oUsSLNQOuIk75RKtYMPApZLTp7C9zOk0ok=",
+        "lastModified": 1767219204,
+        "narHash": "sha256-o3kIpkxoszSObnI5EGS9lFp9YFf33OuYQEoV5/Sd6KU=",
         "owner": "victorborzov",
         "repo": "dev",
-        "rev": "cb0bc7ff71f5052edd28eb50a174945698565452",
+        "rev": "e6adedbd544691c28b3a653a9356f883945f5a1b",
         "type": "github"
       },
       "original": {
