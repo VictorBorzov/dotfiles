@@ -24,59 +24,6 @@
                 ${pkgs.wtype} $'\n'
                 '';
 
-  i3statusConf = pkgs.writeText "i3statusConf" ''
-general {
-        colors = true
-        interval = 5
-}
-
-order += "cpu_temperature 0"
-order += "disk /"
-order += "wireless _first_"
-order += "ethernet _first_"
-order += "battery all"
-order += "load"
-order += "tztime local"
-
-cpu_temperature 0 {
-        format = "Tea: %degrees °C"
-}
-
-wireless _first_ {
-        # format_up = "W: (%quality at %essid) %ip"
-        format_up = "W: (%quality) Leaked IP: %ip"
-        format_down = "W: down"
-}
-
-ethernet _first_ {
-        # if you use %speed, i3status requires root privileges
-        # format_up = "E: %ip (%speed)"
-        format_up = "E: Leaked IP: %ip (%speed)"
-        format_down = "E: down"
-}
-
-battery all {
-        format = "Fairy Dust: %percentage %status %remaining"
-}
-
-tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
-}
-
-load {
-        format = "Hot Loads: %1min"
-}
-
-disk "/" {
-        format = "Porn Folder: %avail (too smol PepeHands)"
-}
-
-ipv6 {
-        format_up = "Useless Protocol: %ipv6"
-        format_down = "Useless Protocol: Down"
-}
-  '';
-
 in {
 
   imports = [ ./wlogout ];
@@ -89,6 +36,7 @@ in {
     extraSessionCommands = ''
                            # "blueman-applet"
                            # "nm-applet --indicator"
+                           mullvad connect
                          '';
 
     # checkConfig = true;
@@ -117,6 +65,7 @@ in {
       };
 
       workspaceAutoBackAndForth = true;
+      defaultWorkspace = "workspace number 1";
       modifier = "Mod4";
       input = {
         "type:keyboard" = {
@@ -137,6 +86,7 @@ in {
         in lib.mkOptionDefault {
           "${modifier}+Tab" = "workspace back_and_forth";
           "${modifier}+Shift+P" = "exec wlogout";
+          "${modifier}+Shift+a" = "focus child";
           "${modifier}+Shift+R" = "exec ${screenshotarea}";
           "${modifier}+Shift+T" = "exec ${swappyClipboard}";
           "${modifier}+Shift+O" = "exec ${pkgs.hyprpicker}/bin/hyprpicker -a";
@@ -154,7 +104,7 @@ in {
         {
           trayOutput = "*";
           mode = "hide";
-          statusCommand = "${pkgs.i3status}/bin/i3status -c ${i3statusConf}"; 
+          statusCommand = "${pkgs.i3status}/bin/i3status"; 
           fonts = {
             names = [ "Iosevka" ];
             size = 10.0;
@@ -176,6 +126,8 @@ in {
     };
   };
 
+  
+
 
   gtk = {
     enable = true;
@@ -186,19 +138,29 @@ in {
     enable = true;
   };
 
-  services.blueman-applet.enable = true;
-  services.swayidle = {
-    enable = true;
-    events = [
-      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
-      { event = "lock"; command = "lock"; }
-    ];
-    timeouts = [
-      { timeout = 1200; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
-      { timeout = 1800; command = "${pkgs.systemd}/bin/systemctl suspend"; }
-    ];
+  services = {
+    blueman-applet.enable = true;
+    swayidle = {
+      enable = true;
+      events = [
+        { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
+        { event = "lock"; command = "lock"; }
+      ];
+      timeouts = [
+        { timeout = 1200; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
+        { timeout = 1800; command = "${pkgs.systemd}/bin/systemctl suspend"; }
+      ];
+    };
+    gammastep = {
+      enable = true;
+      temperature = {
+        day = 4500;
+        night = 4000;
+      };
+      dawnTime = "6:00-7:45";
+      duskTime = "5:00-6:45";
+    };
   };
-
   home.packages = with pkgs; [
     file-roller
     rofi

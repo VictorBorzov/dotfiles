@@ -25,7 +25,7 @@
       };
       
       core = {
-        editor = "ed";
+        editor = "emacsclient -r";
       };
     };
   };

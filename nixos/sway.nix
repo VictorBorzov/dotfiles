@@ -40,7 +40,6 @@
   #services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
 
-  programs.light.enable = true;
   programs.nm-applet.enable = true;
   services.blueman.enable = true;
 

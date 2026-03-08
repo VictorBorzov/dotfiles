@@ -19,6 +19,8 @@ in {
     client.arguments = [ "-c" ];
   };
   home.packages = with pkgs; [
+    gh
+    claude-code
     file # educated guess about file type
     wirelesstools # iwconfig <network>
     graphviz
@@ -99,7 +101,7 @@ in {
   fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "emacsclient -r";
     # EDITOR = "emacsclient -nw"; # terminal emacs
     # DOTNET_CLI_TELEMETRY_OPTOUT = "1";
     TLDR_AUTO_UPDATE_DISABLED = "1";

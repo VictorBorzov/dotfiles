@@ -127,10 +127,10 @@
   };
   zramSwap.enable = true;
   # Optional: Enable fan control (if thinkfan or EC support is available)
-  services.thinkfan = {
-    enable = true;
-    smartSupport = true;
-  };
+  # services.thinkfan = {
+  #   enable = true;
+  #   smartSupport = true;
+  # };
  	# <- power saving
 
   
@@ -147,7 +147,7 @@
   users.users.vb = {
     isNormalUser = true;
     description = "vb";
-    extraGroups = ["audio" "networkmanager" "wheel" "video" "wireshark" "input" "kvm" "libvirtd" ];
+    extraGroups = ["audio" "networkmanager" "wheel" "video" "wireshark" "input" "kvm" ];
   };
 
   documentation = {
@@ -157,7 +157,7 @@
     man.generateCaches = true;
   };
 
-  environment.systemPackages = with pkgs; [ man-pages man-pages-posix stdman llvmPackages.lldb-manpages wireshark virt-manager virt-viewer ];
+  environment.systemPackages = with pkgs; [ man-pages man-pages-posix stdman llvmPackages.lldb-manpages wireshark ];
 
   environment.wordlist.enable = true;
   programs.wireshark = {
@@ -165,8 +165,8 @@
     dumpcap.enable = true;
   };
 
-  virtualisation.libvirtd.enable = true;
-  virtualisation.spiceUSBRedirection.enable = true;
+  # virtualisation.libvirtd.enable = true;
+  # virtualisation.spiceUSBRedirection.enable = true;
   
 #  virtualisation.docker.enable = true;
 
