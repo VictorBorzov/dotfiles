@@ -17,10 +17,7 @@
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
     enable = true;
     polarity = "dark";
-    image = ../home/gui/pictures/black.png;
-    # image = ../home/gui/pictures/dark-universe-2880x1800.jpg;
-    # image = ../home/gui/pictures/autumn-forest-trees-b9-2880x1800.jpg;
-    # image = ../home/gui/pictures/azul-2880x1800.jpg;
+    image = config.lib.stylix.pixel "base00";
 
     cursor = {
       package = pkgs.quintom-cursor-theme;

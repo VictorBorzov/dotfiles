@@ -134,7 +134,6 @@
  	# <- power saving
 
   
-  hardware.opengl.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
